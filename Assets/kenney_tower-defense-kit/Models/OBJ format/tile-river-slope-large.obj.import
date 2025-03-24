@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b5krfs6033gtc"
+path="res://.godot/imported/tile-river-slope-large.obj-91a3f62f2a73ccbb5fa4fcd1f7a5f30e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/tile-river-slope-large.obj-91a3f62f2a73ccbb5fa4fcd1f7a5f30e.mesh"]
+
+source_file="res://Assets/kenney_tower-defense-kit/Models/OBJ format/tile-river-slope-large.obj"
+dest_files=["res://.godot/imported/tile-river-slope-large.obj-91a3f62f2a73ccbb5fa4fcd1f7a5f30e.mesh", "res://.godot/imported/tile-river-slope-large.obj-91a3f62f2a73ccbb5fa4fcd1f7a5f30e.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

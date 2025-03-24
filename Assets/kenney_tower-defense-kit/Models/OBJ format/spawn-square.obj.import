@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://wsydmkb7g6a8"
+path="res://.godot/imported/spawn-square.obj-c6ba595b06e5619f1eaeeda6fa7506aa.mesh"
+
+[deps]
+
+files=["res://.godot/imported/spawn-square.obj-c6ba595b06e5619f1eaeeda6fa7506aa.mesh"]
+
+source_file="res://Assets/kenney_tower-defense-kit/Models/OBJ format/spawn-square.obj"
+dest_files=["res://.godot/imported/spawn-square.obj-c6ba595b06e5619f1eaeeda6fa7506aa.mesh", "res://.godot/imported/spawn-square.obj-c6ba595b06e5619f1eaeeda6fa7506aa.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

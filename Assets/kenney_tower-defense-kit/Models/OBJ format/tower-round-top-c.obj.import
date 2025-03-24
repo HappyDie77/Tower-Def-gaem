@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://crp5rhdmaigtj"
+path="res://.godot/imported/tower-round-top-c.obj-4ff72d9136a8da02ad743cdcb6894b62.mesh"
+
+[deps]
+
+files=["res://.godot/imported/tower-round-top-c.obj-4ff72d9136a8da02ad743cdcb6894b62.mesh"]
+
+source_file="res://Assets/kenney_tower-defense-kit/Models/OBJ format/tower-round-top-c.obj"
+dest_files=["res://.godot/imported/tower-round-top-c.obj-4ff72d9136a8da02ad743cdcb6894b62.mesh", "res://.godot/imported/tower-round-top-c.obj-4ff72d9136a8da02ad743cdcb6894b62.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bnlo6al1x6u4d"
+path="res://.godot/imported/snow-wood-structure-part.obj-de4773b0a1a42313c321d3c753a0f1ca.mesh"
+
+[deps]
+
+files=["res://.godot/imported/snow-wood-structure-part.obj-de4773b0a1a42313c321d3c753a0f1ca.mesh"]
+
+source_file="res://Assets/kenney_tower-defense-kit/Models/OBJ format/snow-wood-structure-part.obj"
+dest_files=["res://.godot/imported/snow-wood-structure-part.obj-de4773b0a1a42313c321d3c753a0f1ca.mesh", "res://.godot/imported/snow-wood-structure-part.obj-de4773b0a1a42313c321d3c753a0f1ca.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c36wwgufngxjy"
+path="res://.godot/imported/tile-wide-split.obj-ccd7a986898613bcd2473e90fa13c84f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/tile-wide-split.obj-ccd7a986898613bcd2473e90fa13c84f.mesh"]
+
+source_file="res://Assets/kenney_tower-defense-kit/Models/OBJ format/tile-wide-split.obj"
+dest_files=["res://.godot/imported/tile-wide-split.obj-ccd7a986898613bcd2473e90fa13c84f.mesh", "res://.godot/imported/tile-wide-split.obj-ccd7a986898613bcd2473e90fa13c84f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

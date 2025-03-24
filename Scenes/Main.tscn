@@ -1,0 +1,176 @@
+[gd_scene load_steps=25 format=3 uid="uid://cbbi3taj35r44"]
+
+[ext_resource type="ArrayMesh" uid="uid://b7mjsd7ckgajw" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/tile-dirt.obj" id="2_d26yb"]
+[ext_resource type="ArrayMesh" uid="uid://74xddxljucnd" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/tile-straight.obj" id="3_j1n4k"]
+[ext_resource type="ArrayMesh" uid="uid://cqw8efh87dbr1" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/tile-corner-outer.obj" id="4_5hldy"]
+[ext_resource type="ArrayMesh" uid="uid://cxdcyter5tt8c" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/tile-spawn-end.obj" id="5_lvbje"]
+[ext_resource type="ArrayMesh" uid="uid://bcevst55i425f" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/tile-slope.obj" id="6_hy3mw"]
+[ext_resource type="ArrayMesh" uid="uid://cvafkq3f2b381" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/tile-rock.obj" id="7_n0f1m"]
+[ext_resource type="ArrayMesh" uid="uid://b6s5e05e0x0ld" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/tile-end-round.obj" id="8_44fe5"]
+[ext_resource type="ArrayMesh" uid="uid://buhkucc7an5d4" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/tile-river-straight.obj" id="8_q3dmr"]
+[ext_resource type="ArrayMesh" uid="uid://mny5lxislo5x" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/tile – Kopi.obj" id="8_ti5va"]
+[ext_resource type="ArrayMesh" uid="uid://bfbqcvxq2ly7l" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/tile-river-transition.obj" id="9_0paqe"]
+[ext_resource type="ArrayMesh" uid="uid://f37wv0y7d3f0" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/tile-corner-square.obj" id="9_1kvxa"]
+[ext_resource type="ArrayMesh" uid="uid://cyvkmnsfpa3dl" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/tile-corner-round.obj" id="10_04w6v"]
+[ext_resource type="ArrayMesh" uid="uid://bi5gql5pp5bis" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/tile-river-bridge.obj" id="10_uthfv"]
+[ext_resource type="ArrayMesh" uid="uid://v47asynbxsm3" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/tile-crossing.obj" id="11_8m2uy"]
+[ext_resource type="ArrayMesh" uid="uid://d065xn8kl0x1p" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/tile-spawn-round.obj" id="11_ux22w"]
+[ext_resource type="ArrayMesh" uid="uid://bow5mydw5da74" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/tile-spawn.obj" id="12_7fmvq"]
+[ext_resource type="ArrayMesh" uid="uid://c3xpmkx4yyhs4" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/wood-structure-high.obj" id="12_hjxp1"]
+[ext_resource type="ArrayMesh" uid="uid://cu0auxl1oaaiv" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/tile-tree-double.obj" id="13_syocl"]
+[ext_resource type="ArrayMesh" uid="uid://dejoik2resgoc" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/tile-tree.obj" id="14_e2tyi"]
+[ext_resource type="ArrayMesh" uid="uid://pc8ofxmt6nd7" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/selection-a.obj" id="14_ffqnx"]
+[ext_resource type="ArrayMesh" uid="uid://d2aqe2ymtw5d4" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/tile-hill.obj" id="15_jbwee"]
+[ext_resource type="PackedScene" uid="uid://t33p14owkeyy" path="res://Scenes/camera_main.tscn" id="17_0xeiu"]
+
+[sub_resource type="MeshLibrary" id="MeshLibrary_uylkr"]
+item/0/name = "Dirt Tile"
+item/0/mesh = ExtResource("2_d26yb")
+item/0/mesh_transform = Transform3D(2, 0, 0, 0, 4, 0, 0, 0, 2, 0, 0, 0)
+item/0/shapes = []
+item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/navigation_layers = 1
+item/1/name = "Dirt Straight"
+item/1/mesh = ExtResource("3_j1n4k")
+item/1/mesh_transform = Transform3D(2, 0, 0, 0, 4, 0, 0, 0, 2, 0, 0, 0)
+item/1/shapes = []
+item/1/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/1/navigation_layers = 1
+item/2/name = "Dirt End"
+item/2/mesh = ExtResource("8_44fe5")
+item/2/mesh_transform = Transform3D(2, 0, 0, 0, 4, 0, 0, 0, 2, 0, 0, 0)
+item/2/shapes = []
+item/2/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/2/navigation_layers = 1
+item/3/name = "Dirt Corner Square"
+item/3/mesh = ExtResource("9_1kvxa")
+item/3/mesh_transform = Transform3D(2, 0, 0, 0, 4, 0, 0, 0, 2, 0, 0, 0)
+item/3/shapes = []
+item/3/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/3/navigation_layers = 1
+item/4/name = "Dirt Corner Round"
+item/4/mesh = ExtResource("10_04w6v")
+item/4/mesh_transform = Transform3D(2, 0, 0, 0, 4, 0, 0, 0, 2, 0, 0, 0)
+item/4/shapes = []
+item/4/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/4/navigation_layers = 1
+item/5/name = "Dirt Crossing"
+item/5/mesh = ExtResource("11_8m2uy")
+item/5/mesh_transform = Transform3D(2, 0, 0, 0, 4, 0, 0, 0, 2, 0, 0, 0)
+item/5/shapes = []
+item/5/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/5/navigation_layers = 1
+item/6/name = "Dirt Spawn Square"
+item/6/mesh = ExtResource("12_7fmvq")
+item/6/mesh_transform = Transform3D(2, 0, 0, 0, 4, 0, 0, 0, 2, 0, 0, 0)
+item/6/shapes = []
+item/6/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/6/navigation_layers = 1
+item/7/name = "Tree Double"
+item/7/mesh = ExtResource("13_syocl")
+item/7/mesh_transform = Transform3D(2, 0, 0, 0, 4, 0, 0, 0, 2, 0, 0, 0)
+item/7/shapes = []
+item/7/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/7/navigation_layers = 1
+item/8/name = "Tree Single"
+item/8/mesh = ExtResource("14_e2tyi")
+item/8/mesh_transform = Transform3D(2, 0, 0, 0, 4, 0, 0, 0, 2, 0, 0, 0)
+item/8/shapes = []
+item/8/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/8/navigation_layers = 1
+item/9/name = "Dirt Hill"
+item/9/mesh = ExtResource("15_jbwee")
+item/9/mesh_transform = Transform3D(2, 0, 0, 0, 4, 0, 0, 0, 2, 0, 0, 0)
+item/9/shapes = []
+item/9/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/9/navigation_layers = 1
+item/10/name = "Dirt Corner Wedge"
+item/10/mesh = ExtResource("4_5hldy")
+item/10/mesh_transform = Transform3D(2, 0, 0, 0, 4, 0, 0, 0, 2, 0, 0, 0)
+item/10/shapes = []
+item/10/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/10/navigation_layers = 1
+item/11/name = "Tile Spawn End"
+item/11/mesh = ExtResource("5_lvbje")
+item/11/mesh_transform = Transform3D(2, 0, 0, 0, 4, 0, 0, 0, 2, 0, 0, 0)
+item/11/shapes = []
+item/11/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/11/navigation_layers = 1
+item/12/name = "Dirt Slope"
+item/12/mesh = ExtResource("6_hy3mw")
+item/12/mesh_transform = Transform3D(2, 0, 0, 0, 4, 0, 0, 0, 2, 0, 0, 0)
+item/12/shapes = []
+item/12/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/12/navigation_layers = 1
+item/13/name = "Dirt Rock"
+item/13/mesh = ExtResource("7_n0f1m")
+item/13/mesh_transform = Transform3D(2, 0, 0, 0, 4, 0, 0, 0, 2, 0, 0, 0)
+item/13/shapes = []
+item/13/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/13/navigation_layers = 1
+item/14/name = "Dirt Grass Tile"
+item/14/mesh = ExtResource("8_ti5va")
+item/14/mesh_transform = Transform3D(2, 0, 0, 0, 4, 0, 0, 0, 2, 0, 0, 0)
+item/14/shapes = []
+item/14/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/14/navigation_layers = 1
+item/15/name = "River Straight"
+item/15/mesh = ExtResource("8_q3dmr")
+item/15/mesh_transform = Transform3D(2, 0, 0, 0, 4, 0, 0, 0, 2, 0, 0, 0)
+item/15/shapes = []
+item/15/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/15/navigation_layers = 1
+item/16/name = "River Transition"
+item/16/mesh = ExtResource("9_0paqe")
+item/16/mesh_transform = Transform3D(2, 0, 0, 0, 4, 0, 0, 0, 2, 0, 0, 0)
+item/16/shapes = []
+item/16/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/16/navigation_layers = 1
+item/17/name = "River Bridge"
+item/17/mesh = ExtResource("10_uthfv")
+item/17/mesh_transform = Transform3D(2, 0, 0, 0, 4, 0, 0, 0, 2, 0, 0, 0)
+item/17/shapes = []
+item/17/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/17/navigation_layers = 1
+item/18/name = "Spawn Round"
+item/18/mesh = ExtResource("11_ux22w")
+item/18/mesh_transform = Transform3D(2, 0, 0, 0, 4, 0, 0, 0, 2, 0, 0, 0)
+item/18/shapes = []
+item/18/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/18/navigation_layers = 1
+item/19/name = "Wood Strukt 1"
+item/19/mesh = ExtResource("12_hjxp1")
+item/19/mesh_transform = Transform3D(2, 0, 0, 0, 4, 0, 0, 0, 2, 0, 0, 0)
+item/19/shapes = []
+item/19/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/19/navigation_layers = 1
+item/20/name = "Placement Tower"
+item/20/mesh = ExtResource("14_ffqnx")
+item/20/mesh_transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0)
+item/20/shapes = []
+item/20/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0)
+item/20/navigation_layers = 1
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l5pkq"]
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0176373, 0.0237365, -0.27177)
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = SubResource("MeshLibrary_uylkr")
+physics_material = SubResource("PhysicsMaterial_l5pkq")
+data = {
+"cells": PackedInt32Array(0, 0, 1048587, 1, 0, 17, 1, 1, 16, 1, 65535, 15, 0, 65535, 13, 65535, 65535, 1048586, 65535, 0, 14, 65535, 1, 1048585, 0, 1, 1048584)
+}
+metadata/_editor_floor_ = Vector3(1, 1, 0)
+
+[node name="Camera Main" parent="." instance=ExtResource("17_0xeiu")]
+transform = Transform3D(1, 0, 0, 0, 0.676259, 0.736664, 0, -0.736664, 0.676259, 0.919775, 1.45602, 1.15684)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.1509, 13.3694, 0.997061)
+light_color = Color(0.999999, 0.989392, 0.51214, 1)
+light_energy = 1.214
+light_bake_mode = 1
+shadow_enabled = true
+shadow_bias = 0.876

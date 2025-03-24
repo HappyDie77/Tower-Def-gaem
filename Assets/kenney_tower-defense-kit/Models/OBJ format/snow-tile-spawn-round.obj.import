@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://be7wwhutwyl8"
+path="res://.godot/imported/snow-tile-spawn-round.obj-231eb36136474ccd30e2af98e0aa308b.mesh"
+
+[deps]
+
+files=["res://.godot/imported/snow-tile-spawn-round.obj-231eb36136474ccd30e2af98e0aa308b.mesh"]
+
+source_file="res://Assets/kenney_tower-defense-kit/Models/OBJ format/snow-tile-spawn-round.obj"
+dest_files=["res://.godot/imported/snow-tile-spawn-round.obj-231eb36136474ccd30e2af98e0aa308b.mesh", "res://.godot/imported/snow-tile-spawn-round.obj-231eb36136474ccd30e2af98e0aa308b.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

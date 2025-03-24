@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://mkqvsr25l1gi"
+path="res://.godot/imported/snow-detail-dirt-large.obj-48284bc6cc2e71bdbe9410563073bdf4.mesh"
+
+[deps]
+
+files=["res://.godot/imported/snow-detail-dirt-large.obj-48284bc6cc2e71bdbe9410563073bdf4.mesh"]
+
+source_file="res://Assets/kenney_tower-defense-kit/Models/OBJ format/snow-detail-dirt-large.obj"
+dest_files=["res://.godot/imported/snow-detail-dirt-large.obj-48284bc6cc2e71bdbe9410563073bdf4.mesh", "res://.godot/imported/snow-detail-dirt-large.obj-48284bc6cc2e71bdbe9410563073bdf4.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

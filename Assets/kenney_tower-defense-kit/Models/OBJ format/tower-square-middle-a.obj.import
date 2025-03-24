@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dilq5enrghwt3"
+path="res://.godot/imported/tower-square-middle-a.obj-51d2edd47b31b033b56007a1d1915593.mesh"
+
+[deps]
+
+files=["res://.godot/imported/tower-square-middle-a.obj-51d2edd47b31b033b56007a1d1915593.mesh"]
+
+source_file="res://Assets/kenney_tower-defense-kit/Models/OBJ format/tower-square-middle-a.obj"
+dest_files=["res://.godot/imported/tower-square-middle-a.obj-51d2edd47b31b033b56007a1d1915593.mesh", "res://.godot/imported/tower-square-middle-a.obj-51d2edd47b31b033b56007a1d1915593.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
