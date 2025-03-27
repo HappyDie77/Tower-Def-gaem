@@ -1,5 +1,6 @@
 extends Node3D
 # https://godotshaders.com/shader/wind-waker-water-no-textures-needed/
+@onready var spring_arm = $SpringArm3D
 @export var rotation_speed: float = 0.005
 @export var zoom_speed: float = 2.0
 @export var min_zoom: float = 5.0
@@ -7,20 +8,16 @@ extends Node3D
 @export var zoom_smoothness: float = 12.0  # Higher = smoother
 @export var min_pitch: float = -55.0  # Min pitch angle (down)
 @export var max_pitch: float = -10.0   # Max pitch angle (up)
-@onready var ray_cast_3d = $SpringArm3D/Camera3D/RayCast3D
+
 
 var rotating: bool = false
 var target_zoom: float
 var current_pitch: float = 0.0
 
-@onready var spring_arm = $SpringArm3D
 
 func _ready():
 	target_zoom = 10  # Start at current zoom
 	current_pitch = rotation_degrees.x  # Store initial pitch
-
-func _input(event):
-	if event is InputEventAction
 
 func _input(event):
 	# Detect right-click for rotation

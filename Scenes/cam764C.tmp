@@ -4,6 +4,13 @@
 
 [node name="Camera Main" type="Node3D"]
 script = ExtResource("1_it3hh")
+rotation_speed = null
+zoom_speed = null
+min_zoom = null
+max_zoom = null
+zoom_smoothness = null
+min_pitch = null
+max_pitch = null
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
 

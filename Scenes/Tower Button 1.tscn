@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c43e61vpdajky"]
+[gd_scene load_steps=3 format=3 uid="uid://c43e61vpdajky"]
 
 [ext_resource type="Script" path="res://Scripts/Activity_Button.gd" id="1_ix060"]
+[ext_resource type="PackedScene" uid="uid://dm2xydbi1nfek" path="res://Scenes/Tower 1.tscn" id="2_tnfcb"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -10,15 +11,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer"]
-layout_mode = 2
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -106.0
+offset_right = 48.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
 script = ExtResource("1_ix060")
+tower_scene = ExtResource("2_tnfcb")
 
-[connection signal="button_down" from="CanvasLayer/VBoxContainer/Button" to="CanvasLayer/VBoxContainer/Button" method="_on_button_down"]
-[connection signal="button_up" from="CanvasLayer/VBoxContainer/Button" to="CanvasLayer/VBoxContainer/Button" method="_on_button_up"]
+[connection signal="button_down" from="Button" to="Button" method="_on_button_down"]
+[connection signal="button_up" from="Button" to="Button" method="_on_button_up"]

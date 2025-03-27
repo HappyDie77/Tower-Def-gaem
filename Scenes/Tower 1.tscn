@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dm2xydbi1nfek"]
+
+[ext_resource type="ArrayMesh" uid="uid://cu1dqly0r08gg" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/weapon-cannon.obj" id="1_0pj2s"]
+
+[node name="Tower1" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = ExtResource("1_0pj2s")
