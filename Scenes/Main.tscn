@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cbbi3taj35r44"]
+[gd_scene load_steps=37 format=3 uid="uid://cbbi3taj35r44"]
 
 [ext_resource type="ArrayMesh" uid="uid://b7mjsd7ckgajw" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/tile-dirt.obj" id="2_d26yb"]
 [ext_resource type="ArrayMesh" uid="uid://74xddxljucnd" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/tile-straight.obj" id="3_j1n4k"]
@@ -20,8 +20,15 @@
 [ext_resource type="ArrayMesh" uid="uid://cu0auxl1oaaiv" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/tile-tree-double.obj" id="13_syocl"]
 [ext_resource type="ArrayMesh" uid="uid://dejoik2resgoc" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/tile-tree.obj" id="14_e2tyi"]
 [ext_resource type="ArrayMesh" uid="uid://pc8ofxmt6nd7" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/selection-a.obj" id="14_ffqnx"]
+[ext_resource type="ArrayMesh" uid="uid://borfv2lsaxtpr" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/tile-river-corner.obj" id="15_dxwnc"]
 [ext_resource type="ArrayMesh" uid="uid://d2aqe2ymtw5d4" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/tile-hill.obj" id="15_jbwee"]
+[ext_resource type="ArrayMesh" uid="uid://b0vr0yb28bpm5" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/tower-round-top-a.obj" id="16_a8cf7"]
 [ext_resource type="PackedScene" uid="uid://t33p14owkeyy" path="res://Scenes/camera_main.tscn" id="17_0xeiu"]
+[ext_resource type="ArrayMesh" uid="uid://brvgw77kvoowc" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/wood-structure-high-part.obj" id="17_urjb4"]
+[ext_resource type="ArrayMesh" uid="uid://7dakeut4tf1n" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/tile.obj" id="18_ljp7m"]
+[ext_resource type="ArrayMesh" uid="uid://bjp5g06s64d5i" path="res://Assets/kenney_tower-defense-kit/Models/OBJ format/detail-dirt.obj" id="19_dyel3"]
+[ext_resource type="Shader" path="res://Scripts/Themes & Shaders/Ocean.gdshader" id="28_htrqa"]
+[ext_resource type="Script" path="res://Scripts/Activity_Button.gd" id="29_kee0n"]
 
 [sub_resource type="MeshLibrary" id="MeshLibrary_uylkr"]
 item/0/name = "Dirt Tile"
@@ -150,27 +157,151 @@ item/20/mesh_transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0)
 item/20/shapes = []
 item/20/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0)
 item/20/navigation_layers = 1
+item/21/name = "River Turn"
+item/21/mesh = ExtResource("15_dxwnc")
+item/21/mesh_transform = Transform3D(2, 0, 0, 0, 4, 0, 0, 0, 2, 0, 0, 0)
+item/21/shapes = []
+item/21/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/21/navigation_layers = 1
+item/22/name = "Player Base"
+item/22/mesh = ExtResource("16_a8cf7")
+item/22/mesh_transform = Transform3D(2, 0, 0, 0, 4, 0, 0, 0, 2, 0, 0, 0)
+item/22/shapes = []
+item/22/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/22/navigation_layers = 1
+item/23/name = "Wood Struckt 2"
+item/23/mesh = ExtResource("17_urjb4")
+item/23/mesh_transform = Transform3D(2, 0, 0, 0, 4, 0, 0, 0, 2, 0, 0, 0)
+item/23/shapes = []
+item/23/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/23/navigation_layers = 1
+item/24/name = "Grass Tile tall"
+item/24/mesh = ExtResource("18_ljp7m")
+item/24/mesh_transform = Transform3D(2, 0, 0, 0, 8, 0, 0, 0, 2, 0, 0, 0)
+item/24/shapes = []
+item/24/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/24/navigation_layers = 1
+item/25/name = "rooock"
+item/25/mesh = ExtResource("19_dyel3")
+item/25/mesh_transform = Transform3D(6, 0, 0, 0, 8, 0, 0, 0, 6, 0, 0, 0)
+item/25/shapes = []
+item/25/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/25/navigation_layers = 1
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l5pkq"]
 
-[node name="Node3D" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0176373, 0.0237365, -0.27177)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ere5a"]
 
-[node name="GridMap" type="GridMap" parent="."]
+[sub_resource type="Sky" id="Sky_6bkif"]
+sky_material = SubResource("ProceduralSkyMaterial_ere5a")
+process_mode = 1
+
+[sub_resource type="Environment" id="Environment_oj07o"]
+background_mode = 2
+sky = SubResource("Sky_6bkif")
+reflected_light_source = 2
+tonemap_mode = 2
+tonemap_exposure = 0.9
+ssao_power = 1e+06
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_cascades = 2
+sdfgi_min_cell_size = 22.2316
+sdfgi_energy = 0.8
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.02
+volumetric_fog_albedo = Color(0.785803, 0.872253, 1, 1)
+volumetric_fog_emission = Color(0.0818339, 0.122734, 0.625414, 1)
+volumetric_fog_emission_energy = 0.4
+volumetric_fog_gi_inject = 1.2
+volumetric_fog_anisotropy = -0.83
+volumetric_fog_length = 96.33
+volumetric_fog_detail_spread = 6.0
+adjustment_enabled = true
+adjustment_brightness = 0.8
+adjustment_contrast = 1.26
+adjustment_saturation = 1.33
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n7bq2"]
+render_priority = 1
+shader = ExtResource("28_htrqa")
+shader_parameter/WATER_COL = Color(0.04, 0.38, 0.88, 1)
+shader_parameter/WATER2_COL = Color(0.04, 0.35, 0.78, 1)
+shader_parameter/FOAM_COL = Color(0.8125, 0.9609, 0.9648, 1)
+shader_parameter/distortion_speed = 2.0
+shader_parameter/tile = Vector2(800, 800)
+shader_parameter/height = 2.0
+shader_parameter/wave_size = Vector2(2, 2)
+shader_parameter/wave_speed = 1.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tr04t"]
+material = SubResource("ShaderMaterial_n7bq2")
+top_radius = 1200.0
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5492, 0.0237365, -4.18248)
+
+[node name="Main" type="GridMap" parent="."]
 mesh_library = SubResource("MeshLibrary_uylkr")
 physics_material = SubResource("PhysicsMaterial_l5pkq")
+collision_layer = 0
+collision_mask = 0
 data = {
-"cells": PackedInt32Array(0, 0, 1048587, 1, 0, 17, 1, 1, 16, 1, 65535, 15, 0, 65535, 13, 65535, 65535, 1048586, 65535, 0, 14, 65535, 1, 1048585, 0, 1, 1048584)
+"cells": PackedInt32Array(0, 0, 1048587, 1, 0, 17, 1, 1, 16, 1, 65535, 15, 0, 65535, 13, 65535, 65535, 1048586, 65535, 0, 14, 65535, 1, 1048585, 0, 1, 1048584, 1, 65534, 21, 2, 65534, 1441807, 3, 65534, 1441807, 4, 65534, 1441807, 5, 65534, 1441807, 6, 65534, 1441807, 7, 65534, 1048592, 2, 0, 1048577, 3, 0, 1048577, 4, 0, 1048577, 5, 0, 1441796, 4, 1, 4, 5, 1, 655364, 6, 3, 655364, 6, 2, 4, 4, 3, 1048580, 4, 2, 1, 5, 3, 1441793, 7, 2, 1441793, 8, 2, 1441793, 5, 2, 1441806, 6, 1, 1441805, 4, 65535, 1441799, 2, 65535, 1441806, 3, 65535, 1441806, 2, 1, 1441806, 3, 1, 19, 3, 2, 655372, 2, 2, 655372, 3, 3, 655384, 2, 3, 655384, 4, 4, 1441806, 8, 0, 7, 2, 4, 655384, 3, 4, 655384, 3, 5, 655384, 2, 5, 655384, 5, 65535, 14, 6, 65535, 14, 7, 65535, 14, 6, 0, 14, 7, 0, 14, 7, 1, 14, 8, 1, 14, 7, 3, 1441811, 9, 2, 1441794, 8, 65534, 1441794, 9, 65535, 1441800, 9, 1, 1441805, 6, 5, 1441792, 7, 6, 1441792, 5, 4, 1441806, 6, 4, 1441806, 7, 4, 1441801, 7, 5, 1441806, 8, 3, 1441799, 9, 3, 1441806, 8, 4, 1441806, 8, 65535, 1441806, 9, 0, 1441806, 10, 2, 1441806, 10, 3, 1441806, 9, 4, 1441806, 10, 1, 1441806, 8, 5, 1441802, 10, 4, 1441806, -65534, 65534, 655383, -65533, 65534, 655383, -65534, 65535, 1048599, -65531, 65535, 23, -65530, 65535, 23, 9, 5, 655372, 10, 5, 655372, 9, 6, 655384, 10, 6, 655384, 3, 6, 12, 2, 6, 12, 12, 6, 14, 12, 5, 14, 12, 4, 14, 12, 3, 14, 12, 2, 14, 12, 1, 14, 10, 65534, 14, 9, 65533, 14, 8, 65533, 14, 65535, 65534, 14, 65534, 1, 14, 65534, 2, 14, 65534, 3, 14, 65535, 4, 14, 0, 5, 14, 0, 6, 14, 1, 7, 14, 1, 6, 14, 2, 7, 14, 3, 7, 14, 11, 0, 14, 0, 65533, 14, 65534, 0, 14, 65534, 65535, 14, 65535, 5, 14, 0, 3, 8, 1, 5, 7, 1, 4, 9, 65535, 3, 13, 0, 4, 14, -65536, 5, 23, -65536, 4, 1048599, -65535, 5, 1048599, 1, 3, 1048590, 65535, 2, 1048590, 1, 2, 655364, 0, 2, 1048578, 4, 6, 1048586, 6, 6, 1441792, 5, 6, 1441792, 5, 5, 1441792, 4, 5, 1048588)
 }
-metadata/_editor_floor_ = Vector3(1, 1, 0)
+metadata/_editor_floor_ = Vector3(1, 0, 0)
+
+[node name="Other" type="GridMap" parent="."]
+mesh_library = SubResource("MeshLibrary_uylkr")
+physics_material = SubResource("PhysicsMaterial_l5pkq")
+collision_layer = 0
+collision_mask = 0
+data = {
+"cells": PackedInt32Array(0, 0, 1048587, 1, 0, 17, 1, 1, 16, 1, 65535, 15, 0, 65535, 13, 65535, 65535, 1048586, 65535, 0, 14, 65535, 1, 1048585, 0, 1, 1048584, 1, 65534, 21, 2, 65534, 1441807, 3, 65534, 1441807, 4, 65534, 1441807, 5, 65534, 1441807, 6, 65534, 1441807, 7, 65534, 1048592, 2, 0, 1048577, 3, 0, 1048577, 4, 0, 1048577, 5, 0, 1441796, 4, 1, 4, 5, 1, 655364, 6, 3, 655364, 6, 2, 4, 4, 3, 1048580, 4, 2, 1, 5, 3, 1441793, 7, 2, 1441793, 8, 2, 1441793, 5, 2, 1441806, 6, 1, 1441805, 4, 65535, 1441799, 2, 65535, 1441806, 3, 65535, 1441806, 2, 1, 1441806, 3, 1, 13, 3, 2, 655372, 2, 2, 655372, 3, 3, 12, 2, 3, 12, 4, 4, 8, 8, 0, 7, 2, 4, 0, 3, 4, 1441815, 3, 5, 1441815, 2, 5, 0, 4, 5, 0, 5, 65535, 14, 6, 65535, 7, 7, 65535, 14, 6, 0, 14, 7, 0, 14, 7, 1, 14, 8, 1, 14, 7, 3, 14, 9, 2, 22, 8, 6, 1441804, 8, 7, 14, 5, 7, 14, 4, 7, 14, 9, 7, 10, 11, 3, 14, 11, 2, 7, 11, 1, 14, 11, 4, 14, 10, 0, 14, 10, 65535, 14, 9, 65534, 14, 7, 65533, 14, 6, 65533, 14, 5, 65533, 14, 4, 65533, 14, 3, 65533, 14, 2, 65533, 14, 0, 65534, 14, 1, 65533, 14, 6, 7, 14, 7, 7, 14, 5, 6, 655385, 6, 5, 25, 7, 6, 1441817, 10, 3, 8, 9, 4, 13, -65527, 5, 23, -65528, 5, 23, -65526, 5, 23, 11, 5, 9, 11, 6, 655370, 11, 7, 1048586, 10, 7, 12)
+}
+metadata/_editor_floor_ = Vector3(1, 0, 0)
 
 [node name="Camera Main" parent="." instance=ExtResource("17_0xeiu")]
-transform = Transform3D(1, 0, 0, 0, 0.676259, 0.736664, 0, -0.736664, 0.676259, 0.919775, 1.45602, 1.15684)
+transform = Transform3D(1, 0, 0, 0, 0.676259, 0.736664, 0, -0.736664, 0.676259, 11.2826, 1.45602, 4.15046)
+rotation_speed = null
+zoom_speed = null
+min_zoom = null
+max_zoom = null
+zoom_smoothness = null
+min_pitch = null
+max_pitch = null
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 1.1509, 13.3694, 0.997061)
-light_color = Color(0.999999, 0.989392, 0.51214, 1)
-light_energy = 1.214
-light_bake_mode = 1
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.6383, 18.2302, 4.97533)
+light_color = Color(0.999998, 0.994675, 0.62385, 1)
+light_energy = 1.048
+light_indirect_energy = 1.914
+light_volumetric_fog_energy = 1.871
 shadow_enabled = true
-shadow_bias = 0.876
+shadow_normal_bias = 1.816
+shadow_opacity = 0.83
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_oj07o")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.7699, 0.227524, 4.4469)
+mesh = SubResource("CylinderMesh_tr04t")
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -104.0
+offset_right = 48.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("29_kee0n")
+
+[connection signal="button_down" from="Button" to="Button" method="_on_button_down"]
+[connection signal="button_up" from="Button" to="Button" method="_on_button_up"]
