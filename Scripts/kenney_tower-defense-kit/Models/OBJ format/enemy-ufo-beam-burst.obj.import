@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b0br5pqqd1t0f"
+path="res://.godot/imported/enemy-ufo-beam-burst.obj-422e5128637dcb8db6ddf39f3d978226.mesh"
+
+[deps]
+
+files=["res://.godot/imported/enemy-ufo-beam-burst.obj-422e5128637dcb8db6ddf39f3d978226.mesh"]
+
+source_file="res://Scripts/kenney_tower-defense-kit/Models/OBJ format/enemy-ufo-beam-burst.obj"
+dest_files=["res://.godot/imported/enemy-ufo-beam-burst.obj-422e5128637dcb8db6ddf39f3d978226.mesh", "res://.godot/imported/enemy-ufo-beam-burst.obj-422e5128637dcb8db6ddf39f3d978226.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

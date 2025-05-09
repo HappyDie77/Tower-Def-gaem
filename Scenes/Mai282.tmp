@@ -1,0 +1,129 @@
+[gd_scene load_steps=10 format=3 uid="uid://cbbi3taj35r44"]
+
+[ext_resource type="MeshLibrary" uid="uid://be0drybtgh5ut" path="res://Scripts/MeshLibDirt2.tres" id="5_bptas"]
+[ext_resource type="PackedScene" uid="uid://t33p14owkeyy" path="res://Scenes/camera_main.tscn" id="17_0xeiu"]
+[ext_resource type="Shader" path="res://Scripts/Themes & Shaders/Ocean.gdshader" id="28_htrqa"]
+[ext_resource type="PackedScene" uid="uid://dm2xydbi1nfek" path="res://Scenes/Tower 1.tscn" id="30_hr2np"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ere5a"]
+
+[sub_resource type="Sky" id="Sky_6bkif"]
+sky_material = SubResource("ProceduralSkyMaterial_ere5a")
+process_mode = 1
+
+[sub_resource type="Environment" id="Environment_oj07o"]
+background_mode = 2
+sky = SubResource("Sky_6bkif")
+reflected_light_source = 2
+tonemap_mode = 2
+tonemap_exposure = 0.9
+ssao_power = 1e+06
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_cascades = 2
+sdfgi_min_cell_size = 22.2316
+sdfgi_energy = 0.8
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.02
+volumetric_fog_albedo = Color(0.785803, 0.872253, 1, 1)
+volumetric_fog_emission = Color(0.0818339, 0.122734, 0.625414, 1)
+volumetric_fog_emission_energy = 0.4
+volumetric_fog_gi_inject = 1.2
+volumetric_fog_anisotropy = -0.83
+volumetric_fog_length = 96.33
+volumetric_fog_detail_spread = 6.0
+adjustment_enabled = true
+adjustment_brightness = 0.8
+adjustment_contrast = 1.4
+adjustment_saturation = 1.33
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n7bq2"]
+render_priority = 1
+shader = ExtResource("28_htrqa")
+shader_parameter/WATER_COL = Color(0.04, 0.38, 0.88, 1)
+shader_parameter/WATER2_COL = Color(0.04, 0.35, 0.78, 1)
+shader_parameter/FOAM_COL = Color(0.8125, 0.9609, 0.9648, 1)
+shader_parameter/distortion_speed = 2.0
+shader_parameter/tile = Vector2(800, 800)
+shader_parameter/height = 2.0
+shader_parameter/wave_size = Vector2(2, 2)
+shader_parameter/wave_speed = 1.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tr04t"]
+material = SubResource("ShaderMaterial_n7bq2")
+top_radius = 1200.0
+
+[node name="Main" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5492, 0.0237365, -4.18248)
+
+[node name="Camera Main" parent="." instance=ExtResource("17_0xeiu")]
+transform = Transform3D(1, 0, 0, 0, 0.676259, 0.736664, 0, -0.736664, 0.676259, 11.2826, 1.32934, 4.15046)
+rotation_speed = null
+zoom_speed = null
+min_zoom = null
+max_zoom = null
+zoom_smoothness = null
+min_pitch = null
+max_pitch = null
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.6383, 18.2302, 4.97533)
+light_color = Color(0.999998, 0.994675, 0.62385, 1)
+light_energy = 1.048
+light_indirect_energy = 1.914
+light_volumetric_fog_energy = 1.871
+shadow_enabled = true
+shadow_normal_bias = 1.816
+shadow_opacity = 0.83
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_oj07o")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.79232, -0.0951384, 4.4469)
+mesh = SubResource("CylinderMesh_tr04t")
+
+[node name="ActivityBut" type="Button" parent="."]
+custom_minimum_size = Vector2(96, 96)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -106.0
+offset_right = 48.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Tower_amount_lb" type="Label" parent="ActivityBut"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -42.0
+offset_top = -6.0
+offset_right = -2.0
+offset_bottom = 41.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 34
+
+[node name="Tower1" parent="." instance=ExtResource("30_hr2np")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1015, 1.76417, 5.14968)
+
+[node name="GridMain" type="GridMap" parent="."]
+mesh_library = ExtResource("5_bptas")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(-65529, 65535, 4, -65529, 65534, 4, -65528, 65534, 4, 65546, 2, 0, 65546, 1, 0, 65546, 0, 0, 65546, 65535, 0, 65546, 65534, 0, 65547, 65535, 0, 65547, 0, 0, 65547, 1, 0, 65548, 1, 0, 65548, 0, 0, 65548, 65535, 0, 65547, 65534, 0, 65548, 65534, 0, 65549, 65535, 0, 65549, 0, 0, 65549, 1, 0, 65549, 2, 0, 65548, 2, 0, 65547, 2, 0, 65545, 2, 0, 65545, 1, 0, 65545, 0, 0, 65544, 65535, 0, 65544, 65534, 0, 65544, 65533, 0, 65545, 65533, 0, 65546, 65533, 0, 65547, 65533, 0, 65549, 65534, 0, 65548, 65533, 0, 65545, 65534, 0, 65545, 65535, 0, 65544, 0, 0, 65544, 1, 0, 65546, 3, 0, 65547, 3, 0, 65548, 3, 0)
+}
+metadata/_editor_floor_ = Vector3(0, 1, 0)
+
+[node name="GridOther" type="GridMap" parent="."]
+
+[connection signal="button_down" from="ActivityBut" to="Camera Main" method="_on_activity_but_button_down"]
+[connection signal="button_down" from="ActivityBut" to="ActivityBut" method="_on_button_down"]
+[connection signal="button_up" from="ActivityBut" to="Camera Main" method="_on_activity_but_button_up"]
+[connection signal="button_up" from="ActivityBut" to="ActivityBut" method="_on_button_up"]

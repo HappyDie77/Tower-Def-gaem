@@ -1,0 +1,149 @@
+[gd_scene load_steps=12 format=3 uid="uid://cbbi3taj35r44"]
+
+[ext_resource type="MeshLibrary" uid="uid://bd81r5ev5gr01" path="res://Griid 4.tres" id="3_cihxq"]
+[ext_resource type="Texture2D" uid="uid://bpudnmph6vdpc" path="res://Scripts/kenney_tower-defense-kit/Previews/weapon-cannon.png" id="3_g837o"]
+[ext_resource type="MeshLibrary" uid="uid://ctt4pboixocja" path="res://gridd 6.tres" id="4_g3bop"]
+[ext_resource type="MeshLibrary" uid="uid://cvgji8bib8r8r" path="res://gridd 5.tres" id="4_x402b"]
+[ext_resource type="PackedScene" uid="uid://t33p14owkeyy" path="res://Scenes/camera_main.tscn" id="17_0xeiu"]
+[ext_resource type="Shader" path="res://Scripts/Themes & Shaders/Ocean.gdshader" id="28_htrqa"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ere5a"]
+
+[sub_resource type="Sky" id="Sky_6bkif"]
+sky_material = SubResource("ProceduralSkyMaterial_ere5a")
+process_mode = 1
+
+[sub_resource type="Environment" id="Environment_oj07o"]
+background_mode = 2
+sky = SubResource("Sky_6bkif")
+reflected_light_source = 2
+tonemap_mode = 2
+tonemap_exposure = 0.9
+ssao_power = 1e+06
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_cascades = 2
+sdfgi_min_cell_size = 22.2316
+sdfgi_energy = 0.8
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.02
+volumetric_fog_albedo = Color(0.778834, 0.868097, 0.999999, 1)
+volumetric_fog_emission = Color(0.341572, 0.493416, 0.98567, 1)
+volumetric_fog_emission_energy = 0.4
+volumetric_fog_gi_inject = 1.2
+volumetric_fog_anisotropy = -0.83
+volumetric_fog_length = 96.33
+volumetric_fog_detail_spread = 6.0
+adjustment_enabled = true
+adjustment_brightness = 0.8
+adjustment_contrast = 1.4
+adjustment_saturation = 1.33
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n7bq2"]
+render_priority = 1
+shader = ExtResource("28_htrqa")
+shader_parameter/WATER_COL = Color(0.04, 0.38, 0.88, 1)
+shader_parameter/WATER2_COL = Color(0.04, 0.35, 0.78, 1)
+shader_parameter/FOAM_COL = Color(0.8125, 0.9609, 0.9648, 1)
+shader_parameter/distortion_speed = 2.0
+shader_parameter/tile = Vector2(1200, 1200)
+shader_parameter/height = 2.0
+shader_parameter/wave_size = Vector2(2, 2)
+shader_parameter/wave_speed = 1.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tr04t"]
+material = SubResource("ShaderMaterial_n7bq2")
+top_radius = 1200.0
+
+[node name="Main" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5492, 0.0237365, -4.18248)
+
+[node name="Camera Main" parent="." instance=ExtResource("17_0xeiu")]
+transform = Transform3D(1, 0, 0, 0, 0.676259, 0.736664, 0, -0.736664, 0.676259, 11.2826, 1.32934, 4.15046)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.525026, 0.851086, 0, -0.851086, -0.525026, 10.6383, 18.2302, -8.62593)
+light_color = Color(0.998768, 0.999999, 0.847676, 1)
+light_energy = 1.048
+light_indirect_energy = 1.914
+light_volumetric_fog_energy = 1.871
+shadow_enabled = true
+shadow_normal_bias = 1.816
+shadow_opacity = 0.83
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_oj07o")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.79232, 0.136579, 4.4469)
+mesh = SubResource("CylinderMesh_tr04t")
+
+[node name="ActivityBut" type="Button" parent="."]
+custom_minimum_size = Vector2(96, 96)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -106.0
+offset_right = 48.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+icon = ExtResource("3_g837o")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Tower_amount_lb" type="Label" parent="ActivityBut"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -42.0
+offset_top = -6.0
+offset_right = -2.0
+offset_bottom = 41.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 34
+
+[node name="GridMain" type="GridMap" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2, 0)
+mesh_library = ExtResource("3_cihxq")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(65547, 3, 0, 65547, 65535, 3, 65547, 65533, 655380, 65548, 65533, 655380, 65551, 65533, 655363, 65551, 0, 20, 65545, 3, 17, 65545, 2, 16, 65546, 2, 4, 65546, 3, 24, 65546, 4, 1048580, 65547, 4, 1441796, 65547, 7, 655364, 65547, 5, 655384, 65546, 8, 655384, 65548, 1, 1441804, 65552, 0, 1048579, 65547, 6, 655384, 65546, 7, 4, 65545, 1, 13, 65547, 2, 1441816, 65548, 2, 655364, 65547, 1, 1441808, 65550, 1, 1048593, 65549, 1, 1441808, 65550, 0, 3, 65551, 65534, 655362, 65549, 65533, 655380, 65548, 65535, 20, 65546, 65533, 1441795, 65550, 65533, 655380, 65549, 65534, 1, 65548, 65534, 1, 65547, 65534, 2, 65546, 65534, 3, 65550, 65534, 1, 65550, 65535, 2, 65549, 65535, 20, 65546, 9, 655369, 65549, 0, 655379, 65549, 2, 655360, 65550, 2, 655371, 65548, 3, 655360, 65548, 4, 655360, 65548, 5, 655367, 65549, 3, 655386, 65549, 4, 655360, 65545, 8, 655387, 65545, 7, 655360, 65545, 6, 655360, 65546, 6, 655360, 65546, 5, 655360, 65545, 5, 655387, 65543, 4, 655360, 65543, 3, 655360, 65544, 2, 655385, 65544, 3, 655360, 65544, 1, 655360, 65544, 5, 655360, 65544, 4, 655379, 65544, 6, 655386, 65547, 0, 655387, 65546, 0, 655360, 65546, 65535, 655371, 65545, 65535, 655360, 65544, 65535, 655360, 65544, 0, 655360, 65545, 0, 655360, 65552, 2, 655385, 65552, 1, 655360, 65553, 65535, 655360, 65553, 0, 655360, 65551, 2, 655360, 65550, 3, 655360, 65551, 3, 655360, 65551, 4, 655360, 65550, 4, 655385, 65550, 5, 655385, 65550, 6, 655360, 65549, 6, 655371, 65550, 7, 655360, 65549, 7, 655360, 65549, 8, 655360, 65549, 9, 655360, 65548, 9, 655360, 65547, 9, 655360, 65548, 10, 655360, 65547, 11, 655360, 65546, 11, 655360, 65546, 10, 655360, 65545, 10, 655360, 65544, 10, 655360, 65544, 9, 655360, 65545, 9, 655360, 65544, 8, 655360, 65544, 7, 655360, 65543, 7, 1441800, 65543, 8, 655360, 65543, 9, 655360, 65543, 6, 1441800, 65549, 5, 655360, 65548, 6, 655360, 65548, 7, 655385, 65548, 8, 655360, 65547, 8, 655360, 65551, 1, 1441801, 65545, 4, 655369, 65553, 1, 8, 65553, 2, 8, 65552, 3, 8, 65552, 4, 8, 65551, 5, 8, 65551, 6, 8, 65551, 7, 8, 65550, 9, 8, 65550, 8, 8, 65549, 10, 8, 65548, 11, 8, 65543, 5, 8, 65543, 0, 1441800, 65543, 1, 1441800, 65542, 2, 1441800, 65542, 3, 1441800, 65542, 4, 1441800, 65542, 5, 1441800, 65542, 6, 1441800, 65542, 7, 1441800, 65542, 8, 1441800, 65542, 9, 1441800, 65543, 10, 8, 65545, 11, 8, 65544, 11, 8, 65547, 10, 27, 65543, 65535, 8, 65545, 65534, 0, 65544, 65534, 8, 65545, 65533, 8, 65546, 12, 655368, 65547, 12, 655368, 65543, 2, 655360, 65546, 1, 1441808, 65548, 0, 21, 65552, 65535, 1048596, 65552, 65534, 655363, 65551, 65535, 655361)
+}
+metadata/_editor_floor_ = Vector3(0, 1, 0)
+
+[node name="GridOther" type="GridMap" parent="."]
+mesh_library = ExtResource("4_g3bop")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(65548, 5, 34, 65546, 2, 36, 65547, 2, 36, 65549, 2, 36, 65545, 2, 1441828, 65547, 0, 655396, 65549, 0, 655396, 65544, 2, 1441828, 65546, 0, 655396, 65548, 65534, 655393, 65549, 65534, 655393, 65551, 65535, 655393, 65545, 7, 1441832, 65545, 6, 39, 65548, 9, 39, 65544, 9, 39, 65546, 11, 655396, 65547, 11, 655396, 65548, 10, 655396, 65545, 10, 655396)
+}
+metadata/_editor_floor_ = Vector3(0, 1, 0)
+
+[node name="GridLower" type="GridMap" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
+mesh_library = ExtResource("4_x402b")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(65551, 9, 43, 65549, 11, 43, 65551, 8, 43, 65553, 4, 43, 65553, 3, 43, 65552, 5, 43, 65552, 6, 43, 65552, 7, 43, 65550, 10, 43, 65548, 12, 43, 65547, 12, 43, 65546, 12, 43, 65545, 12, 43, 65544, 12, 43, 65543, 11, 43, 65541, 9, 43, 65542, 10, 43, 65541, 8, 43, 65541, 7, 43, 65541, 6, 43, 65541, 5, 43, 65541, 4, 43, 65541, 3, 43, 65541, 2, 43, 65542, 0, 43, 65542, 1, 43, 65543, 65534, 655403, 65542, 65535, 655403, 65544, 65533, 655403, 65547, 13, 655403, 65546, 13, 655403, 65553, 2, 43, 65553, 1, 43, 65552, 1, 43, 65552, 0, 43, 65552, 65535, 43, 65553, 65535, 43, 65553, 0, 43, 65552, 65534, 43, 65551, 65533, 43, 65545, 65533, 43, 65546, 65533, 43, 65547, 65533, 43, 65548, 65533, 43, 65549, 65533, 43, 65550, 65533, 43)
+}
+metadata/_editor_floor_ = Vector3(0, 1, 0)
+
+[node name="Gridmid" type="GridMap" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+mesh_library = ExtResource("4_g3bop")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(12, 11, 655398, 10, 12, 1048614, 9, 11, 38, 10, 9, 44, 9, 7, 1441827)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[connection signal="button_down" from="ActivityBut" to="Camera Main" method="_on_activity_but_button_down"]
+[connection signal="button_down" from="ActivityBut" to="ActivityBut" method="_on_button_down"]
+[connection signal="button_up" from="ActivityBut" to="Camera Main" method="_on_activity_but_button_up"]
+[connection signal="button_up" from="ActivityBut" to="ActivityBut" method="_on_button_up"]

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c0t3sdrqqhxym"
+path="res://.godot/imported/snow-tile-wide-corner.obj-e5e9b84386b8bb87c36d3a444b80240f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/snow-tile-wide-corner.obj-e5e9b84386b8bb87c36d3a444b80240f.mesh"]
+
+source_file="res://Scripts/kenney_tower-defense-kit/Models/OBJ format/snow-tile-wide-corner.obj"
+dest_files=["res://.godot/imported/snow-tile-wide-corner.obj-e5e9b84386b8bb87c36d3a444b80240f.mesh", "res://.godot/imported/snow-tile-wide-corner.obj-e5e9b84386b8bb87c36d3a444b80240f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

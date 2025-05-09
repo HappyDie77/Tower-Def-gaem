@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxuymm73e1hh4"]
+
+[ext_resource type="Script" path="res://Scripts/ancient_idol.gd" id="1_2q5mq"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wrq4l"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_60jpg"]
+
+[node name="PathFollow" type="PathFollow3D"]
+
+[node name="ancient idol" type="CharacterBody3D" parent="." groups=["Enemygro"]]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.447671, 0)
+script = ExtResource("1_2q5mq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ancient idol"]
+mesh = SubResource("CapsuleMesh_wrq4l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ancient idol"]
+shape = SubResource("CapsuleShape3D_60jpg")
+
+[connection signal="visibility_changed" from="." to="ancient idol" method="_on_path_follow_visibility_changed"]

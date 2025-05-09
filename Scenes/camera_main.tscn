@@ -1,11 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://t33p14owkeyy"]
+[gd_scene load_steps=3 format=3 uid="uid://t33p14owkeyy"]
 
 [ext_resource type="Script" path="res://Scripts/camera_main.gd" id="1_it3hh"]
+[ext_resource type="PackedScene" uid="uid://dm2xydbi1nfek" path="res://Scenes/Tower 1.tscn" id="2_c52x0"]
 
 [node name="Camera Main" type="Node3D"]
 script = ExtResource("1_it3hh")
+tower_scene = ExtResource("2_c52x0")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
+collision_mask = 0
 
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
 

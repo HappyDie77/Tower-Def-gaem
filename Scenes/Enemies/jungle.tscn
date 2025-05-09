@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dave01wu7f083"]
+
+[ext_resource type="Script" path="res://Scripts/jungle_spirit.gd" id="1_ddksq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0mwhf"]
+albedo_color = Color(0.533333, 1, 0.564706, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wrq4l"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_60jpg"]
+
+[node name="PathFollow" type="PathFollow3D"]
+
+[node name="jungle spirit" type="CharacterBody3D" parent="." groups=["Enemygro"]]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.447671, 0)
+script = ExtResource("1_ddksq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="jungle spirit"]
+material_override = SubResource("StandardMaterial3D_0mwhf")
+mesh = SubResource("CapsuleMesh_wrq4l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="jungle spirit"]
+shape = SubResource("CapsuleShape3D_60jpg")
+
+[connection signal="visibility_changed" from="." to="jungle spirit" method="_on_path_follow_visibility_changed"]

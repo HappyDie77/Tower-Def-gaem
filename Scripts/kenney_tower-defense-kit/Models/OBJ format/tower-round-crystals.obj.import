@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dyh2d2ngnsxu8"
+path="res://.godot/imported/tower-round-crystals.obj-6e5e6fed9aeb5866ddc7ad49093635ce.mesh"
+
+[deps]
+
+files=["res://.godot/imported/tower-round-crystals.obj-6e5e6fed9aeb5866ddc7ad49093635ce.mesh"]
+
+source_file="res://Scripts/kenney_tower-defense-kit/Models/OBJ format/tower-round-crystals.obj"
+dest_files=["res://.godot/imported/tower-round-crystals.obj-6e5e6fed9aeb5866ddc7ad49093635ce.mesh", "res://.godot/imported/tower-round-crystals.obj-6e5e6fed9aeb5866ddc7ad49093635ce.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

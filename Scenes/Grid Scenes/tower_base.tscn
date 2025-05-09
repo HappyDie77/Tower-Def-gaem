@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyh4y1xsse7pe"]
+
+[ext_resource type="ArrayMesh" uid="uid://bt0nvjd2amlxy" path="res://Scripts/kenney_tower-defense-kit/Models/OBJ format/tower-round-build-c.obj" id="1_u15gi"]
+
+[node name="Tower-base" type="MeshInstance3D" groups=["NoPlace"]]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 1, 0, 1)
+visible = false
+mesh = ExtResource("1_u15gi")
+skeleton = NodePath("../Dirt-Tile-sand")

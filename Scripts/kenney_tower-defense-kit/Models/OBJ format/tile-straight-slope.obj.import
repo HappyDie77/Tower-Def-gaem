@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cq5wdlg2hqvug"
+path="res://.godot/imported/tile-straight-slope.obj-ed001d39eb07e8572d55518e4a2d6cda.mesh"
+
+[deps]
+
+files=["res://.godot/imported/tile-straight-slope.obj-ed001d39eb07e8572d55518e4a2d6cda.mesh"]
+
+source_file="res://Scripts/kenney_tower-defense-kit/Models/OBJ format/tile-straight-slope.obj"
+dest_files=["res://.godot/imported/tile-straight-slope.obj-ed001d39eb07e8572d55518e4a2d6cda.mesh", "res://.godot/imported/tile-straight-slope.obj-ed001d39eb07e8572d55518e4a2d6cda.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

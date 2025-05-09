@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bfbqcvxq2ly7l"
+path="res://.godot/imported/tile-river-transition.obj-009614374efc0cb8c38b0c21402c3f1b.mesh"
+
+[deps]
+
+files=["res://.godot/imported/tile-river-transition.obj-009614374efc0cb8c38b0c21402c3f1b.mesh"]
+
+source_file="res://Scripts/kenney_tower-defense-kit/Models/OBJ format/tile-river-transition.obj"
+dest_files=["res://.godot/imported/tile-river-transition.obj-009614374efc0cb8c38b0c21402c3f1b.mesh", "res://.godot/imported/tile-river-transition.obj-009614374efc0cb8c38b0c21402c3f1b.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

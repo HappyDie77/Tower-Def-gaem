@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dnyiii40x3vyx"
+path="res://.godot/imported/spawn-round.obj-9929db6684602edd67cf231a48da3f26.mesh"
+
+[deps]
+
+files=["res://.godot/imported/spawn-round.obj-9929db6684602edd67cf231a48da3f26.mesh"]
+
+source_file="res://Scripts/kenney_tower-defense-kit/Models/OBJ format/spawn-round.obj"
+dest_files=["res://.godot/imported/spawn-round.obj-9929db6684602edd67cf231a48da3f26.mesh", "res://.godot/imported/spawn-round.obj-9929db6684602edd67cf231a48da3f26.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

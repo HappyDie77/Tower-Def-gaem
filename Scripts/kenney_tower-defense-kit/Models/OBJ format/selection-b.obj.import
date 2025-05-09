@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c5am167n1novb"
+path="res://.godot/imported/selection-b.obj-cda6a74b2d9e6a4ee15dbbcf9beaf976.mesh"
+
+[deps]
+
+files=["res://.godot/imported/selection-b.obj-cda6a74b2d9e6a4ee15dbbcf9beaf976.mesh"]
+
+source_file="res://Scripts/kenney_tower-defense-kit/Models/OBJ format/selection-b.obj"
+dest_files=["res://.godot/imported/selection-b.obj-cda6a74b2d9e6a4ee15dbbcf9beaf976.mesh", "res://.godot/imported/selection-b.obj-cda6a74b2d9e6a4ee15dbbcf9beaf976.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

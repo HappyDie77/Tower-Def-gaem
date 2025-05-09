@@ -5,7 +5,7 @@ uniform vec4 WATER2_COL : source_color =  vec4(0.04, 0.35, 0.78, 1.0);
 uniform vec4 FOAM_COL : source_color = vec4(0.8125, 0.9609, 0.9648, 1.0);
 uniform float distortion_speed = 2.0;
 uniform vec2 tile = vec2(5.0, 5.0);
-uniform float height = 2.0;
+uniform float height = 1.0;
 uniform vec2 wave_size = vec2(2.0, 2.0);
 uniform float wave_speed = 1.5;
 
@@ -182,7 +182,8 @@ void vertex(){
     	sin(d1) * 0.15 + sin(d2) * 0.05,
     	cos(d1) * 0.15 + cos(d2) * 0.05
     );
-	VERTEX.y += dist.y * height;
+	VERTEX.y += dist.y * height / 5.0; // exaggerate the movement
+
 }
 
 void fragment()

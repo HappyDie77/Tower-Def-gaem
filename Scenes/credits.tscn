@@ -1,0 +1,106 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjtr1g3o5k788"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nic45"]
+bg_color = Color(0.201527, 0.201527, 0.201526, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.368627, 0.368627, 0.368627, 0.8)
+
+[node name="Panel" type="Panel" parent="CanvasLayer/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -213.0
+offset_top = -348.0
+offset_right = 213.0
+offset_bottom = 289.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nic45")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/ColorRect/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.0
+offset_top = -211.5
+offset_right = 86.0
+offset_bottom = 276.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Music" type="Label" parent="CanvasLayer/ColorRect/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Music:
+r"
+
+[node name="GridMap" type="Label" parent="CanvasLayer/ColorRect/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "GridMap:
+r"
+
+[node name="Tower Model" type="Label" parent="CanvasLayer/ColorRect/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Towers:
+r"
+
+[node name="SFX" type="Label" parent="CanvasLayer/ColorRect/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "SFX:
+r"
+
+[node name="VFX" type="Label" parent="CanvasLayer/ColorRect/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "VFX:
+r"
+
+[node name="Script Writing" type="Label" parent="CanvasLayer/ColorRect/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Script Writing:
+r"
+
+[node name="Credits" type="Label" parent="CanvasLayer/ColorRect/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -51.5
+offset_top = 24.0
+offset_right = 51.5
+offset_bottom = 66.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "Credits
+"

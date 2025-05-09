@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0wdapd5gr23k"]
+
+[ext_resource type="Texture2D" uid="uid://c3hv5sbn6p4ld" path="res://Assets/fx_cloudalphas/FX_CloudAlpha01.png" id="1_ypync"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tewfx"]
+emission_shape = 3
+emission_box_extents = Vector3(2, 1, 2)
+gravity = Vector3(2, 0, 3)
+damping_min = 1.5
+damping_max = 3.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_onkjr"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("1_ypync")
+albedo_texture_msdf = true
+heightmap_scale = 16.0
+billboard_mode = 1
+grow_amount = 16.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_75mph"]
+material = SubResource("StandardMaterial3D_onkjr")
+size = Vector2(200, 200)
+
+[node name="Clouds" type="Node3D"]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(2.5675, 0, 0, 0, 1, 0, 0, 0, 2.68642, 0, 0, 0)
+amount = 50
+lifetime = 45.0
+explosiveness = 0.27
+process_material = SubResource("ParticleProcessMaterial_tewfx")
+draw_pass_1 = SubResource("QuadMesh_75mph")

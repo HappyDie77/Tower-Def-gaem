@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ds6ga0k4pjefc"
+path="res://.godot/imported/snow-tile-straight-slope.obj-ff91b60a9453f3b22044ea386c2b1da0.mesh"
+
+[deps]
+
+files=["res://.godot/imported/snow-tile-straight-slope.obj-ff91b60a9453f3b22044ea386c2b1da0.mesh"]
+
+source_file="res://Scripts/kenney_tower-defense-kit/Models/OBJ format/snow-tile-straight-slope.obj"
+dest_files=["res://.godot/imported/snow-tile-straight-slope.obj-ff91b60a9453f3b22044ea386c2b1da0.mesh", "res://.godot/imported/snow-tile-straight-slope.obj-ff91b60a9453f3b22044ea386c2b1da0.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

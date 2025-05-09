@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cb2b2838mtnbt"
+path="res://.godot/imported/tile-tree-quad.obj-0e161c890f1928f58b7abeb7528d9461.mesh"
+
+[deps]
+
+files=["res://.godot/imported/tile-tree-quad.obj-0e161c890f1928f58b7abeb7528d9461.mesh"]
+
+source_file="res://Scripts/kenney_tower-defense-kit/Models/OBJ format/tile-tree-quad.obj"
+dest_files=["res://.godot/imported/tile-tree-quad.obj-0e161c890f1928f58b7abeb7528d9461.mesh", "res://.godot/imported/tile-tree-quad.obj-0e161c890f1928f58b7abeb7528d9461.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

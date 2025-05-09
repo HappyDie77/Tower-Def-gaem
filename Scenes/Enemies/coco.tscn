@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://ceosc5drcxxki"]
+
+[ext_resource type="Script" path="res://Scripts/coconut_brawler.gd" id="1_gc8ds"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j8k0p"]
+albedo_color = Color(0.468326, 0.257504, 0.0599607, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wrq4l"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_60jpg"]
+
+[node name="PathFollow" type="PathFollow3D"]
+
+[node name="coconut brawler" type="CharacterBody3D" parent="." groups=["Enemygro"]]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.447671, 0)
+script = ExtResource("1_gc8ds")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="coconut brawler"]
+material_override = SubResource("StandardMaterial3D_j8k0p")
+mesh = SubResource("CapsuleMesh_wrq4l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="coconut brawler" groups=["Enemygro"]]
+shape = SubResource("CapsuleShape3D_60jpg")

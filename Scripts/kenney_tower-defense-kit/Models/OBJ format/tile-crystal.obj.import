@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c24ax2k16p6f7"
+path="res://.godot/imported/tile-crystal.obj-4cbaaf59d4091deb7d8c45f6569cc328.mesh"
+
+[deps]
+
+files=["res://.godot/imported/tile-crystal.obj-4cbaaf59d4091deb7d8c45f6569cc328.mesh"]
+
+source_file="res://Scripts/kenney_tower-defense-kit/Models/OBJ format/tile-crystal.obj"
+dest_files=["res://.godot/imported/tile-crystal.obj-4cbaaf59d4091deb7d8c45f6569cc328.mesh", "res://.godot/imported/tile-crystal.obj-4cbaaf59d4091deb7d8c45f6569cc328.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

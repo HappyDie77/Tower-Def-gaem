@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cu1dqly0r08gg"
+path="res://.godot/imported/weapon-cannon.obj-83096c9f2cb0012fda96951506306ddf.mesh"
+
+[deps]
+
+files=["res://.godot/imported/weapon-cannon.obj-83096c9f2cb0012fda96951506306ddf.mesh"]
+
+source_file="res://Scripts/kenney_tower-defense-kit/Models/OBJ format/weapon-cannon.obj"
+dest_files=["res://.godot/imported/weapon-cannon.obj-83096c9f2cb0012fda96951506306ddf.mesh", "res://.godot/imported/weapon-cannon.obj-83096c9f2cb0012fda96951506306ddf.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
