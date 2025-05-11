@@ -1,5 +1,8 @@
 extends Node3D
 
+@onready var ost_1: AudioStreamPlayer = $"Ost 1"
+@export var Instance = preload("res://Scenes/settings_menu_Instantiate.tscn")
+
 var current_wave: int = 0
 var enemeies_alive: int = 0
 var can_spawn: bool = false
@@ -69,8 +72,6 @@ func _process(delta):
 		spawn_wave(wave_1)
 		Global.button_pres = false
 
-
-
 #var wave_1 = {"slime": 5}
 #spawn_wave(wave_1)  # sends it in
 
@@ -78,3 +79,14 @@ func _process(delta):
 	#for enemy_type in wave_dict:
 	   # var count = wave_dict[enemy_type]
 	   # print("Spawning", count, enemy_type)
+
+
+func _on_settings_pressed() -> void:
+	get_tree().paused
+	$Hud.visible = false
+	if $Start_screen:
+		$Start_screen.visible = false
+	var Temp_sett = Instance.instantiate()
+	Temp_sett.hud = $Hud
+	Temp_sett.start_screen = $Start_screen
+	add_child(Temp_sett)

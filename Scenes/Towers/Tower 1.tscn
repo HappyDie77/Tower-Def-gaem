@@ -1,8 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dm2xydbi1nfek"]
+[gd_scene load_steps=14 format=3 uid="uid://dm2xydbi1nfek"]
 
-[ext_resource type="ArrayMesh" uid="uid://cu1dqly0r08gg" path="res://Scripts/kenney_tower-defense-kit/Models/OBJ format/weapon-cannon.obj" id="1_0pj2s"]
-[ext_resource type="Script" path="res://Scripts/tower_1.gd" id="1_5wkb3"]
-[ext_resource type="Texture2D" uid="uid://bpudnmph6vdpc" path="res://Scripts/kenney_tower-defense-kit/Previews/weapon-cannon.png" id="3_xon4b"]
+[ext_resource type="Script" path="res://Scripts/tower_1.gd" id="1_eessq"]
+[ext_resource type="ArrayMesh" uid="uid://cu1dqly0r08gg" path="res://Scripts/kenney_tower-defense-kit/Models/OBJ format/weapon-cannon.obj" id="2_rjw5h"]
+[ext_resource type="Texture2D" uid="uid://bpudnmph6vdpc" path="res://Scripts/kenney_tower-defense-kit/Previews/weapon-cannon.png" id="3_beos3"]
+[ext_resource type="AudioStream" uid="uid://ut368x8a40bt" path="res://Assets/Music/purchase-succesful-ingame-230550.mp3" id="4_3c0c4"]
+[ext_resource type="AudioStream" uid="uid://qh8rypx7wyu6" path="res://Assets/Music/wood-surface-single-coin-payout-2-215283.mp3" id="5_goyob"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_pdps0"]
 
@@ -42,16 +44,16 @@ corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pphci"]
-size = Vector2(432, 558)
+size = Vector2(397, 647)
 
 [node name="Tower1" type="CharacterBody3D" groups=["NoPlace", "Towergro"]]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.107827, 0)
 collision_priority = 4.0
-script = ExtResource("1_5wkb3")
+script = ExtResource("1_eessq")
 
 [node name="Towermesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(-2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, 0, 0, 0)
-mesh = ExtResource("1_0pj2s")
+mesh = ExtResource("2_rjw5h")
 
 [node name="Aim" type="Marker3D" parent="Towermesh"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.382619, 0.267503)
@@ -61,7 +63,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.430972, 0)
 collision_priority = 2.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Towermesh/TowerClick"]
-transform = Transform3D(1, 0, 0, 0, 1.3, 0, 0, 0, 1, 0, -0.125222, 0)
+transform = Transform3D(0.800461, 0, 7.10543e-15, 0, 0.800461, 0, -7.10543e-15, 0, 0.800461, 0, -0.125222, 0)
 shape = SubResource("SphereShape3D_pdps0")
 
 [node name="Tower space" type="CollisionShape3D" parent="." groups=["NoPlace", "Towergro"]]
@@ -72,7 +74,7 @@ shape = SubResource("CylinderShape3D_f6o2i")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0622916, 0.064743, -0.0157132)
 collision_layer = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Mob Detect"]
+[node name="Mob Shape" type="CollisionShape3D" parent="Mob Detect"]
 transform = Transform3D(1, 0, 0, 0, 4.6662, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CylinderShape3D_ijlxx")
 
@@ -88,19 +90,71 @@ skeleton = NodePath("../Towermesh")
 
 [node name="Upg_scre" type="CanvasLayer" parent="."]
 
+[node name="Panel2" type="Panel" parent="Upg_scre"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -875.0
+offset_top = -255.0
+offset_right = -520.0
+offset_bottom = -172.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_gvocd")
+
+[node name="VBoxContainer5" type="HBoxContainer" parent="Upg_scre/Panel2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -135.0
+offset_top = -13.5
+offset_right = 135.0
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="ATK_lb" type="Label" parent="Upg_scre/Panel2/VBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.760784, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+text = "ATK:"
+
+[node name="Range_lb" type="Label" parent="Upg_scre/Panel2/VBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.83045, 0.593913, 0, 1)
+theme_override_font_sizes/font_size = 28
+text = "Pierce:"
+
+[node name="SPA_lb" type="Label" parent="Upg_scre/Panel2/VBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0.658824, 0.839216, 1)
+theme_override_font_sizes/font_size = 28
+text = "SPA:"
+
 [node name="Panel" type="Panel" parent="Upg_scre"]
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -480.0
+offset_left = -1856.0
 offset_top = -279.0
-offset_right = -48.0
-offset_bottom = 279.0
+offset_right = -1459.0
+offset_bottom = 299.0
 grow_horizontal = 0
 grow_vertical = 2
-mouse_filter = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_gvocd")
 
 [node name="Tower Name" type="Label" parent="Upg_scre/Panel"]
@@ -132,7 +186,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_ou16i")
 [node name="Weapon-cannon" type="Sprite2D" parent="Upg_scre/Panel/Panel"]
 position = Vector2(92.5, 88.5)
 scale = Vector2(2.54688, 2.54688)
-texture = ExtResource("3_xon4b")
+texture = ExtResource("3_beos3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Upg_scre/Panel"]
 layout_mode = 1
@@ -142,24 +196,22 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -126.0
-offset_top = 28.5
+offset_top = 4.5
 offset_right = 126.0
-offset_bottom = 131.5
+offset_bottom = 107.5
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+mouse_filter = 0
 
 [node name="Current_target" type="Label" parent="Upg_scre/Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 30
-text = "Temp"
+text = "Change Target"
 
 [node name="Target" type="Button" parent="Upg_scre/Panel/VBoxContainer"]
 layout_mode = 2
-mouse_filter = 1
 theme_override_font_sizes/font_size = 35
-text = "Change Target"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Upg_scre/Panel"]
 layout_mode = 1
@@ -174,7 +226,7 @@ offset_right = -32.0
 offset_bottom = 252.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+mouse_filter = 0
 theme_override_constants/separation = -5
 
 [node name="Sell_lb" type="Label" parent="Upg_scre/Panel/VBoxContainer2"]
@@ -185,10 +237,8 @@ text = "Sell"
 
 [node name="Sell" type="Button" parent="Upg_scre/Panel/VBoxContainer2"]
 layout_mode = 2
-mouse_filter = 1
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 42
-text = "1"
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="Upg_scre/Panel"]
 layout_mode = 1
@@ -203,7 +253,7 @@ offset_right = 136.0
 offset_bottom = 248.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+mouse_filter = 0
 theme_override_constants/separation = 0
 
 [node name="Upgrade_lb" type="Label" parent="Upg_scre/Panel/VBoxContainer3"]
@@ -214,25 +264,42 @@ text = "Upgrade"
 
 [node name="Upgrade" type="Button" parent="Upg_scre/Panel/VBoxContainer3"]
 layout_mode = 2
-mouse_filter = 1
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 42
-text = "$560
+text = "
 "
 
-[node name="tOUCH" type="Area2D" parent="Upg_scre/Panel"]
+[node name="tOUCH" type="Area2D" parent="Upg_scre"]
+process_mode = 3
+z_index = 1
+position = Vector2(64, 261)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Upg_scre/Panel/tOUCH"]
-position = Vector2(216, 279)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Upg_scre/tOUCH"]
+process_mode = 3
+z_index = 1
+position = Vector2(198.5, 323.5)
 shape = SubResource("RectangleShape2D_pphci")
+
+[node name="Buy" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_3c0c4")
+bus = &"SFX"
+
+[node name="Sell" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_goyob")
+bus = &"SFX"
 
 [connection signal="mouse_entered" from="Towermesh/TowerClick" to="." method="_on_tower_click_mouse_entered"]
 [connection signal="mouse_exited" from="Towermesh/TowerClick" to="." method="_on_tower_click_mouse_exited"]
 [connection signal="body_entered" from="Mob Detect" to="." method="_on_mob_detect_body_entered"]
 [connection signal="body_exited" from="Mob Detect" to="." method="_on_mob_detect_body_exited"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="mouse_entered" from="Upg_scre/Panel2" to="." method="_on_panel_mouse_entered"]
+[connection signal="mouse_exited" from="Upg_scre/Panel2" to="." method="_on_panel_mouse_exited"]
 [connection signal="mouse_entered" from="Upg_scre/Panel" to="." method="_on_panel_mouse_entered"]
 [connection signal="mouse_exited" from="Upg_scre/Panel" to="." method="_on_panel_mouse_exited"]
+[connection signal="pressed" from="Upg_scre/Panel/VBoxContainer/Target" to="." method="_on_target_pressed"]
+[connection signal="pressed" from="Upg_scre/Panel/VBoxContainer2/Sell" to="." method="_on_sell_pressed"]
 [connection signal="pressed" from="Upg_scre/Panel/VBoxContainer3/Upgrade" to="." method="_on_upgrade_pressed"]
-[connection signal="mouse_entered" from="Upg_scre/Panel/tOUCH" to="." method="_on_t_ouch_mouse_entered"]
-[connection signal="mouse_exited" from="Upg_scre/Panel/tOUCH" to="." method="_on_t_ouch_mouse_exited"]
+[connection signal="mouse_entered" from="Upg_scre/tOUCH" to="." method="_on_t_ouch_mouse_entered"]
+[connection signal="mouse_exited" from="Upg_scre/tOUCH" to="." method="_on_t_ouch_mouse_exited"]
+[connection signal="finished" from="Sell" to="." method="_on_sell_finished"]

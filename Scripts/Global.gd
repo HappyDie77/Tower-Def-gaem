@@ -14,10 +14,10 @@ var player_money = 0
 
 var current_wave = 0
 
-var Tower1_current_upg = 0
-
 var Tower1_Upg_1: int = 560
 var Tower1_Upg_2: int = 1450
 var Tower1_Upg_3: int = 2560
-
-var sell = 0
+var tower1_prices = [560, 1450, 2560]
+var tower1_damage = [5, 8, 12, 15]
+var tower1_SPA = [1, 1, 1, 5]
+var sell_true = null

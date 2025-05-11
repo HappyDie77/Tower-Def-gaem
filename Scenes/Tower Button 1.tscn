@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c43e61vpdajky"]
 
-[ext_resource type="Script" path="res://Scripts/Activity_Button.gd" id="1_ix060"]
-[ext_resource type="PackedScene" uid="uid://dm2xydbi1nfek" path="res://Scenes/Tower 1.tscn" id="2_tnfcb"]
+[ext_resource type="Script" path="res://Scripts/Activity_Button_1.gd" id="1_ix060"]
+[ext_resource type="PackedScene" uid="uid://dm2xydbi1nfek" path="res://Scenes/Towers/Tower 1.tscn" id="2_tnfcb"]
 
 [node name="Control" type="Control"]
 layout_mode = 3

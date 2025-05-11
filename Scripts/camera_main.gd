@@ -2,7 +2,6 @@ extends Node3D
 
 @onready var spring_arm = $SpringArm3D
 @onready var camera = $SpringArm3D/Camera3D
-@onready var activity_but = $"../ActivityBut"
 @onready var tower_amount_lb = $"../ActivityBut/Tower_amount_lb"
 @onready var orbit_pivot = $"."
 
@@ -17,14 +16,15 @@ extends Node3D
 var target_orbit_position = null
 
 # Tower Placement System
-@export var tower_scene: PackedScene
+@export var tower_scene1: PackedScene
+@export var tower_scene2: PackedScene
+@export var tower_scene3: PackedScene
+@export var tower_scene4: PackedScene
+@export var tower_scene5: PackedScene
 var tower_preview: Node3D = null
 var rotating: bool = false
 var target_zoom: float
 var current_pitch: float = 0.0
-var placement_max: int = 3
-var placement_current: int = 0
-var placement_left = placement_max - placement_current
 var can_place_tower = not tower_preview or not tower_preview.visible
 var blocked_tiles = [4, 5, 6, 9, 10, 12, 13, 14, 15, 16, 17, 18, 21, 22, 23, 24, 28, 29, 30, 31, 32, 42]
 
@@ -35,7 +35,7 @@ var blocked_tiles = [4, 5, 6, 9, 10, 12, 13, 14, 15, 16, 17, 18, 21, 22, 23, 24,
 func _ready():
 	target_zoom = 6  # Start zoom
 	current_pitch = rotation_degrees.x  # Store initial pitch
-	tower_amount_lb.text = "x" + str(placement_left) # update the remeaining towers
+	tower_amount_lb.text = "x" + str(Global.placement_left) # update the remeaining towers
 
 func _input(event):
 	# Right-click for rotation
@@ -77,8 +77,24 @@ func _input(event):
 
 
 func create_tower_preview():
-	if tower_scene and placement_left > 0:
-		tower_preview = tower_scene.instantiate()
+	if tower_scene1 and Global.placement_left > 0:
+		tower_preview = tower_scene1.instantiate()
+		add_child(tower_preview)
+		tower_preview.process_mode = Node.PROCESS_MODE_DISABLED  # Disable physics for preview
+	elif tower_scene2 and Global.placement_left > 0:
+		tower_preview = tower_scene2.instantiate()
+		add_child(tower_preview)
+		tower_preview.process_mode = Node.PROCESS_MODE_DISABLED  # Disable physics for preview
+	elif tower_scene3 and Global.placement_left > 0:
+		tower_preview = tower_scene3.instantiate()
+		add_child(tower_preview)
+		tower_preview.process_mode = Node.PROCESS_MODE_DISABLED  # Disable physics for preview
+	elif tower_scene4 and Global.placement_left > 0:
+		tower_preview = tower_scene4.instantiate()
+		add_child(tower_preview)
+		tower_preview.process_mode = Node.PROCESS_MODE_DISABLED  # Disable physics for preview
+	elif tower_scene5 and Global.placement_left > 0:
+		tower_preview = tower_scene5.instantiate()
 		add_child(tower_preview)
 		tower_preview.process_mode = Node.PROCESS_MODE_DISABLED  # Disable physics for preview
 	else:
@@ -169,6 +185,9 @@ func update_tower_position():
 
 func _physics_process(delta):
 	# Smoothly interpolate towards the target zoom
+	Global.placement_left = Global.placement_max - Global.placement_current
+	tower_amount_lb.text = "x" + str(Global.placement_left)
+
 	spring_arm.spring_length = lerp(spring_arm.spring_length, target_zoom, delta * zoom_smoothness)
 	update_tower_position()
 	if target_orbit_position:
@@ -181,15 +200,43 @@ func place_tower():
 		print("Can't place a tower here!") # if there is no collison surface by checking if the tower is invisible
 		return
 
-	if placement_current >= placement_max:
+	if Global.placement_current >= Global.placement_max:
 		print("max towers placed")
 		return
 
-	if tower_scene and tower_preview:
-		var new_tower = tower_scene.instantiate()
+	if tower_scene1 and tower_preview:
+		var new_tower = tower_scene1.instantiate()
 		get_parent().add_child(new_tower)
 		new_tower.global_transform.origin = tower_preview.global_transform.origin
-		placement_current += 1
+		Global.placement_current += 1
+		print("tower placed1")
+
+	if tower_scene2 and tower_preview:
+		var new_tower = tower_scene2.instantiate()
+		get_parent().add_child(new_tower)
+		new_tower.global_transform.origin = tower_preview.global_transform.origin
+		Global.placement_current += 1
+		print("tower placed")
+
+	if tower_scene3 and tower_preview:
+		var new_tower = tower_scene3.instantiate()
+		get_parent().add_child(new_tower)
+		new_tower.global_transform.origin = tower_preview.global_transform.origin
+		Global.placement_current += 1
+		print("tower placed")
+
+	if tower_scene4 and tower_preview:
+		var new_tower = tower_scene4.instantiate()
+		get_parent().add_child(new_tower)
+		new_tower.global_transform.origin = tower_preview.global_transform.origin
+		Global.placement_current += 1
+		print("tower placed")
+
+	if tower_scene5 and tower_preview:
+		var new_tower = tower_scene5.instantiate()
+		get_parent().add_child(new_tower)
+		new_tower.global_transform.origin = tower_preview.global_transform.origin
+		Global.placement_current += 1
 		print("tower placed")
 
 func _on_activity_but_button_down():
@@ -197,8 +244,52 @@ func _on_activity_but_button_down():
 
 func _on_activity_but_button_up():
 	place_tower()
-	placement_left = placement_max - placement_current
-	tower_amount_lb.text = "x" + str(placement_left)
-	print(placement_left)
+	Global.placement_left = Global.placement_max - Global.placement_current
+	tower_amount_lb.text = "x" + str(Global.placement_left)
+	print(Global.placement_left)
+	if not tower_preview==null:
+		tower_preview.queue_free()
+
+func _on_activity_but2_button_down():
+	create_tower_preview()
+
+func _on_activity_but2_button_up():
+	place_tower()
+	Global.placement_left = Global.placement_max - Global.placement_current
+	tower_amount_lb.text = "x" + str(Global.placement_left)
+	print(Global.placement_left)
+	if not tower_preview==null:
+		tower_preview.queue_free()
+
+func _on_activity_but3_button_down():
+	create_tower_preview()
+
+func _on_activity_but3_button_up():
+	place_tower()
+	Global.placement_left = Global.placement_max - Global.placement_current
+	tower_amount_lb.text = "x" + str(Global.placement_left)
+	print(Global.placement_left)
+	if not tower_preview==null:
+		tower_preview.queue_free()
+
+func _on_activity_but4_button_down():
+	create_tower_preview()
+
+func _on_activity_but4_button_up():
+	place_tower()
+	Global.placement_left = Global.placement_max - Global.placement_current
+	tower_amount_lb.text = "x" + str(Global.placement_left)
+	print(Global.placement_left)
+	if not tower_preview==null:
+		tower_preview.queue_free()
+
+func _on_activity_but5_button_down():
+	create_tower_preview()
+
+func _on_activity_but5_button_up():
+	place_tower()
+	Global.placement_left = Global.placement_max - Global.placement_current
+	tower_amount_lb.text = "x" + str(Global.placement_left)
+	print(Global.placement_left)
 	if not tower_preview==null:
 		tower_preview.queue_free()

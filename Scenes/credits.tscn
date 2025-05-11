@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjtr1g3o5k788"]
+[gd_scene load_steps=3 format=3 uid="uid://cjtr1g3o5k788"]
+
+[ext_resource type="Script" path="res://Scenes/credits.gd" id="1_hq07l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nic45"]
 bg_color = Color(0.201527, 0.201527, 0.201526, 1)
@@ -14,6 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_hq07l")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -23,7 +26,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.368627, 0.368627, 0.368627, 0.8)
+color = Color(0.2, 0.2, 0.2, 0)
 
 [node name="Panel" type="Panel" parent="CanvasLayer/ColorRect"]
 layout_mode = 1
@@ -32,10 +35,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -213.0
-offset_top = -348.0
-offset_right = 213.0
-offset_bottom = 289.0
+offset_left = -259.0
+offset_top = -387.5
+offset_right = 259.0
+offset_bottom = 387.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_nic45")
@@ -47,49 +50,74 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -85.0
-offset_top = -211.5
-offset_right = 86.0
-offset_bottom = 276.5
+offset_left = -113.0
+offset_top = -204.5
+offset_right = 114.0
+offset_bottom = 219.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 14
 
 [node name="Music" type="Label" parent="CanvasLayer/ColorRect/Panel/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
-text = "Music:
-r"
+text = "Music: Denny
+"
 
 [node name="GridMap" type="Label" parent="CanvasLayer/ColorRect/Panel/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
-text = "GridMap:
-r"
+text = "GridMap Asset: Kenny(CC0)"
 
 [node name="Tower Model" type="Label" parent="CanvasLayer/ColorRect/Panel/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
-text = "Towers:
-r"
+text = "Tower Model: Denny"
 
 [node name="SFX" type="Label" parent="CanvasLayer/ColorRect/Panel/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
-text = "SFX:
-r"
+text = "SFX: Pixabay(CC0)"
 
 [node name="VFX" type="Label" parent="CanvasLayer/ColorRect/Panel/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
-text = "VFX:
-r"
+text = "VFX: Denny"
 
 [node name="Script Writing" type="Label" parent="CanvasLayer/ColorRect/Panel/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
-text = "Script Writing:
-r"
+text = "Code: Denny"
+
+[node name="World Building" type="Label" parent="CanvasLayer/ColorRect/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "World Building: Denny
+"
+
+[node name="Water Shader" type="Label" parent="CanvasLayer/ColorRect/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Water Shader: NekotoArts(CC0)"
+
+[node name="Enemy Model" type="Label" parent="CanvasLayer/ColorRect/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Enemy Model: Denny"
+
+[node name="Animation" type="Label" parent="CanvasLayer/ColorRect/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Animation: Denny"
+
+[node name="Pixel Icon" type="Label" parent="CanvasLayer/ColorRect/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Pixel Icon: Lucas"
+
+[node name="??????" type="Label" parent="CanvasLayer/ColorRect/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
 
 [node name="Credits" type="Label" parent="CanvasLayer/ColorRect/Panel"]
 layout_mode = 1
@@ -104,3 +132,21 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 30
 text = "Credits
 "
+
+[node name="Button" type="Button" parent="CanvasLayer/ColorRect/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -33.0
+offset_top = -83.0
+offset_right = 33.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 25
+text = "Back"
+
+[connection signal="pressed" from="CanvasLayer/ColorRect/Panel/Button" to="." method="_on_button_pressed"]

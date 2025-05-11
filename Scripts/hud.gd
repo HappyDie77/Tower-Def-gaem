@@ -1,12 +1,8 @@
 extends Control
 
-@onready var lives = $CanvasLayer/HBoxContainer/Lives
-@onready var wave = $CanvasLayer/HBoxContainer/Wave
-@onready var money = $CanvasLayer/HBoxContainer/Money
-@onready var hud = $"."
-
-func _ready():
-	hud.visible = false
+@onready var money: Label = $HBoxContainer/Money
+@onready var wave: Label = $VBoxContainer/Wave
+@onready var lives: Label = $VBoxContainer/Lives
 
 func _physics_process(delta):
 	lives.text = "Lives: " + str(Global.base_health)
