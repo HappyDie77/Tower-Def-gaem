@@ -1,4 +1,6 @@
 extends Node3D
+#VFX vid
+#https://www.youtube.com/watch?v=74XywaLGO5Q
 
 @onready var ost_1: AudioStreamPlayer = $"Ost 1"
 @export var Instance = preload("res://Scenes/settings_menu_Instantiate.tscn")
@@ -18,6 +20,29 @@ var wave_1 = [
 	{
 		"enemies": {
 			"coconut": 0,
+		},
+		"delay_after": 2.0
+	},
+	{
+		"enemies": {
+			"coconut": 10,
+			"jungle": 4
+		},
+		"delay_after": 10.0
+	},
+	{
+		"enemies": {
+			"coconut": 10,
+			"jungle": 4
+		},
+		"delay_after": 10.0
+	}
+]
+
+var wave_2 = [
+	{
+		"enemies": {
+			"jungle": 10,
 		},
 		"delay_after": 2.0
 	},

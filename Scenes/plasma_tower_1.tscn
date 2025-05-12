@@ -1,0 +1,111 @@
+[gd_scene load_steps=9 format=3 uid="uid://cb0b7bajdoy74"]
+
+[ext_resource type="PackedScene" uid="uid://cyk3dncgalui4" path="res://Assets/Plasma Tower 1.glb" id="1_v0dj3"]
+[ext_resource type="Shader" uid="uid://8bmt4pe7ou4s" path="res://Scripts/Themes & Shaders/Plasma Tower 1Rec.tres" id="2_653df"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1fddp"]
+render_priority = 0
+shader = ExtResource("2_653df")
+shader_parameter/Lighining_Color = Color(0, 0.811765, 0.945098, 1)
+shader_parameter/Speed = Vector2(1, 2)
+
+[sub_resource type="Animation" id="Animation_c4n47"]
+resource_name = "Cylinder_006Action"
+length = 0.291667
+
+[sub_resource type="Animation" id="Animation_h22tw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Barrel Ring 3:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -1.5708)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Barrel Ring 1:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -1.5708)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_186u7"]
+_data = {
+"Cylinder_006Action": SubResource("Animation_c4n47"),
+"RESET": SubResource("Animation_h22tw")
+}
+
+[sub_resource type="Animation" id="Animation_4mpnc"]
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Barrel Ring 3:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -1.5708), Vector3(6.28319, 0, -1.5708)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Barrel Ring 1:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -1.5708), Vector3(6.28319, 0, -1.5708), Vector3(0, 0, -1.5708)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ugtbs"]
+_data = {
+"Spin2": SubResource("Animation_4mpnc")
+}
+
+[node name="Plasma Tower 1" instance=ExtResource("1_v0dj3")]
+
+[node name="Left Rec 1" parent="." index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_1fddp")
+
+[node name="Left Rec 2" parent="." index="1"]
+surface_material_override/0 = SubResource("ShaderMaterial_1fddp")
+
+[node name="Left Rec 3" parent="." index="2"]
+surface_material_override/0 = SubResource("ShaderMaterial_1fddp")
+
+[node name="Right Rec 1" parent="." index="3"]
+surface_material_override/0 = SubResource("ShaderMaterial_1fddp")
+
+[node name="Right Rec 2" parent="." index="4"]
+surface_material_override/0 = SubResource("ShaderMaterial_1fddp")
+
+[node name="Right Rec 3" parent="." index="5"]
+surface_material_override/0 = SubResource("ShaderMaterial_1fddp")
+
+[node name="Barrel Ring 3" parent="." index="6"]
+transform = Transform3D(-4.20913e-08, 0.962937, 0, -0.962937, -4.20913e-08, 0, 0, 0, 0.962937, 2.6496, 1.38967, -5.03293e-06)
+
+[node name="Barrel Ring 1" parent="." index="7"]
+transform = Transform3D(-4.20913e-08, 0.962937, 0, -0.962937, -4.20913e-08, 0, 0, 0, 0.962937, 3.03478, 1.38967, -5.03293e-06)
+
+[node name="AnimationPlayer" parent="." index="54"]
+libraries = {
+"": SubResource("AnimationLibrary_186u7"),
+"Spin": SubResource("AnimationLibrary_ugtbs")
+}

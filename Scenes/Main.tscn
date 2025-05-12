@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cbbi3taj35r44"]
+[gd_scene load_steps=24 format=3 uid="uid://cbbi3taj35r44"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_86d68"]
 [ext_resource type="PackedScene" uid="uid://cywx6wddg7agu" path="res://Scenes/hud.tscn" id="3_4g7fw"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bpudnmph6vdpc" path="res://Scripts/kenney_tower-defense-kit/Previews/weapon-cannon.png" id="3_g837o"]
 [ext_resource type="Texture2D" uid="uid://c3iq4g5rsopqt" path="res://Assets/Plasma_Tower-removebg-preview (1).png" id="4_3gi3t"]
 [ext_resource type="MeshLibrary" uid="uid://ctt4pboixocja" path="res://Scenes/Gridmaps/gridd 6.tres" id="4_g3bop"]
+[ext_resource type="PackedScene" uid="uid://wn1p5uw7hwbq" path="res://Scenes/Towers/Tower 2.tscn" id="5_fh6wy"]
 [ext_resource type="PackedScene" uid="uid://dm2xydbi1nfek" path="res://Scenes/Towers/Tower 1.tscn" id="6_i14ak"]
 [ext_resource type="MeshLibrary" uid="uid://wbihegonogi4" path="res://Scenes/Gridmaps/gridd 8.tres" id="8_ft5pw"]
 [ext_resource type="PackedScene" uid="uid://dkq0jdfhm20qk" path="res://Scenes/start_game.tscn" id="8_ubou1"]
@@ -81,14 +82,19 @@ process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5492, 0.0237365, -4.18248)
 script = ExtResource("1_86d68")
 
+[node name="Start_screen" parent="." instance=ExtResource("8_ubou1")]
+
+[node name="Camera Main" parent="." instance=ExtResource("17_0xeiu")]
+transform = Transform3D(1, 0, 0, 0, 0.676259, 0.736664, 0, -0.736664, 0.676259, 11.2826, 1.32934, 4.15046)
+tower_scene1 = ExtResource("6_i14ak")
+tower_scene2 = ExtResource("5_fh6wy")
+
 [node name="Hud" parent="." instance=ExtResource("3_4g7fw")]
 offset_left = -7.0
 offset_top = -2.0
 offset_right = -7.0
 offset_bottom = -2.0
 mouse_filter = 2
-
-[node name="Start_screen" parent="." instance=ExtResource("8_ubou1")]
 
 [node name="ActivityBut" type="Button" parent="."]
 top_level = true
@@ -99,9 +105,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -60.0
+offset_left = -332.0
 offset_top = -136.0
-offset_right = 60.0
+offset_right = -212.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -130,13 +136,12 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 76.0
+offset_left = -196.0
 offset_top = -136.0
-offset_right = 196.0
+offset_right = -76.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
-icon = ExtResource("3_g837o")
 icon_alignment = 1
 expand_icon = true
 
@@ -152,6 +157,11 @@ offset_bottom = 41.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 34
 
+[node name="PlasmaTower-removebg-preview(1)" type="Sprite2D" parent="ActivityBut2"]
+position = Vector2(59.6668, 59.9999)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("4_3gi3t")
+
 [node name="ActivityBut3" type="Button" parent="."]
 top_level = true
 z_index = 1
@@ -161,9 +171,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 212.0
+offset_left = -60.0
 offset_top = -136.0
-offset_right = 332.0
+offset_right = 60.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -192,9 +202,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -332.0
+offset_left = 76.0
 offset_top = -136.0
-offset_right = -212.0
+offset_right = 196.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -223,19 +233,14 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -196.0
+offset_left = 212.0
 offset_top = -136.0
-offset_right = -76.0
+offset_right = 332.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
 icon_alignment = 1
 expand_icon = true
-
-[node name="PlasmaTower-removebg-preview(1)" type="Sprite2D" parent="ActivityBut5"]
-position = Vector2(59.6667, 59.9999)
-scale = Vector2(1.25, 1.25)
-texture = ExtResource("4_3gi3t")
 
 [node name="Tower_amount_lb" type="Label" parent="ActivityBut5"]
 layout_mode = 1
@@ -267,10 +272,6 @@ icon = ExtResource("15_15224")
 flat = true
 icon_alignment = 1
 expand_icon = true
-
-[node name="Camera Main" parent="." instance=ExtResource("17_0xeiu")]
-transform = Transform3D(1, 0, 0, 0, 0.676259, 0.736664, 0, -0.736664, 0.676259, 11.2826, 1.32934, 4.15046)
-tower_scene1 = ExtResource("6_i14ak")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.525026, 0.851086, 0, -0.851086, -0.525026, 10.6383, 18.2302, -8.62593)
@@ -343,9 +344,10 @@ bus = &"Music"
 playback_type = 1
 parameters/looping = true
 
-[connection signal="button_down" from="ActivityBut" to="ActivityBut" method="_on_button_down"]
 [connection signal="button_down" from="ActivityBut" to="Camera Main" method="_on_activity_but_button_down"]
-[connection signal="button_up" from="ActivityBut" to="ActivityBut" method="_on_button_up"]
+[connection signal="button_down" from="ActivityBut" to="ActivityBut" method="_on_button_down"]
 [connection signal="button_up" from="ActivityBut" to="Camera Main" method="_on_activity_but_button_up"]
+[connection signal="button_up" from="ActivityBut" to="ActivityBut" method="_on_button_up"]
+[connection signal="button_down" from="ActivityBut4" to="." method="_on_activity_but_4_button_down"]
 [connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

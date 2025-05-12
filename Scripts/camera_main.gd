@@ -81,19 +81,19 @@ func create_tower_preview():
 		tower_preview = tower_scene1.instantiate()
 		add_child(tower_preview)
 		tower_preview.process_mode = Node.PROCESS_MODE_DISABLED  # Disable physics for preview
-	elif tower_scene2 and Global.placement_left > 0:
+	if tower_scene2 and Global.placement_left > 0:
 		tower_preview = tower_scene2.instantiate()
 		add_child(tower_preview)
 		tower_preview.process_mode = Node.PROCESS_MODE_DISABLED  # Disable physics for preview
-	elif tower_scene3 and Global.placement_left > 0:
+	if tower_scene3 and Global.placement_left > 0:
 		tower_preview = tower_scene3.instantiate()
 		add_child(tower_preview)
 		tower_preview.process_mode = Node.PROCESS_MODE_DISABLED  # Disable physics for preview
-	elif tower_scene4 and Global.placement_left > 0:
+	if tower_scene4 and Global.placement_left > 0:
 		tower_preview = tower_scene4.instantiate()
 		add_child(tower_preview)
 		tower_preview.process_mode = Node.PROCESS_MODE_DISABLED  # Disable physics for preview
-	elif tower_scene5 and Global.placement_left > 0:
+	if tower_scene5 and Global.placement_left > 0:
 		tower_preview = tower_scene5.instantiate()
 		add_child(tower_preview)
 		tower_preview.process_mode = Node.PROCESS_MODE_DISABLED  # Disable physics for preview
@@ -184,6 +184,30 @@ func update_tower_position():
 
 
 func _physics_process(delta):
+	
+	if Input.is_action_just_pressed("Place Tower 1"):
+		_on_activity_but_button_down()
+	if Input.is_action_just_released("Place Tower 1"):
+		_on_activity_but_button_up()
+	elif Input.is_action_just_pressed("Place Tower 2"):
+		_on_activity_but2_button_down()
+	elif Input.is_action_just_released("Place Tower 2"):
+		_on_activity_but2_button_up()
+	elif Input.is_action_just_pressed("Place Tower 3"):
+		_on_activity_but3_button_down()
+	elif Input.is_action_just_released("Place Tower 3"):
+		_on_activity_but3_button_up()
+	elif Input.is_action_just_pressed("Place Tower 4"):
+		_on_activity_but4_button_down()
+	elif Input.is_action_just_released("Place Tower 4"):
+		_on_activity_but4_button_up()
+	elif Input.is_action_just_pressed("Place Tower 5"):
+		_on_activity_but5_button_down()
+	elif Input.is_action_just_released("Place Tower 5"):
+		_on_activity_but5_button_up()
+
+
+	
 	# Smoothly interpolate towards the target zoom
 	Global.placement_left = Global.placement_max - Global.placement_current
 	tower_amount_lb.text = "x" + str(Global.placement_left)
@@ -195,7 +219,7 @@ func _physics_process(delta):
 		var new_pos = current.lerp(target_orbit_position, delta * 5)
 		orbit_pivot.global_transform.origin = new_pos
 
-func place_tower():
+func place_tower(tower_number):
 	if not tower_preview or not tower_preview.visible: # Disables the ability to place towers
 		print("Can't place a tower here!") # if there is no collison surface by checking if the tower is invisible
 		return
@@ -204,46 +228,32 @@ func place_tower():
 		print("max towers placed")
 		return
 
-	if tower_scene1 and tower_preview:
-		var new_tower = tower_scene1.instantiate()
-		get_parent().add_child(new_tower)
-		new_tower.global_transform.origin = tower_preview.global_transform.origin
-		Global.placement_current += 1
-		print("tower placed1")
+	var selected_tower_scene = null
+	match tower_number:
+		1:
+			selected_tower_scene = tower_scene1
+		2:
+			selected_tower_scene = tower_scene2
+		3:
+			selected_tower_scene = tower_scene3
+		4:
+			selected_tower_scene = tower_scene4
+		5:
+			selected_tower_scene = tower_scene5
 
-	if tower_scene2 and tower_preview:
-		var new_tower = tower_scene2.instantiate()
+	if selected_tower_scene:
+		var new_tower = selected_tower_scene.instantiate()
 		get_parent().add_child(new_tower)
 		new_tower.global_transform.origin = tower_preview.global_transform.origin
 		Global.placement_current += 1
-		print("tower placed")
+		print("tower placed", tower_number)
 
-	if tower_scene3 and tower_preview:
-		var new_tower = tower_scene3.instantiate()
-		get_parent().add_child(new_tower)
-		new_tower.global_transform.origin = tower_preview.global_transform.origin
-		Global.placement_current += 1
-		print("tower placed")
-
-	if tower_scene4 and tower_preview:
-		var new_tower = tower_scene4.instantiate()
-		get_parent().add_child(new_tower)
-		new_tower.global_transform.origin = tower_preview.global_transform.origin
-		Global.placement_current += 1
-		print("tower placed")
-
-	if tower_scene5 and tower_preview:
-		var new_tower = tower_scene5.instantiate()
-		get_parent().add_child(new_tower)
-		new_tower.global_transform.origin = tower_preview.global_transform.origin
-		Global.placement_current += 1
-		print("tower placed")
 
 func _on_activity_but_button_down():
 	create_tower_preview()
 
 func _on_activity_but_button_up():
-	place_tower()
+	place_tower(1)
 	Global.placement_left = Global.placement_max - Global.placement_current
 	tower_amount_lb.text = "x" + str(Global.placement_left)
 	print(Global.placement_left)
@@ -254,7 +264,7 @@ func _on_activity_but2_button_down():
 	create_tower_preview()
 
 func _on_activity_but2_button_up():
-	place_tower()
+	place_tower(2)
 	Global.placement_left = Global.placement_max - Global.placement_current
 	tower_amount_lb.text = "x" + str(Global.placement_left)
 	print(Global.placement_left)
@@ -265,7 +275,7 @@ func _on_activity_but3_button_down():
 	create_tower_preview()
 
 func _on_activity_but3_button_up():
-	place_tower()
+	place_tower(3)
 	Global.placement_left = Global.placement_max - Global.placement_current
 	tower_amount_lb.text = "x" + str(Global.placement_left)
 	print(Global.placement_left)
@@ -276,7 +286,7 @@ func _on_activity_but4_button_down():
 	create_tower_preview()
 
 func _on_activity_but4_button_up():
-	place_tower()
+	place_tower(4)
 	Global.placement_left = Global.placement_max - Global.placement_current
 	tower_amount_lb.text = "x" + str(Global.placement_left)
 	print(Global.placement_left)
@@ -287,7 +297,7 @@ func _on_activity_but5_button_down():
 	create_tower_preview()
 
 func _on_activity_but5_button_up():
-	place_tower()
+	place_tower(5)
 	Global.placement_left = Global.placement_max - Global.placement_current
 	tower_amount_lb.text = "x" + str(Global.placement_left)
 	print(Global.placement_left)

@@ -15,5 +15,5 @@ func take_damage(damage: int) -> void:
 	health -= damage
 	
 	if health <= 0:
-		Global.player_money += 672
+		Global.player_money += 348
 		queue_free()

@@ -19,5 +19,6 @@ var Tower1_Upg_2: int = 1450
 var Tower1_Upg_3: int = 2560
 var tower1_prices = [560, 1450, 2560]
 var tower1_damage = [5, 8, 12, 15]
-var tower1_SPA = [1, 1, 1, 5]
+var tower1_SPA = [1.2, 1.2, 1]
+var tower1_range = [1.5, 2, 2.2]
 var sell_true = null
