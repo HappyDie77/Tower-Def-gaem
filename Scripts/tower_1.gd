@@ -12,7 +12,7 @@ extends Node3D
 @onready var atk_lb: Label = $Upg_scre/Panel2/VBoxContainer5/ATK_lb
 @onready var range_lb: Label = $Upg_scre/Panel2/VBoxContainer5/Range_lb
 @onready var spa_lb: Label = $Upg_scre/Panel2/VBoxContainer5/SPA_lb
-@onready var tower_amount_lb: Label = $ActivityBut/Tower_amount_lb
+@onready var tower_amount_lb_1 = $ActivityBut/Tower_amount_lb_1
 
 
 @onready var mob_shape: CollisionShape3D = $"Mob Detect/Mob Shape"
@@ -211,7 +211,7 @@ func _on_sell_pressed() -> void:
 		return  # Only respond if this tower's UI is active
 
 	Global.player_money += sell_value
-	Global.placement_current -= 1
+	Global.placement_current[1] -= 1
 	Global.sell_true = true
 	tower_2.visible = false
 	upg_scre.visible = false

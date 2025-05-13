@@ -86,10 +86,21 @@ script = ExtResource("1_86d68")
 
 [node name="Camera Main" parent="." instance=ExtResource("17_0xeiu")]
 transform = Transform3D(1, 0, 0, 0, 0.676259, 0.736664, 0, -0.736664, 0.676259, 11.2826, 1.32934, 4.15046)
+rotation_speed = null
+zoom_speed = null
+min_zoom = null
+max_zoom = null
+zoom_smoothness = null
+min_pitch = null
+max_pitch = null
 tower_scene1 = ExtResource("6_i14ak")
 tower_scene2 = ExtResource("5_fh6wy")
 
 [node name="Hud" parent="." instance=ExtResource("3_4g7fw")]
+offset_left = -7.0
+offset_top = -2.0
+offset_right = -7.0
+offset_bottom = -2.0
 mouse_filter = 2
 
 [node name="ActivityBut" type="Button" parent="."]

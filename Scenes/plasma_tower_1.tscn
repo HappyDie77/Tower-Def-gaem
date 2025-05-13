@@ -99,10 +99,10 @@ surface_material_override/0 = SubResource("ShaderMaterial_1fddp")
 surface_material_override/0 = SubResource("ShaderMaterial_1fddp")
 
 [node name="Barrel Ring 3" parent="." index="6"]
-transform = Transform3D(-4.20913e-08, 0.962937, 0, -0.962937, -4.20913e-08, 0, 0, 0, 0.962937, 2.6496, 1.38967, -5.03293e-06)
+transform = Transform3D(-3.48582e-06, 0.962937, 0, -0.962937, -3.48582e-06, 0, 0, 0, 0.962937, 2.6496, 1.38967, -5.03293e-06)
 
 [node name="Barrel Ring 1" parent="." index="7"]
-transform = Transform3D(-4.20913e-08, 0.962937, 0, -0.962937, -4.20913e-08, 0, 0, 0, 0.962937, 3.03478, 1.38967, -5.03293e-06)
+transform = Transform3D(-3.48582e-06, 0.962937, 0, -0.962937, -3.48582e-06, 0, 0, 0, 0.962937, 3.03478, 1.38967, -5.03293e-06)
 
 [node name="AnimationPlayer" parent="." index="54"]
 libraries = {

@@ -15,50 +15,50 @@ step = 0.0333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath("../ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.566667, 1.5),
-"transitions": PackedFloat32Array(1.17688, 0.574349, 1.48651, 3),
-"update": 0,
-"values": [Vector2(246, -146), Vector2(246, -298.8), Vector2(246, -14.5334), Vector2(246, -1674)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../ColorRect:color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 1.13333, 1.36667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(0.2, 0.2, 0.2, 0), Color(0.2, 0.2, 0.2, 0), Color(0.2, 0.2, 0.2, 1)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../ColorRect/Label:text")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../ColorRect/Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(),
 "transitions": PackedFloat32Array(),
 "update": 1,
 "values": []
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../ColorRect/Label:theme_override_colors/font_color")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../ColorRect/Label:theme_override_colors/font_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(1.2654, 1.4985),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.466667, 0.633333, 1.4985),
+"transitions": PackedFloat32Array(3.24901, 1.68179, 1.56917, 1),
+"update": 0,
+"values": [Vector2(246, -138.8), Vector2(246, -387.689), Vector2(246, -104.108), Vector2(246, -1538.8)]
 }
 
 [sub_resource type="Animation" id="Animation_y2f4k"]
@@ -66,51 +66,51 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath("../ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(246, -146)]
+"values": [Color(0.2, 0.2, 0.2, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../ColorRect:color")
+tracks/1/path = NodePath("../ColorRect/Label:text")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.2, 0.2, 0.2, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../ColorRect/Label:text")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["Loading. . .
 "]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../ColorRect/Label:theme_override_colors/font_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../ColorRect/Label:theme_override_colors/font_color")
+tracks/3/path = NodePath(".:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0, 0, 0, 0)]
+"values": [Vector2(246, -138.8)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u0raj"]
@@ -145,9 +145,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -714.0
-offset_top = -1226.0
+offset_top = -1338.8
 offset_right = -246.0
-offset_bottom = 489.0
+offset_bottom = 376.2
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_kwj6u")
@@ -229,8 +229,7 @@ libraries = {
 }
 
 [node name="Timer_Roll" type="Timer" parent="ColorRect/Banner"]
-wait_time = 6.0
-autostart = true
+wait_time = 0.001
 
 [node name="ColorRect" type="ColorRect" parent="ColorRect"]
 layout_mode = 1
@@ -265,3 +264,4 @@ text = "Loading. . .
 [connection signal="pressed" from="ColorRect/Banner/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="ColorRect/Banner/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="animation_finished" from="ColorRect/Banner/Banner_Roll" to="." method="_on_banner_roll_animation_finished"]
+[connection signal="timeout" from="ColorRect/Banner/Timer_Roll" to="." method="_on_timer_roll_timeout"]

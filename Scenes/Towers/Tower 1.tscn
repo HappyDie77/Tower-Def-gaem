@@ -97,9 +97,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -875.0
-offset_top = -255.0
+offset_top = -263.0
 offset_right = -520.0
-offset_bottom = -172.0
+offset_bottom = -180.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 1
@@ -113,9 +113,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -109.0
-offset_top = -54.0
+offset_top = -51.0
 offset_right = 109.0
-offset_bottom = -15.0
+offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
@@ -269,8 +269,66 @@ theme_override_font_sizes/font_size = 42
 text = "
 "
 
+[node name="E panel" type="Panel" parent="Upg_scre/Panel"]
+layout_mode = 2
+offset_left = 316.0
+offset_top = 514.0
+offset_right = 348.0
+offset_bottom = 554.0
+
+[node name="Press E" type="Label" parent="Upg_scre/Panel/E panel"]
+layout_mode = 2
+offset_left = 6.0
+offset_top = -5.0
+offset_right = 26.0
+offset_bottom = 44.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 35
+text = "E
+"
+
+[node name="X panel" type="Panel" parent="Upg_scre/Panel"]
+layout_mode = 0
+offset_left = 148.0
+offset_top = 514.0
+offset_right = 180.0
+offset_bottom = 554.0
+
+[node name="Press E" type="Label" parent="Upg_scre/Panel/X panel"]
+layout_mode = 2
+offset_left = 5.0
+offset_top = -5.0
+offset_right = 27.0
+offset_bottom = 44.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 35
+text = "X
+"
+
+[node name="R panel" type="Panel" parent="Upg_scre/Panel"]
+layout_mode = 0
+offset_left = 306.0
+offset_top = 375.0
+offset_right = 338.0
+offset_bottom = 415.0
+
+[node name="Press E" type="Label" parent="Upg_scre/Panel/R panel"]
+layout_mode = 2
+offset_left = 5.0
+offset_top = -5.0
+offset_right = 27.0
+offset_bottom = 44.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 35
+text = "R
+"
+
 [node name="tOUCH" type="Area2D" parent="Upg_scre"]
 process_mode = 3
+visible = false
 z_index = 1
 position = Vector2(64, 261)
 
