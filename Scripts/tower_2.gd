@@ -14,11 +14,10 @@ extends Node3D
 @onready var spa_lb: Label = $Upg_scre/Panel2/VBoxContainer5/SPA_lb
 @onready var tower_amount_lb_2 = $ActivityBut2/Tower_amount_lb_2
 
-
-
 @onready var mob_shape: CollisionShape3D = $"Mob Detect/Mob Shape"
 @onready var cylinder_shape: CylinderShape3D = mob_shape.shape as CylinderShape3D
 @onready var cylinder: CylinderMesh = range_view.mesh as CylinderMesh
+@export var tower_type: int = 1  # Adjust per tower scene
 
 var muscuk=false
 var bullet: PackedScene = preload("res://Scenes/bullet.tscn")
@@ -26,8 +25,10 @@ var bullet_damage: int = 5
 var current_targets: Array = []
 var curr: CharacterBody3D
 var can_shoot: bool = true
-var new_radius: float = 1.5
-var new_timer: float = 1.5
+var new_radius: float = 1.8
+var new_timer: float = 3.2
+var max_burst: int = 3
+var current_burst: int = 0
 
 
 enum TargetMode { First, Closest, Last }
@@ -56,7 +57,7 @@ func _process(delta):
 		look_at(target_pos)
 
 		if can_shoot:
-			shoot()
+			start_burst()
 			can_shoot = false
 			$ShootTimer.start()
 
@@ -71,6 +72,20 @@ func _process(delta):
 		if not muscuk :
 			range_view.visible = false
 			upg_scre.visible = false
+
+func start_burst():
+	current_burst = 0
+	shoot()
+	current_burst += 1
+	$"Burst Firerate".start()
+
+func _on_burst_firerate_timeout() -> void:
+	if current_burst < max_burst and curr:
+		shoot()
+		current_burst += 1
+		$"Burst Firerate".start()
+
+
 
 func shoot() -> void:
 	var temp_bullet: CharacterBody3D = bullet.instantiate()
@@ -128,7 +143,7 @@ func _on_t_ouch_mouse_exited():
 
 func _ready() -> void:
 	target.text = "" + mode_names[target_mode]
-	upgrade.text = "$" + str(Global.Tower1_Upg_1)
+	upgrade.text = "$" + str(Global.Tower2_Upg_1)
 	atk_lb.text = "ATK: " + str(dmg_inc)
 	spa_lb.text = "SPA: " + str(new_timer)
 	range_lb.text = "Range: " + str(new_radius)
@@ -142,10 +157,10 @@ func _ready() -> void:
 	sell.text = "$" + str(sell_value)
 
 var upgrade_level = 0
-var upgrades = Global.tower1_prices
-var damage = Global.tower1_damage
-var Spa_time = Global.tower1_SPA
-var range_rad = Global.tower1_range
+var upgrades = Global.tower2_prices
+var damage = Global.tower2_damage
+var Spa_time = Global.tower2_SPA
+var range_rad = Global.tower2_range
 var sell_value = 0
 var dmg_inc = damage[0]
 var spa_inc = Spa_time[0]
@@ -210,12 +225,13 @@ func _on_upgrade_pressed():
 func _on_sell_pressed() -> void:
 	if not upg_scre.visible:
 		return  # Only respond if this tower's UI is active
-
-	Global.player_money += sell_value
 	Global.placement_current[2] -= 1
+	Global.placement_left[2] = Global.placement_max[2] - Global.placement_current[2]
+	Global.player_money += sell_value
 	Global.sell_true = true
 	plasma_tower_1.visible = false
 	upg_scre.visible = false
+	range_view.visible = false
 	$Sell.play()
 
 func _on_sell_finished() -> void:

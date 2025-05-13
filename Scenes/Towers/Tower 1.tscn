@@ -78,7 +78,6 @@ shape = SubResource("CylinderShape3D_ijlxx")
 
 [node name="Range view" type="MeshInstance3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.0742012, 0)
-visible = false
 transparency = 0.5
 mesh = SubResource("CylinderMesh_tv2sw")
 skeleton = NodePath("../Towermesh")
@@ -88,7 +87,6 @@ skeleton = NodePath("../Towermesh")
 [node name="ShootTimer" type="Timer" parent="."]
 
 [node name="Upg_scre" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Panel2" type="Panel" parent="Upg_scre"]
 anchors_preset = 7
@@ -328,7 +326,6 @@ text = "R
 
 [node name="tOUCH" type="Area2D" parent="Upg_scre"]
 process_mode = 3
-visible = false
 z_index = 1
 position = Vector2(64, 261)
 

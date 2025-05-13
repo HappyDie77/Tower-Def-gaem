@@ -107,6 +107,7 @@ offset_right = -212.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
+toggle_mode = true
 icon = ExtResource("3_g837o")
 icon_alignment = 1
 expand_icon = true
@@ -138,6 +139,7 @@ offset_right = -76.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
+toggle_mode = true
 icon_alignment = 1
 expand_icon = true
 
@@ -340,12 +342,8 @@ bus = &"Music"
 playback_type = 1
 parameters/looping = true
 
-[connection signal="button_down" from="ActivityBut" to="Camera Main" method="_on_activity_but_button_down"]
-[connection signal="button_down" from="ActivityBut" to="ActivityBut" method="_on_button_down"]
-[connection signal="button_up" from="ActivityBut" to="Camera Main" method="_on_activity_but_button_up"]
-[connection signal="button_up" from="ActivityBut" to="ActivityBut" method="_on_button_up"]
-[connection signal="button_down" from="ActivityBut2" to="Camera Main" method="_on_activity_but_2_button_down"]
-[connection signal="button_up" from="ActivityBut2" to="Camera Main" method="_on_activity_but_2_button_up"]
+[connection signal="toggled" from="ActivityBut" to="Camera Main" method="_on_activity_but_toggled"]
+[connection signal="toggled" from="ActivityBut2" to="Camera Main" method="_on_activity_but_2_toggled"]
 [connection signal="button_down" from="ActivityBut3" to="Camera Main" method="_on_activity_but_3_button_down"]
 [connection signal="button_up" from="ActivityBut3" to="Camera Main" method="_on_activity_but_3_button_up"]
 [connection signal="button_down" from="ActivityBut4" to="Camera Main" method="_on_activity_but_4_button_down"]

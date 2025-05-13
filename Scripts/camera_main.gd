@@ -13,6 +13,11 @@ extends Node3D
 @export var min_pitch: float = -55.0  # Min pitch angle (down)
 @export var max_pitch: float = -10.0  # Max pitch angle (up)
 var target_orbit_position = null
+@onready var tower_amount_lb_1: Label = $"../ActivityBut/Tower_amount_lb_1"
+@onready var tower_amount_lb_2: Label = $"../ActivityBut2/Tower_amount_lb_2"
+@onready var tower_amount_lb_3: Label = $"../ActivityBut3/Tower_amount_lb_3"
+@onready var tower_amount_lb_4: Label = $"../ActivityBut4/Tower_amount_lb_4"
+@onready var tower_amount_lb_5: Label = $"../ActivityBut5/Tower_amount_lb_5"
 
 # Tower Placement System
 @export var tower_scene1: PackedScene
@@ -27,6 +32,8 @@ var target_zoom: float
 var current_pitch: float = 0.0
 var can_place_tower = not tower_preview or not tower_preview.visible
 var blocked_tiles = [4, 5, 6, 9, 10, 12, 13, 14, 15, 16, 17, 18, 21, 22, 23, 24, 28, 29, 30, 31, 32, 42]
+var is_tower_1_selected := false
+var is_tower_2_selected := false
 
 
 
@@ -87,6 +94,25 @@ func _input(event):
 			target_orbit_position = hit_position
 		else:
 			print("No hit from raycast")
+		
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if tower_preview and tower_preview.visible:
+			if tower_preview.scene_file_path == tower_scene1.resource_path:
+				place_tower(1)
+			elif tower_preview.scene_file_path == tower_scene2.resource_path:
+				place_tower(2)
+			elif tower_preview.scene_file_path == tower_scene3.resource_path:
+				place_tower(3)
+			elif tower_preview.scene_file_path == tower_scene4.resource_path:
+				place_tower(4)
+			elif tower_preview.scene_file_path == tower_scene5.resource_path:
+				place_tower(5)
+
+		# After placing, delete the preview
+		if is_instance_valid(tower_preview):
+			tower_preview.queue_free()
+		tower_preview = null
+
 
 
 
@@ -109,15 +135,22 @@ func create_tower_preview(tower_scene_select):
 			tower_preview = tower_previews.instantiate()
 			add_child(tower_preview)
 			tower_preview.process_mode = Node.PROCESS_MODE_DISABLED
-	else:
-		return
-		# Make the preview transparent
-		var mesh_instance = tower_preview.get_node_or_null("MeshInstance3D")
-		if mesh_instance:
-			var mat = StandardMaterial3D.new()
-			mat.albedo_color = Color(1, 1, 1, 0.9)  # Semi-transparent
-			mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-			mesh_instance.set_surface_override_material(0, mat)
+		elif Global.placement_left[2] > 0:
+			tower_preview = tower_previews.instantiate()
+			add_child(tower_preview)
+			tower_preview.process_mode = Node.PROCESS_MODE_DISABLED
+		elif Global.placement_left[3] > 0:
+			tower_preview = tower_previews.instantiate()
+			add_child(tower_preview)
+			tower_preview.process_mode = Node.PROCESS_MODE_DISABLED
+		elif Global.placement_left[4] > 0:
+			tower_preview = tower_previews.instantiate()
+			add_child(tower_preview)
+			tower_preview.process_mode = Node.PROCESS_MODE_DISABLED
+		elif Global.placement_left[5] > 0:
+			tower_preview = tower_previews.instantiate()
+			add_child(tower_preview)
+			tower_preview.process_mode = Node.PROCESS_MODE_DISABLED
 
 func update_tower_position():
 	if not camera or not tower_preview:
@@ -194,17 +227,25 @@ func update_tower_position():
 	else:
 		tower_preview.visible = false
 
+func clear_existing_preview():
+	if tower_preview and is_instance_valid(tower_preview):
+		tower_preview.queue_free()
+	tower_preview = null
 
 func _physics_process(delta):
-	
+
+	tower_amount_lb_1.text = "x" + str(Global.placement_left[1])
+	tower_amount_lb_2.text = "x" + str(Global.placement_left[2])
+	tower_amount_lb_3.text = "x" + str(Global.placement_left[3])
+	tower_amount_lb_4.text = "x" + str(Global.placement_left[4])
+	tower_amount_lb_5.text = "x" + str(Global.placement_left[5])
+
 	if Input.is_action_just_pressed("Place Tower 1"):
-		_on_activity_but_button_down()
-	if Input.is_action_just_released("Place Tower 1"):
-		_on_activity_but_button_up()
+		clear_existing_preview()
+		create_tower_preview(1)
 	elif Input.is_action_just_pressed("Place Tower 2"):
-		_on_activity_but_2_button_down()
-	elif Input.is_action_just_released("Place Tower 2"):
-		_on_activity_but_2_button_up()
+		clear_existing_preview()
+		create_tower_preview(2)
 	elif Input.is_action_just_pressed("Place Tower 3"):
 		_on_activity_but_3_button_down()
 	elif Input.is_action_just_released("Place Tower 3"):
@@ -217,9 +258,6 @@ func _physics_process(delta):
 		_on_activity_but_5_button_down()
 	elif Input.is_action_just_released("Place Tower 5"):
 		_on_activity_but_5_button_up()
-
-	for i in [1, 2, 3, 4, 5]:
-		tower_amount_labels[i].text = "x" + str(Global.placement_left[i])
 
 	spring_arm.spring_length = lerp(spring_arm.spring_length, target_zoom, delta * zoom_smoothness)
 	update_tower_position()
@@ -262,25 +300,32 @@ func place_tower(tower_number):
 		print("Invalid tower number:", tower_number)
 
 
-func _on_activity_but_button_down():
-	create_tower_preview(1)
-
-func _on_activity_but_button_up():
-	place_tower(1)
-	Global.placement_left[1] = Global.placement_max[1] - Global.placement_current[1]
-	print(Global.placement_left[1])
-	if not tower_preview==null:
+func _on_activity_but_toggled(button_pressed):
+	if tower_preview and is_instance_valid(tower_preview):
 		tower_preview.queue_free()
+		tower_preview = null
+	if button_pressed:
+		create_tower_preview(1)
+	else:
+		place_tower(1)
+		Global.placement_left[1] = Global.placement_max[1] - Global.placement_current[1]
+		print(Global.placement_left[1])
+		if not tower_preview == null:
+			tower_preview.queue_free()
 
-func _on_activity_but_2_button_down():
-	create_tower_preview(2)
 
-func _on_activity_but_2_button_up():
-	place_tower(2)
-	Global.placement_left[2] = Global.placement_max[2] - Global.placement_current[2]
-	print(Global.placement_left[2])
-	if not tower_preview==null:
+func _on_activity_but_2_toggled(button_pressed):
+	if tower_preview and is_instance_valid(tower_preview):
 		tower_preview.queue_free()
+		tower_preview = null
+	if button_pressed:
+		create_tower_preview(2)
+	else:
+		place_tower(2)
+		Global.placement_left[2] = Global.placement_max[2] - Global.placement_current[2]
+		print(Global.placement_left[2])
+		if not tower_preview == null:
+			tower_preview.queue_free()
 
 func _on_activity_but_3_button_down():
 	create_tower_preview(3)

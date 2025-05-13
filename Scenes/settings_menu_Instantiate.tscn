@@ -100,6 +100,7 @@ text = "Back
 "
 
 [node name="Panel" type="Panel" parent="Background"]
+layout_mode = 0
 offset_left = 270.0
 offset_top = 398.0
 offset_right = 608.0

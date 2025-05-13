@@ -27,7 +27,7 @@ var base_health = 10
 
 var button_pres = false
 
-var player_money = 0
+var player_money = 10000
 
 var current_wave = 0
 
@@ -43,9 +43,9 @@ var Tower2_Upg_1: int = 865
 var Tower2_Upg_2: int = 1940
 var Tower2_Upg_3: int = 4235
 var tower2_prices = [865, 1940, 4235]
-var tower2_damage = [3, 5, 6, 8]
-var tower2_SPA = [3, 2.8, 2.5] 
-var tower2_range = [1.5, 2, 2.2]
+var tower2_damage = [4, 7.2, 9, 12.5]
+var tower2_SPA = [2.8, 2.4, 2.2] 
+var tower2_range = [1.8, 2, 2.2]
 
 var Tower3_Upg_1: int = 560
 var Tower3_Upg_2: int = 1450
