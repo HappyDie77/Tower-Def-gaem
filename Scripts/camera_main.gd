@@ -130,27 +130,10 @@ func create_tower_preview(tower_scene_select):
 		5:
 			tower_previews = tower_scene5
 
-	if tower_previews:
-		if Global.placement_left[1] > 0:
-			tower_preview = tower_previews.instantiate()
-			add_child(tower_preview)
-			tower_preview.process_mode = Node.PROCESS_MODE_DISABLED
-		elif Global.placement_left[2] > 0:
-			tower_preview = tower_previews.instantiate()
-			add_child(tower_preview)
-			tower_preview.process_mode = Node.PROCESS_MODE_DISABLED
-		elif Global.placement_left[3] > 0:
-			tower_preview = tower_previews.instantiate()
-			add_child(tower_preview)
-			tower_preview.process_mode = Node.PROCESS_MODE_DISABLED
-		elif Global.placement_left[4] > 0:
-			tower_preview = tower_previews.instantiate()
-			add_child(tower_preview)
-			tower_preview.process_mode = Node.PROCESS_MODE_DISABLED
-		elif Global.placement_left[5] > 0:
-			tower_preview = tower_previews.instantiate()
-			add_child(tower_preview)
-			tower_preview.process_mode = Node.PROCESS_MODE_DISABLED
+	if tower_previews and Global.placement_left[tower_scene_select] > 0:
+		tower_preview = tower_previews.instantiate()
+		add_child(tower_preview)
+		tower_preview.process_mode = Node.PROCESS_MODE_DISABLED
 
 func update_tower_position():
 	if not camera or not tower_preview:
@@ -247,28 +230,26 @@ func _physics_process(delta):
 		clear_existing_preview()
 		create_tower_preview(2)
 	elif Input.is_action_just_pressed("Place Tower 3"):
-		_on_activity_but_3_button_down()
-	elif Input.is_action_just_released("Place Tower 3"):
-		_on_activity_but_3_button_up()
+		clear_existing_preview()
+		create_tower_preview(3)
 	elif Input.is_action_just_pressed("Place Tower 4"):
-		_on_activity_but_4_button_down()
-	elif Input.is_action_just_released("Place Tower 4"):
-		_on_activity_but_4_button_up()
+		clear_existing_preview()
+		create_tower_preview(4)
 	elif Input.is_action_just_pressed("Place Tower 5"):
-		_on_activity_but_5_button_down()
-	elif Input.is_action_just_released("Place Tower 5"):
-		_on_activity_but_5_button_up()
+		clear_existing_preview()
+		create_tower_preview(5)
 
 	spring_arm.spring_length = lerp(spring_arm.spring_length, target_zoom, delta * zoom_smoothness)
-	update_tower_position()
+	if tower_preview:
+		update_tower_position()
 	if target_orbit_position:
 		var current = orbit_pivot.global_transform.origin
 		var new_pos = current.lerp(target_orbit_position, delta * 5)
 		orbit_pivot.global_transform.origin = new_pos
 
 func place_tower(tower_number):
-	if not tower_preview or not tower_preview.visible: # Disables the ability to place towers
-		print("Can't place a tower here!") # if there is no collison surface by checking if the tower is invisible
+	if not can_place_tower:
+		print("Can't place a tower here!")
 		return
 
 	# Check if we've reached the max placement for this specific tower
@@ -290,7 +271,13 @@ func place_tower(tower_number):
 	if selected_tower_scene:
 		var new_tower = selected_tower_scene.instantiate()
 		get_parent().add_child(new_tower)
-		new_tower.global_transform.origin = tower_preview.global_transform.origin
+		if tower_preview and is_instance_valid(tower_preview) and new_tower:
+			# now it’s safe
+			new_tower.global_transform = tower_preview.global_transform
+			get_parent().add_child(new_tower)
+		else:
+			push_error("Cannot set transform – either preview or new_tower is invalid.")
+			return
 
 		Global.placement_current[tower_number] += 1
 		Global.placement_left[tower_number] = Global.placement_max[tower_number] - Global.placement_current[tower_number]
@@ -301,9 +288,7 @@ func place_tower(tower_number):
 
 
 func _on_activity_but_toggled(button_pressed):
-	if tower_preview and is_instance_valid(tower_preview):
-		tower_preview.queue_free()
-		tower_preview = null
+	clear_existing_preview()
 	if button_pressed:
 		create_tower_preview(1)
 	else:
@@ -315,9 +300,7 @@ func _on_activity_but_toggled(button_pressed):
 
 
 func _on_activity_but_2_toggled(button_pressed):
-	if tower_preview and is_instance_valid(tower_preview):
-		tower_preview.queue_free()
-		tower_preview = null
+	clear_existing_preview()
 	if button_pressed:
 		create_tower_preview(2)
 	else:
@@ -327,32 +310,36 @@ func _on_activity_but_2_toggled(button_pressed):
 		if not tower_preview == null:
 			tower_preview.queue_free()
 
-func _on_activity_but_3_button_down():
-	create_tower_preview(3)
+func _on_activity_but_3_toggled(button_pressed):
+	clear_existing_preview()
+	if button_pressed:
+		create_tower_preview(3)
+	else:
+		place_tower(3)
+		Global.placement_left[3] = Global.placement_max[3] - Global.placement_current[3]
+		print(Global.placement_left[3])
+		if not tower_preview == null:
+			tower_preview.queue_free()
 
-func _on_activity_but_3_button_up():
-	place_tower(3)
-	Global.placement_left[3] = Global.placement_max[3] - Global.placement_current[3]
-	print(Global.placement_left[3])
-	if not tower_preview==null:
-		tower_preview.queue_free()
+func _on_activity_but_4_toggled(button_pressed):
+	clear_existing_preview()
+	if button_pressed:
+		create_tower_preview(4)
+	else:
+		place_tower(4)
+		Global.placement_left[4] = Global.placement_max[4] - Global.placement_current[4]
+		print(Global.placement_left[4])
+		if not tower_preview == null:
+			tower_preview.queue_free()
 
-func _on_activity_but_4_button_down():
-	create_tower_preview(4)
 
-func _on_activity_but_4_button_up():
-	place_tower(4)
-	Global.placement_left[4] = Global.placement_max[4] - Global.placement_current[4]
-	print(Global.placement_left[4])
-	if not tower_preview==null:
-		tower_preview.queue_free()
-
-func _on_activity_but_5_button_down():
-	create_tower_preview(5)
-
-func _on_activity_but_5_button_up():
-	place_tower(5)
-	Global.placement_left[5] = Global.placement_max[5] - Global.placement_current[5]
-	print(Global.placement_left[5])
-	if not tower_preview==null:
-		tower_preview.queue_free()
+func _on_activity_but_5_toggled(button_pressed):
+	clear_existing_preview()
+	if button_pressed:
+		create_tower_preview(5)
+	else:
+		place_tower(5)
+		Global.placement_left[5] = Global.placement_max[5] - Global.placement_current[5]
+		print(Global.placement_left[5])
+		if not tower_preview == null:
+			tower_preview.queue_free()

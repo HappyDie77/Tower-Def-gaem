@@ -2,7 +2,8 @@ extends Node3D
 
 @onready var tower_2: CharacterBody3D = $"."
 
-@onready var range_view = $"Range view"
+@onready var range_view: MeshInstance3D = $"Range view"
+
 @onready var upg_scre = $Upg_scre
 @onready var target: Button = $Upg_scre/Panel/VBoxContainer/Target
 @onready var sell: Button = $Upg_scre/Panel/VBoxContainer2/Sell
@@ -15,10 +16,17 @@ extends Node3D
 @onready var tower_amount_lb_1 = $ActivityBut/Tower_amount_lb_1
 @onready var tower_amount_lb_2: Label = $ActivityBut2/Tower_amount_lb_2
 
-
 @onready var mob_shape: CollisionShape3D = $"Mob Detect/Mob Shape"
 @onready var cylinder_shape: CylinderShape3D = mob_shape.shape as CylinderShape3D
 @onready var cylinder: CylinderMesh = range_view.mesh as CylinderMesh
+
+var Tower1_Upg_1: int = 560
+var Tower1_Upg_2: int = 1450
+var Tower1_Upg_3: int = 2560
+var tower1_prices = [560, 1450, 2560]
+var tower1_damage = [5, 8, 12, 15]
+var tower1_SPA = [1.2, 1.2, 1]
+var tower1_range = [1.5, 2, 2.2]
 
 var muscuk=false
 var bullet: PackedScene = preload("res://Scenes/bullet.tscn")
@@ -125,8 +133,15 @@ func _on_t_ouch_mouse_exited():
 	muscuk = false
 
 func _ready() -> void:
+	# 1) give each tower its own CylinderMesh
+	range_view.mesh = (range_view.mesh as CylinderMesh).duplicate(true)
+
+	# 2) give each tower its own CylinderShape3D
+	mob_shape.shape = (mob_shape.shape as CylinderShape3D).duplicate(true)
+
+
 	target.text = "" + mode_names[target_mode]
-	upgrade.text = "$" + str(Global.Tower1_Upg_1)
+	upgrade.text = "$" + str(Tower1_Upg_1)
 	atk_lb.text = "ATK: " + str(dmg_inc)
 	spa_lb.text = "SPA: " + str(new_timer)
 	range_lb.text = "Range: " + str(new_radius)
@@ -135,15 +150,13 @@ func _ready() -> void:
 	cylinder.top_radius = new_radius
 	range_view.mesh = cylinder
 
-	
-	
 	sell.text = "$" + str(sell_value)
 
 var upgrade_level = 0
-var upgrades = Global.tower1_prices
-var damage = Global.tower1_damage
-var Spa_time = Global.tower1_SPA
-var range_rad = Global.tower1_range
+var upgrades = tower1_prices
+var damage = tower1_damage
+var Spa_time = tower1_SPA
+var range_rad = tower1_range
 var sell_value = 0
 var dmg_inc = damage[0]
 var spa_inc = Spa_time[0]

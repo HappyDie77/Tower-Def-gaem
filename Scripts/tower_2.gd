@@ -19,6 +19,14 @@ extends Node3D
 @onready var cylinder: CylinderMesh = range_view.mesh as CylinderMesh
 @export var tower_type: int = 1  # Adjust per tower scene
 
+var Tower2_Upg_1: int = 865
+var Tower2_Upg_2: int = 1940
+var Tower2_Upg_3: int = 4235
+var tower2_prices = [865, 1940, 4235]
+var tower2_damage = [4, 7.2, 9, 12.5]
+var tower2_SPA = [2.8, 2.4, 2.2] 
+var tower2_range = [1.8, 2, 2.2]
+
 var muscuk=false
 var bullet: PackedScene = preload("res://Scenes/bullet.tscn")
 var bullet_damage: int = 5
@@ -143,7 +151,7 @@ func _on_t_ouch_mouse_exited():
 
 func _ready() -> void:
 	target.text = "" + mode_names[target_mode]
-	upgrade.text = "$" + str(Global.Tower2_Upg_1)
+	upgrade.text = "$" + str(Tower2_Upg_1)
 	atk_lb.text = "ATK: " + str(dmg_inc)
 	spa_lb.text = "SPA: " + str(new_timer)
 	range_lb.text = "Range: " + str(new_radius)
@@ -157,10 +165,10 @@ func _ready() -> void:
 	sell.text = "$" + str(sell_value)
 
 var upgrade_level = 0
-var upgrades = Global.tower2_prices
-var damage = Global.tower2_damage
-var Spa_time = Global.tower2_SPA
-var range_rad = Global.tower2_range
+var upgrades = tower2_prices
+var damage = tower2_damage
+var Spa_time = tower2_SPA
+var range_rad = tower2_range
 var sell_value = 0
 var dmg_inc = damage[0]
 var spa_inc = Spa_time[0]

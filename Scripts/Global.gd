@@ -31,21 +31,6 @@ var player_money = 10000
 
 var current_wave = 0
 
-var Tower1_Upg_1: int = 560
-var Tower1_Upg_2: int = 1450
-var Tower1_Upg_3: int = 2560
-var tower1_prices = [560, 1450, 2560]
-var tower1_damage = [5, 8, 12, 15]
-var tower1_SPA = [1.2, 1.2, 1]
-var tower1_range = [1.5, 2, 2.2]
-
-var Tower2_Upg_1: int = 865
-var Tower2_Upg_2: int = 1940
-var Tower2_Upg_3: int = 4235
-var tower2_prices = [865, 1940, 4235]
-var tower2_damage = [4, 7.2, 9, 12.5]
-var tower2_SPA = [2.8, 2.4, 2.2] 
-var tower2_range = [1.8, 2, 2.2]
 
 var Tower3_Upg_1: int = 560
 var Tower3_Upg_2: int = 1450
