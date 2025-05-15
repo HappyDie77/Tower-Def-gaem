@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2ydgann5f0if"]
+
+[ext_resource type="PackedScene" uid="uid://ho4lk2h2g4wj" path="res://Assets/Dice Tower.glb" id="1_ekbff"]
+
+[node name="Dice Tower" instance=ExtResource("1_ekbff")]
+
+[node name="Torus_001" parent="." index="10"]
+transform = Transform3D(-1.27534, -0.175485, -0.54408, 0.604572, -0.362122, -1.15347, 0.00574152, -0.848824, 0.604572, 0, 2.98379, 0)
+
+[node name="Dice" parent="." index="12"]
+transform = Transform3D(0.6041, 0.299103, -0.299103, -0.422995, 0.427163, -0.427163, 6.59349e-08, 0.52147, 0.52147, 0, 2.7, 0)

@@ -94,9 +94,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -875.0
+offset_left = -888.0
 offset_top = -263.0
-offset_right = -520.0
+offset_right = -507.0
 offset_bottom = -180.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -105,19 +105,19 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_gvocd")
 
 [node name="VBoxContainer5" type="HBoxContainer" parent="Upg_scre/Panel2"]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -109.0
-offset_top = -51.0
-offset_right = 109.0
-offset_bottom = -12.0
+anchor_bottom = 0.5
+offset_left = -106.0
+offset_top = -9.5
+offset_right = 106.0
+offset_bottom = 29.5
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 mouse_filter = 2
-theme_override_constants/separation = 15
+theme_override_constants/separation = 12
 
 [node name="ATK_lb" type="Label" parent="Upg_scre/Panel2/VBoxContainer5"]
 layout_mode = 2
@@ -350,8 +350,6 @@ bus = &"SFX"
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="mouse_entered" from="Upg_scre/Panel2" to="." method="_on_panel_mouse_entered"]
 [connection signal="mouse_exited" from="Upg_scre/Panel2" to="." method="_on_panel_mouse_exited"]
-[connection signal="mouse_entered" from="Upg_scre/Panel" to="." method="_on_panel_mouse_entered"]
-[connection signal="mouse_exited" from="Upg_scre/Panel" to="." method="_on_panel_mouse_exited"]
 [connection signal="pressed" from="Upg_scre/Panel/VBoxContainer/Target" to="." method="_on_target_pressed"]
 [connection signal="pressed" from="Upg_scre/Panel/VBoxContainer2/Sell" to="." method="_on_sell_pressed"]
 [connection signal="pressed" from="Upg_scre/Panel/VBoxContainer3/Upgrade" to="." method="_on_upgrade_pressed"]

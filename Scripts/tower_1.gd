@@ -2,8 +2,6 @@ extends Node3D
 
 @onready var tower_2: CharacterBody3D = $"."
 
-@onready var range_view: MeshInstance3D = $"Range view"
-
 @onready var upg_scre = $Upg_scre
 @onready var target: Button = $Upg_scre/Panel/VBoxContainer/Target
 @onready var sell: Button = $Upg_scre/Panel/VBoxContainer2/Sell
@@ -17,8 +15,10 @@ extends Node3D
 @onready var tower_amount_lb_2: Label = $ActivityBut2/Tower_amount_lb_2
 
 @onready var mob_shape: CollisionShape3D = $"Mob Detect/Mob Shape"
-@onready var cylinder_shape: CylinderShape3D = mob_shape.shape as CylinderShape3D
-@onready var cylinder: CylinderMesh = range_view.mesh as CylinderMesh
+@onready var range_view: MeshInstance3D = $"Range view"
+
+var cylinder_shape: CylinderShape3D
+var cylinder: CylinderMesh
 
 var Tower1_Upg_1: int = 560
 var Tower1_Upg_2: int = 1450
@@ -39,6 +39,9 @@ var new_timer: float = 1.5
 enum TargetMode { First, Closest, Last }
 var target_mode: int = TargetMode.First
 
+var duplicated_mesh: CylinderMesh
+var duplicated_shape: CylinderShape3D
+
 var mode_names = {
 	TargetMode.First: "First",
 	TargetMode.Last: "Last",
@@ -47,6 +50,40 @@ var mode_names = {
 var current_mode_name = mode_names[target_mode]
 
 var in_cli=false
+
+func _ready() -> void:
+	# Duplicate and assign unique shape
+	var duplicated_shape = (mob_shape.shape as CylinderShape3D).duplicate(true)
+	mob_shape.shape = duplicated_shape
+	cylinder_shape = duplicated_shape  # now this points to the correct shape
+
+	# Duplicate and assign unique mesh
+	var duplicated_mesh = (range_view.mesh as CylinderMesh).duplicate(true)
+	range_view.mesh = duplicated_mesh
+	cylinder = duplicated_mesh  # now this points to the correct mesh
+
+
+	target.text = "" + mode_names[target_mode]
+	upgrade.text = "$" + str(Tower1_Upg_1)
+	atk_lb.text = "ATK: " + str(dmg_inc)
+	spa_lb.text = "SPA: " + str(new_timer)
+	range_lb.text = "Range: " + str(new_radius)
+	shoot_timer.wait_time = new_timer
+	cylinder_shape.radius = new_radius * 2
+	cylinder.top_radius = new_radius
+	range_view.mesh = cylinder
+
+	sell.text = "$" + str(sell_value)
+
+var upgrade_level = 0
+var upgrades = tower1_prices
+var damage = tower1_damage
+var Spa_time = tower1_SPA
+var range_rad = tower1_range
+var sell_value = 0
+var dmg_inc = damage[0]
+var spa_inc = Spa_time[0]
+var range_inc = range_rad[0]
 
 func _process(delta):
 	if Input.is_action_just_pressed("Buy"):
@@ -132,36 +169,6 @@ func _on_t_ouch_mouse_exited():
 	print("out")
 	muscuk = false
 
-func _ready() -> void:
-	# 1) give each tower its own CylinderMesh
-	range_view.mesh = (range_view.mesh as CylinderMesh).duplicate(true)
-
-	# 2) give each tower its own CylinderShape3D
-	mob_shape.shape = (mob_shape.shape as CylinderShape3D).duplicate(true)
-
-
-	target.text = "" + mode_names[target_mode]
-	upgrade.text = "$" + str(Tower1_Upg_1)
-	atk_lb.text = "ATK: " + str(dmg_inc)
-	spa_lb.text = "SPA: " + str(new_timer)
-	range_lb.text = "Range: " + str(new_radius)
-	shoot_timer.wait_time = new_timer
-	cylinder_shape.radius = new_radius * 2
-	cylinder.top_radius = new_radius
-	range_view.mesh = cylinder
-
-	sell.text = "$" + str(sell_value)
-
-var upgrade_level = 0
-var upgrades = tower1_prices
-var damage = tower1_damage
-var Spa_time = tower1_SPA
-var range_rad = tower1_range
-var sell_value = 0
-var dmg_inc = damage[0]
-var spa_inc = Spa_time[0]
-var range_inc = range_rad[0]
-
 
 func _on_upgrade_pressed():
 	if not upg_scre.visible:
@@ -236,6 +243,6 @@ func _on_sell_finished() -> void:
 
 
 func _on_target_pressed() -> void:
-	target_mode = TargetMode.values()[(target_mode + 1) % TargetMode.size()]
-	target.text = "" + mode_names[target_mode]
-	print(TargetMode)
+	if upg_scre.visible:
+		target_mode = TargetMode.values()[(target_mode + 1) % TargetMode.size()]
+		target.text = "" + mode_names[target_mode]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cbbi3taj35r44"]
+[gd_scene load_steps=25 format=3 uid="uid://cbbi3taj35r44"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_86d68"]
 [ext_resource type="PackedScene" uid="uid://cywx6wddg7agu" path="res://Scenes/hud.tscn" id="3_4g7fw"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://b2adjh7rywmpa" path="res://Assets/Music/Tower Game Ost 1.1.mp3" id="12_j08br"]
 [ext_resource type="Texture2D" uid="uid://cm8fue50prki3" path="res://Assets/Icons/New Piskel (2).png" id="15_15224"]
 [ext_resource type="PackedScene" uid="uid://t33p14owkeyy" path="res://Scenes/camera_main.tscn" id="17_0xeiu"]
+[ext_resource type="AudioStream" uid="uid://cwti4cx3yq2cq" path="res://Assets/SFX/interface-124464.mp3" id="17_d2mkf"]
 [ext_resource type="Shader" path="res://Scripts/Themes & Shaders/Ocean.gdshader" id="28_htrqa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8uqr"]
@@ -108,6 +109,7 @@ offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
 toggle_mode = true
+action_mode = 0
 icon = ExtResource("3_g837o")
 icon_alignment = 1
 expand_icon = true
@@ -272,10 +274,10 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.525026, 0.851086, 0, -0.851086, -0.525026, 10.6383, 18.2302, -8.62593)
+transform = Transform3D(1, 0, 0, 0, 0.703358, 0.710836, 0, -0.710836, 0.703358, 6.18804, 10.8987, 17.2556)
 light_color = Color(0.998768, 0.999999, 0.847676, 1)
-light_energy = 1.143
-light_indirect_energy = 1.594
+light_energy = 0.7
+light_indirect_energy = 2.0
 light_volumetric_fog_energy = 3.151
 shadow_enabled = true
 shadow_normal_bias = 1.816
@@ -341,6 +343,28 @@ autoplay = true
 bus = &"Music"
 playback_type = 1
 parameters/looping = true
+
+[node name="Wave_update" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.5
+offset_top = -293.0
+offset_right = 121.5
+offset_bottom = -251.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.517647, 0.670588, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 50
+horizontal_alignment = 1
+
+[node name="Wave_complete" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_d2mkf")
+volume_db = -16.25
+bus = &"SFX"
 
 [connection signal="toggled" from="ActivityBut" to="Camera Main" method="_on_activity_but_toggled"]
 [connection signal="toggled" from="ActivityBut2" to="Camera Main" method="_on_activity_but_2_toggled"]

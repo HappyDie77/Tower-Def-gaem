@@ -32,8 +32,6 @@ var target_zoom: float
 var current_pitch: float = 0.0
 var can_place_tower = not tower_preview or not tower_preview.visible
 var blocked_tiles = [4, 5, 6, 9, 10, 12, 13, 14, 15, 16, 17, 18, 21, 22, 23, 24, 28, 29, 30, 31, 32, 42]
-var is_tower_1_selected := false
-var is_tower_2_selected := false
 
 
 
@@ -108,16 +106,11 @@ func _input(event):
 			elif tower_preview.scene_file_path == tower_scene5.resource_path:
 				place_tower(5)
 
-		# After placing, delete the preview
-		if is_instance_valid(tower_preview):
-			tower_preview.queue_free()
-		tower_preview = null
-
-
-
-
+		clear_existing_preview()
 func create_tower_preview(tower_scene_select):
-	
+	if is_instance_valid(tower_preview):
+		tower_preview.queue_free()
+		tower_preview = null
 	match tower_scene_select:
 		1:
 			tower_previews = tower_scene1
@@ -213,7 +206,7 @@ func update_tower_position():
 func clear_existing_preview():
 	if tower_preview and is_instance_valid(tower_preview):
 		tower_preview.queue_free()
-	tower_preview = null
+		tower_preview = null
 
 func _physics_process(delta):
 
@@ -271,8 +264,7 @@ func place_tower(tower_number):
 	if selected_tower_scene:
 		var new_tower = selected_tower_scene.instantiate()
 		get_parent().add_child(new_tower)
-		if tower_preview and is_instance_valid(tower_preview) and new_tower:
-			# now it’s safe
+		if tower_preview and new_tower:
 			new_tower.global_transform = tower_preview.global_transform
 			get_parent().add_child(new_tower)
 		else:
@@ -288,28 +280,29 @@ func place_tower(tower_number):
 
 
 func _on_activity_but_toggled(button_pressed):
-	clear_existing_preview()
 	if button_pressed:
 		create_tower_preview(1)
 	else:
 		place_tower(1)
 		Global.placement_left[1] = Global.placement_max[1] - Global.placement_current[1]
-		print(Global.placement_left[1])
-		if not tower_preview == null:
+		if is_instance_valid(tower_preview):
 			tower_preview.queue_free()
+			tower_preview = null  # <-- important to reset reference
 
+		$"../ActivityBut".button_pressed = true
 
 func _on_activity_but_2_toggled(button_pressed):
-	clear_existing_preview()
 	if button_pressed:
 		create_tower_preview(2)
 	else:
 		place_tower(2)
 		Global.placement_left[2] = Global.placement_max[2] - Global.placement_current[2]
-		print(Global.placement_left[2])
-		if not tower_preview == null:
+		if is_instance_valid(tower_preview):
 			tower_preview.queue_free()
+			tower_preview = null
 
+		$"../ActivityBut2".button_pressed = true
+		
 func _on_activity_but_3_toggled(button_pressed):
 	clear_existing_preview()
 	if button_pressed:

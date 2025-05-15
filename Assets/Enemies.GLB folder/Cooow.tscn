@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://cieocbjmjjlak"]
+
+[ext_resource type="PackedScene" uid="uid://bc6trqc5lttsl" path="res://Assets/Enemies.GLB folder/Coconut Man.glb" id="1_swrvj"]
+
+[node name="Coconut Man" instance=ExtResource("1_swrvj")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/scale = Vector3(1, 1, 1)
+bones/2/rotation = Quaternion(-0.724898, -2.60036e-08, 2.3188e-07, 0.688856)
+bones/3/rotation = Quaternion(-0.614565, 7.84321e-09, 2.13696e-07, 0.788866)
+bones/4/rotation = Quaternion(-0.0881646, 1.7421e-07, 1.4242e-08, 0.996106)
+bones/5/rotation = Quaternion(-0.343322, -0.00040642, -0.0280034, 0.9388)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/scale = Vector3(1, 1, 1)
+bones/8/rotation = Quaternion(-0.370578, 0.00172574, -0.00865231, 0.92876)
+bones/8/scale = Vector3(1, 1, 1)
+bones/9/rotation = Quaternion(-2.30419e-08, 0.688856, 0.724898, -2.16243e-07)
+bones/9/scale = Vector3(1, 1, 1)
+bones/10/scale = Vector3(1, 1, 1)
+bones/11/rotation = Quaternion(-0.0944884, 0.00268532, -0.00430633, 0.995513)
+bones/12/rotation = Quaternion(-0.343322, 0.000406427, 0.0280034, 0.9388)
+bones/12/scale = Vector3(1, 1, 1)
+bones/13/rotation = Quaternion(0.204766, 0.00539535, 0.00615576, 0.978777)
+bones/13/scale = Vector3(1, 1, 1)
+bones/14/scale = Vector3(1, 1, 1)
+bones/15/rotation = Quaternion(-0.248828, -0.00811054, 0.00897725, 0.968472)
+bones/16/rotation = Quaternion(0.606215, 0.488588, 0.488588, -0.393785)
+bones/17/rotation = Quaternion(-0.438014, 0.639817, -0.357906, 0.52027)
+bones/17/scale = Vector3(1, 1, 1)
+bones/18/rotation = Quaternion(-0.0165497, -0.0123877, -0.0800107, 0.99658)
+bones/18/scale = Vector3(1, 1, 1)
+bones/19/rotation = Quaternion(0.606215, -0.488588, -0.488588, -0.393785)
+bones/20/rotation = Quaternion(-0.438128, -0.641805, 0.353326, 0.520856)
+bones/20/scale = Vector3(1, 1, 1)
+bones/21/rotation = Quaternion(-0.0079333, 0.00983791, 0.0768983, 0.996959)
+bones/21/scale = Vector3(1, 1, 1)
+
+[node name="AnimationPlayer" parent="." index="78"]
+autoplay = "ArmatureAction"

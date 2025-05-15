@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ceosc5drcxxki"]
+[gd_scene load_steps=7 format=3 uid="uid://ceosc5drcxxki"]
 
 [ext_resource type="Script" path="res://Scripts/coconut_brawler.gd" id="1_gc8ds"]
+[ext_resource type="PackedScene" uid="uid://cieocbjmjjlak" path="res://Assets/Enemies.GLB folder/Cooow.tscn" id="1_m7mnf"]
+[ext_resource type="Script" path="res://Assets/Enemies.GLB folder/cooow.gd" id="2_5nxkd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j8k0p"]
 albedo_color = Color(0.468326, 0.257504, 0.0599607, 1)
@@ -16,8 +18,14 @@ transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.447671, 0)
 script = ExtResource("1_gc8ds")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="coconut brawler"]
+visible = false
 material_override = SubResource("StandardMaterial3D_j8k0p")
 mesh = SubResource("CapsuleMesh_wrq4l")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="coconut brawler" groups=["Enemygro"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.163233, 0)
 shape = SubResource("CapsuleShape3D_60jpg")
+
+[node name="Coconut Man" parent="coconut brawler" instance=ExtResource("1_m7mnf")]
+transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, 0, -1.11918, 0)
+script = ExtResource("2_5nxkd")

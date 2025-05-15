@@ -2,7 +2,6 @@ extends Node3D
 
 @onready var plasma_tower_1 = $"Plasma Tower 1"
 
-@onready var range_view = $"Range view"
 @onready var upg_scre = $Upg_scre
 @onready var target: Button = $Upg_scre/Panel/VBoxContainer/Target
 @onready var sell: Button = $Upg_scre/Panel/VBoxContainer2/Sell
@@ -15,9 +14,10 @@ extends Node3D
 @onready var tower_amount_lb_2 = $ActivityBut2/Tower_amount_lb_2
 
 @onready var mob_shape: CollisionShape3D = $"Mob Detect/Mob Shape"
-@onready var cylinder_shape: CylinderShape3D = mob_shape.shape as CylinderShape3D
-@onready var cylinder: CylinderMesh = range_view.mesh as CylinderMesh
-@export var tower_type: int = 1  # Adjust per tower scene
+@onready var range_view = $"Range view"
+
+var cylinder_shape: CylinderShape3D
+var cylinder: CylinderMesh
 
 var Tower2_Upg_1: int = 865
 var Tower2_Upg_2: int = 1940
@@ -39,17 +39,31 @@ var max_burst: int = 3
 var current_burst: int = 0
 
 
-enum TargetMode { First, Closest, Last }
-var target_mode: int = TargetMode.First
-
-var mode_names = {
-	TargetMode.First: "First",
-	TargetMode.Last: "Last",
-	TargetMode.Closest: "Closest"
-}
-var current_mode_name = mode_names[target_mode]
 
 var in_cli=false
+
+func _ready() -> void:
+	var duplicated_shape = (mob_shape.shape as CylinderShape3D).duplicate(true)
+	mob_shape.shape = duplicated_shape
+	cylinder_shape = duplicated_shape  # now this points to the correct shape
+
+	var duplicated_mesh = (range_view.mesh as CylinderMesh).duplicate(true)
+	range_view.mesh = duplicated_mesh
+	cylinder = duplicated_mesh  # now this points to the correct mesh
+	
+	target.text = "" + mode_names[target_mode]
+	upgrade.text = "$" + str(Tower2_Upg_1)
+	atk_lb.text = "ATK: " + str(dmg_inc)
+	spa_lb.text = "SPA: " + str(new_timer)
+	range_lb.text = "Range: " + str(new_radius)
+	shoot_timer.wait_time = new_timer
+	cylinder_shape.radius = new_radius * 2
+	cylinder.top_radius = new_radius
+	range_view.mesh = cylinder
+
+	
+	
+	sell.text = "$" + str(sell_value)
 
 func _process(delta):
 	if Input.is_action_just_pressed("Buy"):
@@ -83,6 +97,7 @@ func _process(delta):
 
 func start_burst():
 	current_burst = 0
+	$BurstSound.play()
 	shoot()
 	current_burst += 1
 	$"Burst Firerate".start()
@@ -149,20 +164,6 @@ func _on_t_ouch_mouse_exited():
 	print("out")
 	muscuk = false
 
-func _ready() -> void:
-	target.text = "" + mode_names[target_mode]
-	upgrade.text = "$" + str(Tower2_Upg_1)
-	atk_lb.text = "ATK: " + str(dmg_inc)
-	spa_lb.text = "SPA: " + str(new_timer)
-	range_lb.text = "Range: " + str(new_radius)
-	shoot_timer.wait_time = new_timer
-	cylinder_shape.radius = new_radius * 2
-	cylinder.top_radius = new_radius
-	range_view.mesh = cylinder
-
-	
-	
-	sell.text = "$" + str(sell_value)
 
 var upgrade_level = 0
 var upgrades = tower2_prices
@@ -246,7 +247,17 @@ func _on_sell_finished() -> void:
 	queue_free()
 
 
-func _on_target_pressed() -> void:
-	target_mode = TargetMode.values()[(target_mode + 1) % TargetMode.size()]
-	target.text = "" + mode_names[target_mode]
-	print(TargetMode)
+enum TargetMode { First, Closest, Last }
+var target_mode: int = TargetMode.First
+
+var mode_names = {
+	TargetMode.First: "First",
+	TargetMode.Last: "Last",
+	TargetMode.Closest: "Closest"
+}
+var current_mode_name = mode_names[target_mode]
+
+func _on_target_pressed():
+	if upg_scre.visible:
+		target_mode = TargetMode.values()[(target_mode + 1) % TargetMode.size()]
+		target.text = "" + mode_names[target_mode]
