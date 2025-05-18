@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var plasma_tower_1 = $"Plasma Tower 1"
+@onready var tower_2: CharacterBody3D = $"."
 
 @onready var upg_scre = $Upg_scre
 @onready var target: Button = $Upg_scre/Panel/VBoxContainer/Target
@@ -22,14 +22,13 @@ var cylinder: CylinderMesh
 var Tower2_Upg_1: int = 865
 var Tower2_Upg_2: int = 1940
 var Tower2_Upg_3: int = 4235
-var tower2_prices = [865, 1940, 4235]
+var tower2_prices = [1145, 1940, 4235]
 var tower2_damage = [4, 7.2, 9, 12.5]
 var tower2_SPA = [2.8, 2.4, 2.2] 
 var tower2_range = [1.8, 2, 2.2]
 
 var muscuk=false
-var bullet: PackedScene = preload("res://Scenes/bullet.tscn")
-var bullet_damage: int = 5
+var bullet: PackedScene = preload("res://Scenes/Electro bullet.tscn")
 var current_targets: Array = []
 var curr: CharacterBody3D
 var can_shoot: bool = true
@@ -37,12 +36,12 @@ var new_radius: float = 1.8
 var new_timer: float = 3.2
 var max_burst: int = 3
 var current_burst: int = 0
-
-
-
+var current_dmg_now = 0
 var in_cli=false
 
 func _ready() -> void:
+	add_to_group("towers")
+
 	var duplicated_shape = (mob_shape.shape as CylinderShape3D).duplicate(true)
 	mob_shape.shape = duplicated_shape
 	cylinder_shape = duplicated_shape  # now this points to the correct shape
@@ -51,19 +50,28 @@ func _ready() -> void:
 	range_view.mesh = duplicated_mesh
 	cylinder = duplicated_mesh  # now this points to the correct mesh
 	
+	$"Upg_scre/Panel/Dice buff".visible = false
+	
 	target.text = "" + mode_names[target_mode]
 	upgrade.text = "$" + str(Tower2_Upg_1)
-	atk_lb.text = "ATK: " + str(dmg_inc)
+	atk_lb.text = "ATK: " + format_number(current_dmg_now)
 	spa_lb.text = "SPA: " + str(new_timer)
 	range_lb.text = "Range: " + str(new_radius)
 	shoot_timer.wait_time = new_timer
 	cylinder_shape.radius = new_radius * 2
 	cylinder.top_radius = new_radius
 	range_view.mesh = cylinder
-
-	
-	
 	sell.text = "$" + str(sell_value)
+	
+	apply_global_buff()
+
+func format_number(value: float) ->String:
+	if int(value) == value:
+		return str(int(value))
+	elif (value * 10) == floor(value * 10):
+		return "%0.1f" % value
+	else:
+		return "%0.2f" % value
 
 func _process(delta):
 	if Input.is_action_just_pressed("Buy"):
@@ -108,12 +116,18 @@ func _on_burst_firerate_timeout() -> void:
 		current_burst += 1
 		$"Burst Firerate".start()
 
+func apply_global_buff():
+	current_dmg_now = damage[upgrade_level] * Global.buff_multiplier
+	atk_lb.text = "ATK: " + format_number(current_dmg_now)
+	if Global.buff_tower_placed:
+		$Upg_scre/Panel/Area2D.visible = true
+		$"Upg_scre/Panel/Dice buff".visible = true
 
 
 func shoot() -> void:
 	var temp_bullet: CharacterBody3D = bullet.instantiate()
 	temp_bullet.target = curr
-	temp_bullet.bullet_damage = dmg_inc
+	temp_bullet.bullet_damage = current_dmg_now
 	get_node("BulletContainer").add_child(temp_bullet)
 	temp_bullet.global_position = $"Plasma Tower 1/Aim".global_position
 
@@ -181,7 +195,7 @@ func _on_upgrade_pressed():
 		return  # Only respond if this tower's UI is active
 
 	if upgrade_level >= upgrades.size():
-		atk_lb.text = "ATK: " + str(dmg_inc)
+		atk_lb.text = "ATK: " + format_number(current_dmg_now)
 		spa_lb.text = "SPA: " + str(new_timer)
 		sell.text = "$" + str(sell_value)
 		range_lb.text = "Range: " + str(new_radius)
@@ -194,11 +208,13 @@ func _on_upgrade_pressed():
 		Global.player_money -= cost
 		sell_value = cost / 2
 		upgrade_level += 1
+		Global.towers_upgraded += 1
 		new_timer = spa_inc
 		shoot_timer.wait_time = new_timer
 		new_radius = range_inc
 		cylinder_shape.radius = new_radius * 2
 		cylinder.top_radius = new_radius
+		apply_global_buff()
 
 		# Set new damage based on new upgrade level
 		if upgrade_level < damage.size():
@@ -218,12 +234,12 @@ func _on_upgrade_pressed():
 
 		if upgrade_level < upgrades.size():
 			upgrade.text = "$" + str(upgrades[upgrade_level])
-			atk_lb.text = "ATK: " + str(dmg_inc)
+			atk_lb.text = "ATK: " + format_number(current_dmg_now)
 			spa_lb.text = "SPA: " + str(new_timer)
 			sell.text = "$" + str(sell_value)
 			range_lb.text = "Range: " + str(new_radius)
 		else:
-			atk_lb.text = "ATK: " + str(dmg_inc)
+			atk_lb.text = "ATK: " + format_number(current_dmg_now)
 			spa_lb.text = "SPA: " + str(new_timer)
 			sell.text = "$" + str(sell_value)
 			range_lb.text = "Range: " + str(new_radius)
@@ -238,7 +254,8 @@ func _on_sell_pressed() -> void:
 	Global.placement_left[2] = Global.placement_max[2] - Global.placement_current[2]
 	Global.player_money += sell_value
 	Global.sell_true = true
-	plasma_tower_1.visible = false
+	Global.towers_sold += 1
+	tower_2.visible = false
 	upg_scre.visible = false
 	range_view.visible = false
 	$Sell.play()
@@ -261,3 +278,66 @@ func _on_target_pressed():
 	if upg_scre.visible:
 		target_mode = TargetMode.values()[(target_mode + 1) % TargetMode.size()]
 		target.text = "" + mode_names[target_mode]
+
+func _on_area_2d_mouse_entered() -> void:
+	$Upg_scre/Panel3.visible = true
+
+func _on_area_2d_mouse_exited() -> void:
+	$Upg_scre/Panel3.visible = false
+
+func _on_atk_spd_mouse_entered() -> void:
+	$"Upg_scre/ATK SPD".visible = true
+
+func _on_atk_spd_mouse_exited() -> void:
+	$"Upg_scre/ATK SPD".visible = false
+
+func _on_target_type_mouse_entered() -> void:
+	$Upg_scre/TARGET_TYPE.visible = true
+
+func _on_target_type_mouse_exited() -> void:
+	$Upg_scre/TARGET_TYPE.visible = false
+
+func _on_effect_trype_mouse_entered() -> void:
+	$Upg_scre/EFFECT_TYPE.visible = true
+
+func _on_effect_trype_mouse_exited() -> void:
+	$Upg_scre/EFFECT_TYPE.visible = false
+
+#Attack Types / Targeting
+#FULL AOE
+#“Attacks all enemies within the tower’s range simultaneously.”
+#
+#SINGLE TARGET
+#“Focuses damage on one enemy at a time for maximum impact.”
+#
+#AOE SPLASH (or just AOE)
+#“Hits the primary target and deals splash damage to nearby enemies.”
+#
+#PIERCE
+#“Shots pierce through enemies, damaging multiple foes in a line.”
+#
+#Attack Speed
+#FAST
+#“Launches attacks very quickly to overwhelm enemies.”
+#
+#AVERAGE
+#“Balanced attack speed for steady damage output.”
+#
+#SLOW
+#“Fires slower but usually deals stronger or special damage.”
+#
+#Attack Effects / Special Traits
+#STUN
+#“Briefly incapacitates enemies, stopping their movement and attacks.”
+#
+#BURN
+#“Sets enemies on fire, dealing damage over time.”
+#
+#SLOW
+#“Reduces the movement speed of affected enemies.”
+#
+#PIERCE
+#“Attacks pass through multiple enemies in a line.”
+#
+#SPLASH
+#“Damage spreads to enemies near the target.”

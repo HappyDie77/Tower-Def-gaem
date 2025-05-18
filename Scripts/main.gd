@@ -5,11 +5,22 @@ extends Node3D
 @onready var ost_1: AudioStreamPlayer = $"Ost 1"
 @export var Instance = preload("res://Scenes/settings_menu_Instantiate.tscn")
 @onready var wave_update = $Wave_update
+@export var Lose_hlt = preload("res://Scenes/lose_screen.tscn")
 
 var current_wave: int = 0
 var enemeies_alive: int = 0
 var can_spawn: bool = false
 var first_wave_complete = false
+
+func _ready() -> void:
+	Global.base_health = 10
+	Global.placement_current = {
+	1: 0,
+	2: 0,
+	3: 0,
+	4: 0,
+	5: 0
+}
 
 var enemy_types = {
 	"coconut": preload("res://Scenes/Enemies/coco.tscn"),
@@ -46,7 +57,7 @@ var wave_2 = [
 		"enemies": {
 			"jungle": 10
 		},
-		"delay_after": 8.0
+		"delay_after": 12.0
 	},
 	{
 		"enemies": {
@@ -69,7 +80,7 @@ var wave_3 = [
 		"enemies": {
 			"coconut": 20
 		},
-		"delay_after": 6.0
+		"delay_after": 12.0
 	},
 	{
 		"enemies": {
@@ -93,7 +104,7 @@ var wave_4 = [
 			"crab": 2,
 			"coconut": 5
 		},
-		"delay_after": 6.0
+		"delay_after": 12.0
 	},
 	{
 		"enemies": {
@@ -110,7 +121,7 @@ var wave_5 = [
 			"crab": 3,
 			"jungle": 2,
 		},
-		"delay_after": 6.0
+		"delay_after": 12.0
 	},
 	{
 		"enemies": {
@@ -126,34 +137,30 @@ var current_wave_index := 0
 var all_waves: Array = [wave_1, wave_2, wave_3, wave_4, wave_5] # etc.
 
 func spawn_wave(wave_sections: Array) -> void:
-	# for each section in order...
+	Global.player_money += 560
+	print("=== Wave Started! ===")
+	Global.wave_started = true
 	for section in wave_sections:
 		var enemies_dict = section["enemies"]
-		# for each type in that section...
 		for enemy_name in enemies_dict.keys():
 			var count = enemies_dict[enemy_name]
 			var scene = enemy_types[enemy_name]
-			# your old for-i-in-range(count) loop, but now yielding on your SpawnTimer:
 			for i in range(count):
 				var enemy = scene.instantiate()
 				$Path.add_child(enemy)
 				print("Spawned %s (%d/%d)" % [enemy_name, i+1, count])
-				# wait one timer tick before next spawn:
 				await $SpawnTimer.timeout
-		# after finishing this section, pause for its delay:
 		var d = section["delay_after"]
 		if d > 0.0:
 			print("Waiting %.1f seconds before next section…" % d)
 			await get_tree().create_timer(d).timeout
 	print("=== Wave complete! ===")
-	first_wave_complete = true
 
 func start_all_waves():
 	if current_wave_index >= all_waves.size():
 		print("All waves completed!")
 		return
 
-	# Start the current wave
 	while current_wave_index < all_waves.size():
 		await spawn_wave(all_waves[current_wave_index])
 		current_wave_index += 1
@@ -190,10 +197,14 @@ func start_all_waves():
 
 func _process(delta):
 	if Global.button_pres:
+		#Global.player_money += 560
 		$Wave_complete.play()
 		Global.current_wave += 1
 		start_all_waves()
 		Global.button_pres = false
+	
+	if Global.base_health == 0:
+		get_tree().change_scene_to_file("res://Scenes/lose_screen.tscn")
 
 #var wave_1 = {"slime": 5}
 #spawn_wave(wave_1)  # sends it in

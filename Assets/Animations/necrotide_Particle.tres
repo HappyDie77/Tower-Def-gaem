@@ -1,0 +1,21 @@
+[gd_resource type="VisualShader" load_steps=3 format=3 uid="uid://cnpfjtdt3jqw"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_n72q1"]
+input_name = "model_matrix"
+
+[sub_resource type="VisualShaderNodeTransformOp" id="VisualShaderNodeTransformOp_tq0bw"]
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx, unshaded;
+
+
+
+"
+flags/unshaded = true
+nodes/fragment/0/position = Vector2(440, 40)
+nodes/fragment/2/node = SubResource("VisualShaderNodeInput_n72q1")
+nodes/fragment/2/position = Vector2(-140, 480)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTransformOp_tq0bw")
+nodes/fragment/3/position = Vector2(60, 260)
+nodes/fragment/connections = PackedInt32Array(2, 0, 3, 0)

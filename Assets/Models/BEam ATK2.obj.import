@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://3hnl6b4sggsn"
+path="res://.godot/imported/BEam ATK2.obj-39ce78dbd23e1e861e2fee11906e1baf.mesh"
+
+[deps]
+
+files=["res://.godot/imported/BEam ATK2.obj-39ce78dbd23e1e861e2fee11906e1baf.mesh"]
+
+source_file="res://Assets/Models/BEam ATK2.obj"
+dest_files=["res://.godot/imported/BEam ATK2.obj-39ce78dbd23e1e861e2fee11906e1baf.mesh", "res://.godot/imported/BEam ATK2.obj-39ce78dbd23e1e861e2fee11906e1baf.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

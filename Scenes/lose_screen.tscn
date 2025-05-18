@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://p0n7as27sv0k"]
+[gd_scene load_steps=3 format=3 uid="uid://p0n7as27sv0k"]
+
+[ext_resource type="Script" path="res://Scenes/lose_screen.gd" id="1_jou2w"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yfi3n"]
 bg_color = Color(0.151276, 0.151276, 0.151276, 1)
@@ -14,6 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_jou2w")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -22,7 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.194349, 0.194349, 0.194349, 1)
+color = Color(0.122252, 0.122252, 0.122252, 0.419608)
 
 [node name="Panel" type="Panel" parent="ColorRect"]
 layout_mode = 1
@@ -73,7 +76,7 @@ text = "Total Kills"
 [node name="enemy passed" type="Label" parent="ColorRect/Panel/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
-text = "Total Enemies Passed"
+text = "Total Enemies Leaked"
 
 [node name="towers placed" type="Label" parent="ColorRect/Panel/VBoxContainer"]
 layout_mode = 2
@@ -95,17 +98,17 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = 40
 
-[node name="Total Kills" type="Label" parent="ColorRect/Panel/VBoxContainer2"]
+[node name="Total Kills2" type="Label" parent="ColorRect/Panel/VBoxContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Towers Upgraded"
 
-[node name="enemy passed" type="Label" parent="ColorRect/Panel/VBoxContainer2"]
+[node name="enemy passed2" type="Label" parent="ColorRect/Panel/VBoxContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Towers Sold"
 
-[node name="towers placed" type="Label" parent="ColorRect/Panel/VBoxContainer2"]
+[node name="towers placed2" type="Label" parent="ColorRect/Panel/VBoxContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Bosses Killed"
@@ -146,3 +149,5 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 40
 text = "Return To Main Menu
 "
+
+[connection signal="pressed" from="ColorRect/Button" to="." method="_on_button_pressed"]

@@ -8,7 +8,7 @@ extends Node3D
 @export var rotation_speed: float = 0.005
 @export var zoom_speed: float = 1.0
 @export var min_zoom: float = 3.0
-@export var max_zoom: float = 9.0
+@export var max_zoom: float = 12.0
 @export var zoom_smoothness: float = 6.0  # Higher = smoother
 @export var min_pitch: float = -55.0  # Min pitch angle (down)
 @export var max_pitch: float = -10.0  # Max pitch angle (up)
@@ -264,6 +264,7 @@ func place_tower(tower_number):
 	if selected_tower_scene:
 		var new_tower = selected_tower_scene.instantiate()
 		get_parent().add_child(new_tower)
+		Global.towers_placed += 1
 		if tower_preview and new_tower:
 			new_tower.global_transform = tower_preview.global_transform
 			get_parent().add_child(new_tower)
@@ -304,15 +305,16 @@ func _on_activity_but_2_toggled(button_pressed):
 		$"../ActivityBut2".button_pressed = true
 		
 func _on_activity_but_3_toggled(button_pressed):
-	clear_existing_preview()
 	if button_pressed:
 		create_tower_preview(3)
 	else:
 		place_tower(3)
 		Global.placement_left[3] = Global.placement_max[3] - Global.placement_current[3]
-		print(Global.placement_left[3])
-		if not tower_preview == null:
+		if is_instance_valid(tower_preview):
 			tower_preview.queue_free()
+			tower_preview = null
+
+		$"../ActivityBut3".button_pressed = true
 
 func _on_activity_but_4_toggled(button_pressed):
 	clear_existing_preview()
@@ -325,6 +327,8 @@ func _on_activity_but_4_toggled(button_pressed):
 		if not tower_preview == null:
 			tower_preview.queue_free()
 
+		$"../ActivityBut4".button_pressed = true
+
 
 func _on_activity_but_5_toggled(button_pressed):
 	clear_existing_preview()
@@ -336,3 +340,5 @@ func _on_activity_but_5_toggled(button_pressed):
 		print(Global.placement_left[5])
 		if not tower_preview == null:
 			tower_preview.queue_free()
+
+		$"../ActivityBut5".button_pressed = true

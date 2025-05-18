@@ -1,0 +1,412 @@
+[gd_scene load_steps=40 format=3 uid="uid://dfgqlntpln2bx"]
+
+[ext_resource type="Shader" uid="uid://dytalilc4uupx" path="res://Scripts/Themes & Shaders/Necrotide_Shader top.tres" id="1_u24r5"]
+[ext_resource type="Texture2D" uid="uid://dfd2q7by3d7ov" path="res://Assets/Textures/T_VFX_lelu1_tiled.png" id="2_j1804"]
+[ext_resource type="Texture2D" uid="uid://bh08s882jpyp6" path="res://Assets/Textures/T_VFX_Flare_16.PNG" id="3_b0c1l"]
+[ext_resource type="Shader" uid="uid://iftqd1nordu2" path="res://Assets/Animations/necrotide_animation_BEAM.tres" id="4_drhjq"]
+[ext_resource type="Texture2D" uid="uid://cyqjkj21r5vke" path="res://Assets/Textures/PerlinNoise_Tiled.png" id="5_sh20q"]
+[ext_resource type="ArrayMesh" uid="uid://cowumxtfdxr0i" path="res://Assets/Models/BEam ATK_beam2.obj" id="6_trge0"]
+[ext_resource type="ArrayMesh" uid="uid://jnhkabp6pxtt" path="res://Assets/Models/BEam ATK_GUarad1.obj" id="7_a25x6"]
+[ext_resource type="Texture2D" uid="uid://dmyahp6dhdrci" path="res://Assets/Textures/T_VFX_CircleFit1.png" id="8_nuep3"]
+[ext_resource type="Shader" uid="uid://biwjfem18np1a" path="res://Scripts/Themes & Shaders/Lightning bullet.tres" id="9_fv011"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gaarl"]
+render_priority = 0
+shader = ExtResource("1_u24r5")
+shader_parameter/Color_intensitt = 100.0
+shader_parameter/Portal_color = Color(0.0536642, 0.071445, 0.254833, 1)
+shader_parameter/Speed = Vector2(0.2, 0.4)
+shader_parameter/portaltexture = ExtResource("2_j1804")
+
+[sub_resource type="QuadMesh" id="QuadMesh_eke33"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_86j0a"]
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.382682, 0.533332, 0.996047, 1)
+albedo_texture = ExtResource("3_b0c1l")
+use_particle_trails = true
+
+[sub_resource type="Curve" id="Curve_4sqcj"]
+
+[sub_resource type="Curve" id="Curve_buo4u"]
+max_value = 0.01
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1e-05, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_mtbx7"]
+min_value = -2.0
+max_value = 2.0
+_data = [Vector2(0.99999, 2), 0.0, 0.0, 0, 0, Vector2(1, -2), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_4ng8m"]
+curve_x = SubResource("Curve_4sqcj")
+curve_y = SubResource("Curve_buo4u")
+curve_z = SubResource("Curve_mtbx7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vbfle"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 0)
+emission_ring_height = 0.0
+emission_ring_radius = 2.45
+emission_ring_inner_radius = 1.75
+spread = 0.0
+orbit_velocity_min = 0.2
+orbit_velocity_max = 0.2
+orbit_velocity_curve = SubResource("CurveXYZTexture_4ng8m")
+radial_velocity_min = 0.199978
+radial_velocity_max = 0.499978
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 21.35
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_2o7qt"]
+size = 0.6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nvnh6"]
+render_priority = 0
+shader = ExtResource("4_drhjq")
+shader_parameter/SPEED = Vector2(1, 2)
+shader_parameter/Txture_power = 1.2
+shader_parameter/Gradiant_power = 1.0
+shader_parameter/Enegri_texture = ExtResource("5_sh20q")
+
+[sub_resource type="Curve" id="Curve_mx44d"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_uk8fl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_o4qn4"]
+max_value = 50.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.994413, 42.3077), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_fjty3"]
+curve_x = SubResource("Curve_mx44d")
+curve_y = SubResource("Curve_uk8fl")
+curve_z = SubResource("Curve_o4qn4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4meya"]
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 3.0
+scale_curve = SubResource("CurveXYZTexture_fjty3")
+color = Color(0.225651, 0.0603431, 0.383366, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rdphf"]
+render_priority = 0
+shader = ExtResource("4_drhjq")
+shader_parameter/SPEED = Vector2(1.5, 0)
+shader_parameter/Txture_power = 1.5
+shader_parameter/Gradiant_power = 2.0
+shader_parameter/Enegri_texture = ExtResource("5_sh20q")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w4vhv"]
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 3.0
+color = Color(1, 1, 3.243, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yqlv7"]
+render_priority = 0
+shader = ExtResource("4_drhjq")
+shader_parameter/SPEED = Vector2(2, -1)
+shader_parameter/Txture_power = 2.0
+shader_parameter/Gradiant_power = 1.0
+shader_parameter/Enegri_texture = ExtResource("8_nuep3")
+
+[sub_resource type="Curve" id="Curve_12nmr"]
+min_value = 1.0
+max_value = 200.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.916201, 105.967), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_e51tg"]
+curve_x = SubResource("Curve_mx44d")
+curve_y = SubResource("Curve_uk8fl")
+curve_z = SubResource("Curve_12nmr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_blkj8"]
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0
+scale_curve = SubResource("CurveXYZTexture_e51tg")
+color = Color(0.655, 0.422, 3.243, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rjy4l"]
+render_priority = 0
+shader = ExtResource("9_fv011")
+shader_parameter/Lightning_color = Color(1, 1, 1, 1)
+shader_parameter/SPEED = Vector2(0, 0)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fp7go"]
+gravity = Vector3(0, 0, 300)
+scale_min = 10.0
+scale_max = 10.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_mw0uy"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ij6pp"]
+
+[sub_resource type="Sky" id="Sky_s652m"]
+sky_material = SubResource("ProceduralSkyMaterial_ij6pp")
+process_mode = 1
+
+[sub_resource type="Environment" id="Environment_ruofu"]
+background_mode = 2
+background_energy_multiplier = 0.1
+sky = SubResource("Sky_s652m")
+ambient_light_color = Color(0.497474, 0.497474, 0.497474, 1)
+ambient_light_sky_contribution = 0.0
+reflected_light_source = 2
+tonemap_mode = 2
+ssao_power = 1e+06
+ssil_enabled = true
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+sdfgi_cascades = 2
+sdfgi_min_cell_size = 22.2316
+sdfgi_energy = 0.8
+glow_enabled = true
+glow_levels/2 = 1.03
+glow_levels/3 = 0.0
+glow_levels/5 = 0.0
+glow_levels/7 = 4.92
+glow_bloom = 0.01
+volumetric_fog_density = 0.02
+volumetric_fog_albedo = Color(0, 0.317752, 0.69897, 1)
+volumetric_fog_emission = Color(0.303928, 0.54605, 0.883658, 1)
+volumetric_fog_emission_energy = 1.05
+volumetric_fog_gi_inject = 0.67
+volumetric_fog_anisotropy = -0.28
+volumetric_fog_length = 90.71
+adjustment_enabled = true
+adjustment_brightness = 0.8
+adjustment_contrast = 1.2
+adjustment_saturation = 1.4
+
+[sub_resource type="Animation" id="Animation_ywam3"]
+resource_name = "NecroTide Shoot"
+length = 2.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Portal:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node3D/Main Energi:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.522917),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node3D/Main Guard:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.522917),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node3D/Side Energi:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Node3D/magic rings:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MeshInstance3D:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.466667, 2, 2.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(7, 7, 7), Vector3(7, 7, 7), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mbvut"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Portal:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node3D/Main Energi:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node3D/Main Guard:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node3D/Side Energi:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Node3D/magic rings:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MeshInstance3D:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d6rkd"]
+_data = {
+"NecroTide Shoot": SubResource("Animation_ywam3"),
+"RESET": SubResource("Animation_mbvut")
+}
+
+[node name="Necrotide Animation" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3.91909)
+material_override = SubResource("ShaderMaterial_gaarl")
+cast_shadow = 0
+mesh = SubResource("QuadMesh_eke33")
+
+[node name="Portal" type="GPUParticles3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 3.91935)
+material_override = SubResource("StandardMaterial3D_86j0a")
+amount = 150
+lifetime = 1.5
+one_shot = true
+trail_enabled = true
+trail_lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_vbfle")
+draw_pass_1 = SubResource("RibbonTrailMesh_2o7qt")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="Main Energi" type="GPUParticles3D" parent="Node3D"]
+material_override = SubResource("ShaderMaterial_nvnh6")
+amount = 1
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_4meya")
+draw_pass_1 = ExtResource("6_trge0")
+
+[node name="Main Guard" type="GPUParticles3D" parent="Node3D"]
+material_override = SubResource("ShaderMaterial_rdphf")
+amount = 1
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_w4vhv")
+draw_pass_1 = ExtResource("7_a25x6")
+
+[node name="Side Energi" type="GPUParticles3D" parent="Node3D"]
+material_override = SubResource("ShaderMaterial_yqlv7")
+amount = 1
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_blkj8")
+draw_pass_1 = ExtResource("6_trge0")
+
+[node name="magic rings" type="GPUParticles3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.89388)
+material_override = SubResource("ShaderMaterial_rjy4l")
+lifetime = 1.5
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_fp7go")
+draw_pass_1 = SubResource("QuadMesh_mw0uy")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ruofu")
+
+[node name="NecroTide_Fire" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_d6rkd")
+}

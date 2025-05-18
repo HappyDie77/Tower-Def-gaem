@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=3 uid="uid://dvskncj2w7b4a"]
+
+[ext_resource type="Shader" uid="uid://biwjfem18np1a" path="res://Scripts/Themes & Shaders/Lightning bullet.tres" id="1_ossao"]
+[ext_resource type="Script" path="res://Scenes/electro_bullet.gd" id="1_ws2n2"]
+[ext_resource type="ArrayMesh" uid="uid://btq65lhqfjv6a" path="res://Assets/Models/lIGHTNING bULLET MEsH.obj" id="2_rhjc6"]
+[ext_resource type="Texture2D" uid="uid://msy0qm6j7yf" path="res://Assets/PNG (Transparent)/spark_02.png" id="3_kcact"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ocnd6"]
+render_priority = 0
+shader = ExtResource("1_ossao")
+shader_parameter/Lightning_color = Color(0, 0.411765, 0.823529, 1)
+shader_parameter/SPEED = Vector2(2, 20)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kqnnb"]
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("3_kcact")
+
+[sub_resource type="Curve" id="Curve_e68on"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dvpmj"]
+curve = SubResource("Curve_e68on")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wi25v"]
+particle_flag_align_y = true
+emission_shape = 2
+emission_sphere_radius = 0.01
+inherit_velocity_ratio = 0.874
+direction = Vector3(0, 0, 10)
+spread = 45.31
+initial_velocity_min = 22.0
+initial_velocity_max = 35.0
+radial_velocity_min = 0.999978
+radial_velocity_max = 4.99998
+scale_min = 2.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_dvpmj")
+color = Color(0, 1, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_glaib"]
+size = Vector2(0.1, 0.5)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yj7rd"]
+height = 4.45063
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tjkf5"]
+height = 3.12804
+
+[node name="Lightning bullet" type="CharacterBody3D"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+script = ExtResource("1_ws2n2")
+
+[node name="LIghtningBUlletMEsH" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00513375, 0, 0.0118765)
+material_override = SubResource("ShaderMaterial_ocnd6")
+cast_shadow = 0
+mesh = ExtResource("2_rhjc6")
+
+[node name="Small sparaks" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0142225, 0.00917077, 0.0964103)
+material_override = SubResource("StandardMaterial3D_kqnnb")
+lifetime = 0.5
+speed_scale = 1.1
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_wi25v")
+draw_pass_1 = SubResource("QuadMesh_glaib")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, -2.18557e-08, -0.5, 0, 0.5, -2.18557e-08, 0, 0, 0.166973)
+shape = SubResource("CapsuleShape3D_yj7rd")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00165486, 0.0042243, -3.31998e-05)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.00041008, 1.19209e-07, 0.0941438)
+shape = SubResource("CapsuleShape3D_tjkf5")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

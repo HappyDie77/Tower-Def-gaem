@@ -72,12 +72,12 @@ text = "GridMap Asset: Kenny(CC0)"
 [node name="Tower Model" type="Label" parent="CanvasLayer/ColorRect/Panel/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
-text = "Tower Model: Denny"
+text = "Tower Models: Denny"
 
 [node name="SFX" type="Label" parent="CanvasLayer/ColorRect/Panel/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
-text = "SFX: Pixabay(CC0)"
+text = "SFX: Pixabay(CC0) & Denny"
 
 [node name="VFX" type="Label" parent="CanvasLayer/ColorRect/Panel/VBoxContainer"]
 layout_mode = 2
@@ -103,12 +103,12 @@ text = "Water Shader: NekotoArts(CC0)"
 [node name="Enemy Model" type="Label" parent="CanvasLayer/ColorRect/Panel/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
-text = "Enemy Model: Denny"
+text = "Enemy Models: Denny"
 
 [node name="Animation" type="Label" parent="CanvasLayer/ColorRect/Panel/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
-text = "Animation: Denny"
+text = "Animations: Denny"
 
 [node name="Pixel Icon" type="Label" parent="CanvasLayer/ColorRect/Panel/VBoxContainer"]
 layout_mode = 2

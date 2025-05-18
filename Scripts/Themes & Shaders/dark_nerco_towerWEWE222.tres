@@ -1,0 +1,19 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://mybhaykpq1d"]
+
+[resource]
+blend_mode = 1
+albedo_texture_force_srgb = true
+albedo_texture_msdf = true
+metallic = 0.89
+emission_energy_multiplier = 0.0
+normal_scale = 5.35
+rim = 0.0
+clearcoat_roughness = 0.0
+anisotropy = -0.42
+ao_light_affect = 0.79
+subsurf_scatter_strength = 1.0
+refraction_scale = 0.39
+detail_enabled = true
+detail_blend_mode = 2
+billboard_keep_scale = true
+proximity_fade_distance = 3472.84

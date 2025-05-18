@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var tower_2: CharacterBody3D = $"."
+@onready var tower_1: CharacterBody3D = $"."
 
 @onready var upg_scre = $Upg_scre
 @onready var target: Button = $Upg_scre/Panel/VBoxContainer/Target
@@ -38,6 +38,7 @@ var new_radius: float = 1.5
 var new_timer: float = 1.5
 enum TargetMode { First, Closest, Last }
 var target_mode: int = TargetMode.First
+var current_dmg_now = 0
 
 var duplicated_mesh: CylinderMesh
 var duplicated_shape: CylinderShape3D
@@ -52,6 +53,8 @@ var current_mode_name = mode_names[target_mode]
 var in_cli=false
 
 func _ready() -> void:
+	add_to_group("towers")
+
 	# Duplicate and assign unique shape
 	var duplicated_shape = (mob_shape.shape as CylinderShape3D).duplicate(true)
 	mob_shape.shape = duplicated_shape
@@ -62,18 +65,29 @@ func _ready() -> void:
 	range_view.mesh = duplicated_mesh
 	cylinder = duplicated_mesh  # now this points to the correct mesh
 
+	$"Upg_scre/Panel/Dice buff".visible = false
 
 	target.text = "" + mode_names[target_mode]
 	upgrade.text = "$" + str(Tower1_Upg_1)
-	atk_lb.text = "ATK: " + str(dmg_inc)
+	atk_lb.text = "ATK: " + format_number(current_dmg_now)
+
 	spa_lb.text = "SPA: " + str(new_timer)
 	range_lb.text = "Range: " + str(new_radius)
 	shoot_timer.wait_time = new_timer
 	cylinder_shape.radius = new_radius * 2
 	cylinder.top_radius = new_radius
 	range_view.mesh = cylinder
-
 	sell.text = "$" + str(sell_value)
+	
+	apply_global_buff()
+
+func format_number(value: float) ->String:
+	if int(value) == value:
+		return str(int(value))
+	elif (value * 10) == floor(value * 10):
+		return "%0.1f" % value
+	else:
+		return "%0.2f" % value
 
 var upgrade_level = 0
 var upgrades = tower1_prices
@@ -115,10 +129,17 @@ func _process(delta):
 			range_view.visible = false
 			upg_scre.visible = false
 
+func apply_global_buff():
+	current_dmg_now = damage[upgrade_level] * Global.buff_multiplier
+	atk_lb.text = "ATK: " + format_number(current_dmg_now)
+	if Global.buff_tower_placed:
+		$Upg_scre/Panel/Status_buff.visible = true
+		$"Upg_scre/Panel/Dice buff".visible = true
+
 func shoot() -> void:
 	var temp_bullet: CharacterBody3D = bullet.instantiate()
 	temp_bullet.target = curr
-	temp_bullet.bullet_damage = dmg_inc
+	temp_bullet.bullet_damage = current_dmg_now
 	get_node("BulletContainer").add_child(temp_bullet)
 	temp_bullet.global_position = $Towermesh/Aim.global_position
 
@@ -169,13 +190,13 @@ func _on_t_ouch_mouse_exited():
 	print("out")
 	muscuk = false
 
-
 func _on_upgrade_pressed():
 	if not upg_scre.visible:
 		return  # Only respond if this tower's UI is active
 
 	if upgrade_level >= upgrades.size():
-		atk_lb.text = "ATK: " + str(dmg_inc)
+		atk_lb.text = "ATK: " + format_number(current_dmg_now)
+
 		spa_lb.text = "SPA: " + str(new_timer)
 		sell.text = "$" + str(sell_value)
 		range_lb.text = "Range: " + str(new_radius)
@@ -186,6 +207,7 @@ func _on_upgrade_pressed():
 	if Global.player_money >= cost:
 		$Buy.play()
 		Global.player_money -= cost
+		Global.towers_upgraded += 1
 		sell_value = cost / 2
 		upgrade_level += 1
 		new_timer = spa_inc
@@ -193,6 +215,7 @@ func _on_upgrade_pressed():
 		new_radius = range_inc
 		cylinder_shape.radius = new_radius * 2
 		cylinder.top_radius = new_radius
+		apply_global_buff()
 
 		# Set new damage based on new upgrade level
 		if upgrade_level < damage.size():
@@ -212,12 +235,14 @@ func _on_upgrade_pressed():
 
 		if upgrade_level < upgrades.size():
 			upgrade.text = "$" + str(upgrades[upgrade_level])
-			atk_lb.text = "ATK: " + str(dmg_inc)
+			atk_lb.text = "ATK: " + format_number(current_dmg_now)
+
 			spa_lb.text = "SPA: " + str(new_timer)
 			sell.text = "$" + str(sell_value)
 			range_lb.text = "Range: " + str(new_radius)
 		else:
-			atk_lb.text = "ATK: " + str(dmg_inc)
+			atk_lb.text = "ATK: " + format_number(current_dmg_now)
+
 			spa_lb.text = "SPA: " + str(new_timer)
 			sell.text = "$" + str(sell_value)
 			range_lb.text = "Range: " + str(new_radius)
@@ -232,7 +257,8 @@ func _on_sell_pressed() -> void:
 	Global.placement_left[1] = Global.placement_max[1] - Global.placement_current[1]
 	Global.player_money += sell_value
 	Global.sell_true = true
-	tower_2.visible = false
+	Global.towers_sold += 1
+	tower_1.visible = false
 	upg_scre.visible = false
 	range_view.visible = false
 	
@@ -246,3 +272,27 @@ func _on_target_pressed() -> void:
 	if upg_scre.visible:
 		target_mode = TargetMode.values()[(target_mode + 1) % TargetMode.size()]
 		target.text = "" + mode_names[target_mode]
+
+func _on_area_2d_mouse_entered() -> void:
+	$Upg_scre/Panel3.visible = true
+
+func _on_area_2d_mouse_exited() -> void:
+	$Upg_scre/Panel3.visible = false
+
+func _on_atk_spd_mouse_entered() -> void:
+	$"Upg_scre/ATK SPD".visible = true
+
+func _on_atk_spd_mouse_exited() -> void:
+	$"Upg_scre/ATK SPD".visible = false
+
+func _on_target_type_mouse_entered() -> void:
+	$Upg_scre/TARGET_TYPE.visible = true
+
+func _on_target_type_mouse_exited() -> void:
+	$Upg_scre/TARGET_TYPE.visible = false
+
+func _on_effect_trype_mouse_entered() -> void:
+	$Upg_scre/EFFECT_TYPE.visible = true
+
+func _on_effect_trype_mouse_exited() -> void:
+	$Upg_scre/EFFECT_TYPE.visible = false

@@ -1,38 +1,107 @@
-[gd_scene load_steps=25 format=3 uid="uid://cbbi3taj35r44"]
+[gd_scene load_steps=35 format=3 uid="uid://cbbi3taj35r44"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_86d68"]
 [ext_resource type="PackedScene" uid="uid://cywx6wddg7agu" path="res://Scenes/hud.tscn" id="3_4g7fw"]
 [ext_resource type="MeshLibrary" uid="uid://bd81r5ev5gr01" path="res://Scenes/Gridmaps/Griid 4.tres" id="3_cihxq"]
 [ext_resource type="Texture2D" uid="uid://bpudnmph6vdpc" path="res://Scripts/kenney_tower-defense-kit/Previews/weapon-cannon.png" id="3_g837o"]
-[ext_resource type="Texture2D" uid="uid://c3iq4g5rsopqt" path="res://Assets/Plasma_Tower-removebg-preview (1).png" id="4_3gi3t"]
 [ext_resource type="MeshLibrary" uid="uid://ctt4pboixocja" path="res://Scenes/Gridmaps/gridd 6.tres" id="4_g3bop"]
 [ext_resource type="PackedScene" uid="uid://wn1p5uw7hwbq" path="res://Scenes/Towers/Tower 2.tscn" id="5_fh6wy"]
+[ext_resource type="PackedScene" uid="uid://ce4i0rd5n47ye" path="res://Scenes/Towers/Tower 3.tscn" id="6_ewkc7"]
 [ext_resource type="PackedScene" uid="uid://dm2xydbi1nfek" path="res://Scenes/Towers/Tower 1.tscn" id="6_i14ak"]
+[ext_resource type="PackedScene" uid="uid://c10rv8ijmqw4k" path="res://Scenes/Towers/Tower 4.tscn" id="7_06nav"]
 [ext_resource type="MeshLibrary" uid="uid://wbihegonogi4" path="res://Scenes/Gridmaps/gridd 8.tres" id="8_ft5pw"]
 [ext_resource type="PackedScene" uid="uid://dkq0jdfhm20qk" path="res://Scenes/start_game.tscn" id="8_ubou1"]
+[ext_resource type="StyleBox" uid="uid://bf6h2h0n3tggl" path="res://Scripts/Themes & Shaders/Actibiy.tres" id="8_xtxrj"]
 [ext_resource type="MeshLibrary" uid="uid://2j7odufm60ha" path="res://Scenes/Gridmaps/gridd 9.tres" id="9_38ekd"]
+[ext_resource type="Texture2D" uid="uid://dg5qd6vqorb2r" path="res://Assets/Plasma_Tower-removebg-preview (2).png" id="9_h2gkd"]
+[ext_resource type="Texture2D" uid="uid://ddr50jqlrsq71" path="res://Assets/Dice_Tower-removebg-preview.png" id="10_rdrh0"]
 [ext_resource type="PackedScene" uid="uid://ds52717rr48dw" path="res://Scenes/cloud_spawner.tscn" id="10_yxl3f"]
 [ext_resource type="AudioStream" uid="uid://b2adjh7rywmpa" path="res://Assets/Music/Tower Game Ost 1.1.mp3" id="12_j08br"]
+[ext_resource type="Texture2D" uid="uid://kfhhbgkvn6c" path="res://Assets/878b7379-9144-4915-a0bd-6d263dc388fd_removalai_preview.png" id="13_ht1qt"]
 [ext_resource type="Texture2D" uid="uid://cm8fue50prki3" path="res://Assets/Icons/New Piskel (2).png" id="15_15224"]
 [ext_resource type="PackedScene" uid="uid://t33p14owkeyy" path="res://Scenes/camera_main.tscn" id="17_0xeiu"]
 [ext_resource type="AudioStream" uid="uid://cwti4cx3yq2cq" path="res://Assets/SFX/interface-124464.mp3" id="17_d2mkf"]
 [ext_resource type="Shader" path="res://Scripts/Themes & Shaders/Ocean.gdshader" id="28_htrqa"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0p1p7"]
+bg_color = Color(0.112939, 0.110716, 0.10976, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_klk2r"]
+bg_color = Color(0.112939, 0.110716, 0.10976, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_exx4k"]
+bg_color = Color(0.0705882, 0.0666667, 0.0666667, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oqjub"]
+bg_color = Color(0.0861586, 0.0842843, 0.0834783, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.851769, 0.851769, 0.851769, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gxxhe"]
+bg_color = Color(0.0701019, 0.0684383, 0.0677228, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.894922, 0.894922, 0.894922, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8uqr"]
 bg_color = Color(0.972549, 0, 0.94902, 0)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ere5a"]
+sky_curve = 0.191184
 
-[sub_resource type="Sky" id="Sky_6bkif"]
+[sub_resource type="Sky" id="Sky_uc60b"]
 sky_material = SubResource("ProceduralSkyMaterial_ere5a")
 process_mode = 1
 
 [sub_resource type="Environment" id="Environment_oj07o"]
 background_mode = 2
-sky = SubResource("Sky_6bkif")
+background_energy_multiplier = 1.2
+sky = SubResource("Sky_uc60b")
+ambient_light_color = Color(0.497474, 0.497474, 0.497474, 1)
 reflected_light_source = 2
 tonemap_mode = 2
-tonemap_exposure = 0.9
 ssao_power = 1e+06
 ssil_enabled = true
 sdfgi_enabled = true
@@ -41,19 +110,23 @@ sdfgi_cascades = 2
 sdfgi_min_cell_size = 22.2316
 sdfgi_energy = 0.8
 glow_enabled = true
+glow_levels/2 = 1.03
+glow_levels/3 = 0.0
+glow_levels/5 = 0.0
+glow_levels/7 = 4.92
+glow_bloom = 0.01
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.02
-volumetric_fog_albedo = Color(0.715874, 0.830531, 0.999999, 1)
+volumetric_fog_albedo = Color(0, 0.317752, 0.69897, 1)
 volumetric_fog_emission = Color(0.303928, 0.54605, 0.883658, 1)
-volumetric_fog_emission_energy = 0.4
-volumetric_fog_gi_inject = 1.2
-volumetric_fog_anisotropy = -0.83
-volumetric_fog_length = 96.33
-volumetric_fog_detail_spread = 6.0
+volumetric_fog_emission_energy = 1.05
+volumetric_fog_gi_inject = 0.67
+volumetric_fog_anisotropy = -0.28
+volumetric_fog_length = 90.71
 adjustment_enabled = true
 adjustment_brightness = 0.8
-adjustment_contrast = 1.4
-adjustment_saturation = 1.33
+adjustment_contrast = 1.3
+adjustment_saturation = 1.5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n7bq2"]
 render_priority = 1
@@ -89,6 +162,8 @@ script = ExtResource("1_86d68")
 transform = Transform3D(1, 0, 0, 0, 0.676259, 0.736664, 0, -0.736664, 0.676259, 11.2826, 1.32934, 4.15046)
 tower_scene1 = ExtResource("6_i14ak")
 tower_scene2 = ExtResource("5_fh6wy")
+tower_scene3 = ExtResource("6_ewkc7")
+tower_scene4 = ExtResource("7_06nav")
 
 [node name="Hud" parent="." instance=ExtResource("3_4g7fw")]
 mouse_filter = 2
@@ -108,6 +183,13 @@ offset_right = -212.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_styles/focus = SubResource("StyleBoxFlat_0p1p7")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_klk2r")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_exx4k")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_oqjub")
+theme_override_styles/hover = SubResource("StyleBoxFlat_oqjub")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_gxxhe")
+theme_override_styles/normal = ExtResource("8_xtxrj")
 toggle_mode = true
 action_mode = 0
 icon = ExtResource("3_g837o")
@@ -141,6 +223,13 @@ offset_right = -76.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_styles/focus = SubResource("StyleBoxFlat_0p1p7")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_klk2r")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_exx4k")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_oqjub")
+theme_override_styles/hover = SubResource("StyleBoxFlat_oqjub")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_gxxhe")
+theme_override_styles/normal = ExtResource("8_xtxrj")
 toggle_mode = true
 icon_alignment = 1
 expand_icon = true
@@ -159,8 +248,8 @@ theme_override_font_sizes/font_size = 34
 
 [node name="PlasmaTower-removebg-preview(1)" type="Sprite2D" parent="ActivityBut2"]
 position = Vector2(59.6668, 59.9999)
-scale = Vector2(1.25, 1.25)
-texture = ExtResource("4_3gi3t")
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("9_h2gkd")
 
 [node name="ActivityBut3" type="Button" parent="."]
 top_level = true
@@ -177,7 +266,14 @@ offset_right = 60.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
-icon = ExtResource("3_g837o")
+theme_override_styles/focus = SubResource("StyleBoxFlat_0p1p7")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_klk2r")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_exx4k")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_oqjub")
+theme_override_styles/hover = SubResource("StyleBoxFlat_oqjub")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_gxxhe")
+theme_override_styles/normal = ExtResource("8_xtxrj")
+toggle_mode = true
 icon_alignment = 1
 expand_icon = true
 
@@ -192,6 +288,11 @@ offset_right = -2.0
 offset_bottom = 41.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 34
+
+[node name="PlasmaTower-removebg-preview(1)" type="Sprite2D" parent="ActivityBut3"]
+position = Vector2(59.6668, 59.9999)
+scale = Vector2(0.32, 0.32)
+texture = ExtResource("10_rdrh0")
 
 [node name="ActivityBut4" type="Button" parent="."]
 top_level = true
@@ -208,7 +309,15 @@ offset_right = 196.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
-icon = ExtResource("3_g837o")
+theme_override_styles/focus = SubResource("StyleBoxFlat_0p1p7")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_klk2r")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_exx4k")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_oqjub")
+theme_override_styles/hover = SubResource("StyleBoxFlat_oqjub")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_gxxhe")
+theme_override_styles/normal = ExtResource("8_xtxrj")
+toggle_mode = true
+icon = ExtResource("13_ht1qt")
 icon_alignment = 1
 expand_icon = true
 
@@ -239,6 +348,14 @@ offset_right = 332.0
 offset_bottom = -16.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_styles/focus = SubResource("StyleBoxFlat_0p1p7")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_klk2r")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_exx4k")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_oqjub")
+theme_override_styles/hover = SubResource("StyleBoxFlat_oqjub")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_gxxhe")
+theme_override_styles/normal = ExtResource("8_xtxrj")
+toggle_mode = true
 icon_alignment = 1
 expand_icon = true
 
@@ -274,11 +391,12 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.703358, 0.710836, 0, -0.710836, 0.703358, 6.18804, 10.8987, 17.2556)
+transform = Transform3D(1, 0, 0, 0, 0.851645, 0.52412, 0, -0.52412, 0.851645, 11.3034, 4.8164, 9.77118)
 light_color = Color(0.998768, 0.999999, 0.847676, 1)
 light_energy = 0.7
 light_indirect_energy = 2.0
 light_volumetric_fog_energy = 3.151
+light_angular_distance = 0.3
 shadow_enabled = true
 shadow_normal_bias = 1.816
 shadow_opacity = 0.83

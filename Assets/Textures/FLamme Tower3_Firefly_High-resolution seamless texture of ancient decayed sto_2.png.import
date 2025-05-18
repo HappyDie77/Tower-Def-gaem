@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://teuqjeys0326"
+path.s3tc="res://.godot/imported/FLamme Tower3_Firefly_High-resolution seamless texture of ancient decayed sto_2.png-76a68ccd372248d0ec339ec21c656af4.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "00a06551f7e0681176fe6e9e13a77642"
+}
+
+[deps]
+
+source_file="res://Assets/Textures/FLamme Tower3_Firefly_High-resolution seamless texture of ancient decayed sto_2.png"
+dest_files=["res://.godot/imported/FLamme Tower3_Firefly_High-resolution seamless texture of ancient decayed sto_2.png-76a68ccd372248d0ec339ec21c656af4.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

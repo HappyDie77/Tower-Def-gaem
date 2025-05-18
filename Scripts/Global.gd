@@ -5,9 +5,9 @@ extends Node
 # In Global.gd
 var placement_max = {
 	1: 3,
-	2: 3,
-	3: 3,
-	4: 3,
+	2: 2,
+	3: 1,
+	4: 1,
 	5: 3
 }
 var placement_current = {
@@ -19,6 +19,10 @@ var placement_current = {
 }
 var placement_left = {}
 
+var buff_multiplier: float = 1.0
+var buff_tower_placed: bool = false
+
+
 func _ready():
 	for i in placement_max.keys():
 		placement_left[i] = placement_max[i] - placement_current[i]
@@ -27,32 +31,18 @@ var base_health = 10
 
 var button_pres = false
 
-var player_money = 10000
+var player_money = 0
 
 var current_wave = 0
 
+var wave_started = false
 
-var Tower3_Upg_1: int = 560
-var Tower3_Upg_2: int = 1450
-var Tower3_Upg_3: int = 2560
-var tower3_prices = [560, 1450, 2560]
-var tower3_damage = [5, 8, 12, 15]
-var tower3_SPA = [1.2, 1.2, 1]
-var tower3_range = [1.5, 2, 2.2]
-
-var Tower4_Upg_1: int = 560
-var Tower4_Upg_2: int = 1450
-var Tower4_Upg_3: int = 2560
-var tower4_prices = [560, 1450, 2560]
-var tower4_damage = [5, 8, 12, 15]
-var tower4_SPA = [1.2, 1.2, 1]
-var tower4_range = [1.5, 2, 2.2]
-
-var Tower5_Upg_1: int = 560
-var Tower5_Upg_2: int = 1450
-var Tower5_Upg_3: int = 2560
-var tower5_prices = [560, 1450, 2560]
-var tower5_damage = [5, 8, 12, 15]
-var tower5_SPA = [1.2, 1.2, 1]
-var tower5_range = [1.5, 2, 2.2]
 var sell_true = null
+
+
+var bosses_killed = 0
+var enemies_killed = 0
+var towers_placed = 0
+var towers_sold = 0
+var enemies_leaked = 0
+var towers_upgraded = 0
